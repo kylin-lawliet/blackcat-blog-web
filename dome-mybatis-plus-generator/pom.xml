@@ -7,9 +7,9 @@
         <groupId>com.blackcat</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+    <packaging>jar</packaging>
     <groupId>com.blackcat</groupId>
     <artifactId>dome-mybatis-plus-generator</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>dome-mybatis-plus-generator</name>
     <description>Demo project for Spring Boot</description>
 
