@@ -18,11 +18,11 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/login", method = RequestMethod.GET)
     @ResponseBody
     public String defaultLogin() {
         return "首页";
-    }
+    }*/
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
