@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(basePackages = {"com.blackcat.blog.core.dao"}) //扫描DAO
+@MapperScan(basePackages = {"com.blackcat.blog.core.mapper"}) //扫描DAO
 public class BlogBaseApplication {
 
     public static void main(String[] args) {
