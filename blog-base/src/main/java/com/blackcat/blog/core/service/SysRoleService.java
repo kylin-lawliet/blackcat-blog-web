@@ -1,24 +1,24 @@
 package com.blackcat.blog.core.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.blackcat.blog.core.entity.SysRoleEntity;
+import com.blackcat.blog.core.entity.SysRole;
 
 import java.util.List;
 
 /**
- * @Description 角色业务接口
- * @Author Sans
- * @CreateTime 2019/6/14 15:57
- */
-public interface SysRoleService extends IService<SysRoleEntity> {
+ * <p> 角色业务接口
+ * @author: blackcat
+ * @date: 2020/1/16 20:14
+*/
+public interface SysRoleService extends IService<SysRole> {
 
     /**
-     * 通过用户ID查询角色集合
-     * @Author Sans
-     * @CreateTime 2019/6/18 18:01
-     * @Param  userId 用户ID
-     * @Return List<SysRoleEntity> 角色名集合
-     */
-    List<SysRoleEntity> selectSysRoleByUserId(Long userId);
+     * <p> 通过用户ID查询角色集合
+     * @author: blackcat
+     * @date: 2020/1/16 20:13
+     * @Param [userId:用户ID]
+     * @return List<SysRole> 角色名集合
+    */
+    List<SysRole> selectSysRoleByUserId(Long userId);
 }
 
