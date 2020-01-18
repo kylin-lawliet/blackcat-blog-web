@@ -4,21 +4,43 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.blackcat.blog.core.entity.SysMenu;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p> 权限Mapper
- * @author: blackcat
- * @date: 2020/1/16 20:08
+ * @author : blackcat
+ * @date : 2020/1/16 20:08
 */
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
     /**
+     * <p> : 获取所有可用的菜单资源
+     * @author : blackcat
+     * @date : 2020/1/17 14:13
+     * @return List<SysMenu> 权限集合
+    */
+    List<SysMenu> listAllAvailableMenu();
+
+    /**
+     * <p> : 获取用户的资源列表
+     * @author : blackcat
+     * @date : 2020/1/17 14:33
+     * @Param [map]
+     * @return java.util.List<com.blackcat.blog.core.entity.SysMenu>
+    */
+    List<SysMenu> listUserMenu(Map<String, Object> map);
+
+
+
+    /**
      * <p> 根据角色查询用户权限
-     * @author: blackcat
-     * @date: 2020/1/16 20:08
+     * @author : blackcat
+     * @date : 2020/1/16 20:08
      * @Param [roleId:角色ID]
      * @return List<SysMenu> 权限集合
     */
     List<SysMenu> selectSysMenuByRoleId(Long roleId);
+
+
 	
 }

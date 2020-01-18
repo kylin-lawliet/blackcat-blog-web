@@ -2,10 +2,11 @@
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <div class="menu_section">
         <ul class="nav side-menu">
-            <@shiro.user>
+            <#--<@shiro.user>-->
                 <li><a href="/index"><i class="fa fa-home"></i>首页</a></li>
-            </@shiro.user>
-            <@zhydTag method="menus" userId="${user.id}">
+            <#--</@shiro.user>-->
+            <#--userId="${user.id}"-->
+            <@blog method="menus" userId="1">
                 <#if menus?? && menus?size gt 0>
                     <#list menus as item>
                         <#if item.nodes?? && item.nodes?size gt 0>
@@ -13,9 +14,9 @@
                                 <a><i class="${item.icon?if_exists}"></i> ${item.name?if_exists}<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <#list item.nodes as node>
-                                        <@shiro.hasPermission name="${node.permission?if_exists}">
+                                        <#--<@shiro.hasPermission name="${node.permission?if_exists}">-->
                                         <li><a href="${node.url?if_exists}" ${(node.external?exists && node.external)?string('target="_blank"','')}><i class="${node.icon?if_exists}"></i>${node.name?if_exists}</a></li>
-                                        </@shiro.hasPermission>
+                                        <#--</@shiro.hasPermission>-->
                                     </#list>
                                 </ul>
                             </li>
@@ -24,7 +25,7 @@
                         </#if>
                     </#list>
                 </#if>
-            </@zhydTag>
+            </@blog>
         </ul>
     </div>
 </div>

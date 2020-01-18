@@ -15,7 +15,7 @@
         <result property="available" jdbcType="BIT" column="available"/>
         <result property="icon" jdbcType="VARCHAR" column="icon"/>
         <result property="checked" jdbcType="VARCHAR" column="checked"/>
-        <association property="parent" javaType="com.zyd.shiro.persistence.beans.SysResources">
+        <association property="parent" javaType="com.blackcat.blog.core.entity.SysMenu">
             <result property="id" jdbcType="BIGINT" column="parent_id"/>
             <result property="name" jdbcType="VARCHAR" column="parent_name"/>
             <result property="type" jdbcType="VARCHAR" column="parent_type"/>
@@ -25,7 +25,7 @@
             <result property="available" jdbcType="BIT" column="parent_available"/>
             <result property="icon" jdbcType="VARCHAR" column="parent_icon"/>
         </association>
-        <collection property="nodes" column="node_id" javaType="ArrayList" ofType="com.zyd.shiro.persistence.beans.SysResources">
+        <collection property="nodes" column="node_id" javaType="ArrayList" ofType="com.blackcat.blog.core.entity.SysMenu">
             <result property="id" jdbcType="BIGINT" column="node_id"/>
             <result property="name" jdbcType="VARCHAR" column="node_name"/>
             <result property="type" jdbcType="VARCHAR" column="node_type"/>
@@ -37,6 +37,68 @@
             <result property="icon" jdbcType="VARCHAR" column="node_icon"/>
         </collection>
     </resultMap>
+
+    <!--获取所有可用的菜单资源-->
+    <select id="listAllAvailableMenu" resultMap="sysMenuMap">
+		SELECT
+            r.id,
+            r.`name`,
+            node.id AS node_id,
+            node.`name` AS node_name,
+            node.parent_id
+        FROM
+            sys_menu r
+        LEFT JOIN sys_menu node ON (
+            node.parent_id = r.id
+            AND node.available = 1
+            AND node.type = 'menu'
+        )
+        WHERE
+            r.available = 1
+        AND r.type = 'menu'
+        AND (r.url IS NULL OR r.url = '')
+        AND (r.permission IS NULL OR r.permission = '')
+        ORDER BY
+            r.sort ASC,
+            node.sort ASC
+	</select>
+
+    <!--获取用户的资源列表-->
+    <select id="listUserMenu" parameterType="java.util.HashMap" resultMap="sysMenuMap">
+        SELECT
+        re.id,
+        re.`name`,
+        re.parent_id,
+        re.url,
+        re.permission,
+        re.icon,
+        re.external,
+        re.`available`,
+        node.id AS node_id,
+        node.`name` AS node_name,
+        node.`type` AS node_type,
+        node.`url` AS node_url,
+        node.parent_id AS node_parent_id,
+        node.`permission` AS node_permission,
+        node.`available` AS node_available,
+        node.`external` AS node_external,
+        node.icon AS node_icon
+        FROM
+        sys_menu re
+        LEFT JOIN sys_role_menu rr ON re.id = rr.menu_id
+        LEFT JOIN sys_user_role ur ON rr.role_id = ur.role_id
+        LEFT JOIN sys_menu node ON node.parent_id = re.id AND node.available = 1
+        WHERE
+        (re.parent_id = 0 OR re.parent_id IS NULL )
+        AND re.available = 1
+        AND ur.user_id = #{userId}
+        <if test="type != null">
+            AND re.type= #{type}
+        </if>
+        ORDER BY
+        re.sort ASC,
+        node.sort ASC
+    </select>
 
     <!-- 查询用户权限集合 -->
     <select id="selectSysMenuByRoleId"  parameterType="long" resultType="com.blackcat.blog.core.entity.SysMenu" >

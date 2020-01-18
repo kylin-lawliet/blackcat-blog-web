@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <#assign basePath=request.contextPath />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Shiro权限管理系统</title>
+    <title>后台管理系统</title>
     <link href="/assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +28,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/" class="site_title"><i class="fa fa-coffee"></i> <span>Shiro权限管理系统</span></a>
+                    <a href="/" class="site_title"><i class="fa fa-coffee"></i> <span>后台管理</span></a>
                 </div>
                 <div class="clearfix"></div>
                 <div class="profile clearfix">
@@ -40,8 +41,8 @@
                     </div>
                 </div>
                 <br />
-            <#include "sidebar.ftl"/>
+            <#include "${basePath}/sidebar.ftl"/>
             </div>
         </div>
-        <#include "setting.ftl"/>
+        <#include "${basePath}/setting.ftl"/>
         <div class="right_col" role="main">

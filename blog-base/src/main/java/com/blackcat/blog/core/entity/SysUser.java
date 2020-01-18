@@ -1,5 +1,6 @@
 package com.blackcat.blog.core.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.blackcat.blog.core.object.AbstractDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -8,11 +9,12 @@ import java.util.Date;
 
 /**
  * <p> 用户
- * @author: blackcat
- * @date: 2020/1/16 15:08
+ * @author : blackcat
+ * @date : 2020/1/16 15:08
 */
 @Data
 @EqualsAndHashCode(callSuper = false)
+@TableName("sys_user")
 public class SysUser extends AbstractDO {
 	private String username;// 用户名称
 	private String password;// 登录密码

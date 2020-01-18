@@ -1,6 +1,6 @@
 <footer>
     <div class="pull-right">
-        Copyright © 2019 <a href="https://www.foreknow.me" target="_blank">zjjlive</a> · Powered by <a href="###" title="简洁美观" target="_blank"><strong>foreknow</strong></a>. All Rights Reserved. Current version is 1.0.
+        Copyright © 2019 <a href="https://www.kylin-blackcat.com" target="_blank">blackcat</a>
     </div>
     <div class="clearfix"></div>
 </footer>

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p> 角色与权限业务实现
- * @author: blackcat
- * @date: 2020/1/16 20:16
+ * @author : blackcat
+ * @date : 2020/1/16 20:16
 */
 @Service("sysRoleMenuService")
 public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRoleMenu> implements SysRoleMenuService {

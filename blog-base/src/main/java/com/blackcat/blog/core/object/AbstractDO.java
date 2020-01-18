@@ -1,5 +1,7 @@
 package com.blackcat.blog.core.object;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -8,8 +10,8 @@ import java.util.Date;
 
 /**
  * <p> 公共属性
- * @author: blackcat
- * @date: 2020/1/16 14:30
+ * @author : blackcat
+ * @date : 2020/1/16 14:30
 */
 @Data
 // 此注解会生成equals(Object other) 和 hashCode()方法。
@@ -20,6 +22,7 @@ public abstract class AbstractDO implements Serializable {
 
     private static final long serialVersionUID = 5088697673359856350L;
 
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     private Date createTime;// 添加时间

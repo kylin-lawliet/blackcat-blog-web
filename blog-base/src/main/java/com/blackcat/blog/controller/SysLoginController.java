@@ -1,17 +1,16 @@
 package com.blackcat.blog.controller;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.*;
-import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.security.auth.Subject;
+
 /**
- * @author: blackcat
- * @date: 2020/1/13 12:01
+ * @author : blackcat
+ * @date : 2020/1/13 12:01
  */
 @Controller
-public class LoginController {
+public class SysLoginController {
 
     @RequestMapping("toLogin")
     public String toLogin(){
@@ -27,7 +26,7 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
-        // 从SecurityUtils里边创建一个 subject
+       /* // 从SecurityUtils里边创建一个 subject
         Subject subject = SecurityUtils.getSubject();
         // 在认证提交前准备 token（令牌）
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -50,6 +49,7 @@ public class LoginController {
         } else {
             token.clear();
             return "登录失败";
-        }
+        }*/
+       return "11";
     }
 }
