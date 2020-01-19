@@ -3,6 +3,8 @@ package com.blackcat.blog.core.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.blackcat.blog.core.entity.SysMenu;
 import com.blackcat.blog.core.extend.MenuExtend;
+import com.blackcat.blog.core.vo.MenuConditionVO;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 import java.util.Map;
@@ -15,6 +17,16 @@ import java.util.Map;
  * @return
 */
 public interface SysMenuService extends IService<SysMenu> {
+
+    /**
+     * <p> : 分页查询
+     * @author : blackcat
+     * @date : 2020/1/19 13:32
+     * @Param [vo]
+     * @return List<MenuExtend> 权限集合
+    */
+    PageInfo<MenuExtend> findPageBreakByCondition(MenuConditionVO vo);
+
     
    /* *//**
      * <p> 根据角色查询用户权限

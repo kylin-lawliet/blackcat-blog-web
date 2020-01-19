@@ -38,6 +38,31 @@
         </collection>
     </resultMap>
 
+    <!--分页查询-->
+    <select id="findPageBreakByCondition" parameterType="com.blackcat.blog.core.vo.MenuConditionVO" resultMap="sysMenuMap">
+        SELECT
+        com.*,
+        f.id parent_id,
+        f.`name` parent_name,
+        f.`icon` parent_icon,
+        f.type parent_type
+        FROM
+        sys_Menu com
+        LEFT JOIN sys_Menu f ON com.parent_id = f.id
+        WHERE
+        1 = 1
+        <if test="keywords !=null and keywords != ''">
+            AND (
+            com.name LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%') OR
+            com.url LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%') OR
+            com.permission LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%')
+            )
+        </if>
+        ORDER by
+        com.parent_id ASC,
+        com.name DESC
+    </select>
+
     <!--获取所有可用的菜单资源-->
     <select id="listAllAvailableMenu" resultMap="sysMenuMap">
 		SELECT
@@ -101,11 +126,11 @@
     </select>
 
     <!-- 查询用户权限集合 -->
-    <select id="selectSysMenuByRoleId"  parameterType="long" resultType="com.blackcat.blog.core.entity.SysMenu" >
-      SELECT sm.* FROM sys_menu sm
-      LEFT JOIN sys_role_menu se ON sm.menu_id = se.menu_id
-      WHERE se.role_id = #{roleId}
-    </select>
+    <!--<select id="selectSysMenuByRoleId"  parameterType="long" resultType="com.blackcat.blog.core.entity.SysMenu" >-->
+      <!--SELECT sm.* FROM sys_menu sm-->
+      <!--LEFT JOIN sys_role_menu se ON sm.menu_id = se.menu_id-->
+      <!--WHERE se.role_id = #{roleId}-->
+    <!--</select>-->
 
 
 </mapper>

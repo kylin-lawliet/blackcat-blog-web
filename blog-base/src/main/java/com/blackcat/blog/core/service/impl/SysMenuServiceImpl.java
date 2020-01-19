@@ -6,6 +6,9 @@ import com.blackcat.blog.core.entity.SysMenu;
 import com.blackcat.blog.core.extend.MenuExtend;
 import com.blackcat.blog.core.mapper.SysMenuMapper;
 import com.blackcat.blog.core.service.SysMenuService;
+import com.blackcat.blog.core.vo.MenuConditionVO;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -22,6 +25,21 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
     @Autowired(required = false)
     private SysMenuMapper sysMenuMapper;
+
+    /**
+     * <p> : 分页查询
+     * @author : blackcat
+     * @date : 2020/1/19 13:35
+    */
+    @Override
+    public PageInfo<MenuExtend> findPageBreakByCondition(MenuConditionVO vo) {
+        PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
+        List<SysMenu> sysMenus = sysMenuMapper.findPageBreakByCondition(vo);
+        List<MenuExtend> menus = getResources(sysMenus);
+        PageInfo bean = new PageInfo<>(sysMenus);
+        bean.setList(menus);
+        return bean;
+    }
 
     /**
      * <p> 根据角色查询用户权限
@@ -44,7 +62,6 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @Override
     public List<MenuExtend> listAllAvailableMenu() {
         List<SysMenu> sysMenus = sysMenuMapper.listAllAvailableMenu();
-        System.out.println(sysMenus.size());
         return getResources(sysMenus);
     }
 
@@ -76,7 +93,6 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @Override
     public List<MenuExtend> listUserMenu(Map<String, Object> map) {
         List<SysMenu> sysMenus = sysMenuMapper.listUserMenu(map);
-        System.out.println(sysMenus.size());
         return getResources(sysMenus);
     }
 }

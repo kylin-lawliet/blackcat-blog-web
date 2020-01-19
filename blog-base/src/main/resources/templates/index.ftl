@@ -1,24 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>后台管理</title>
-    <link href="/assets/images/favicon.ico" rel="icon">
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://cdn.bootcss.com/jquery-confirm/2.5.1/jquery-confirm.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
-    <link href="/assets/css/zhyd.core.css" rel="stylesheet">
-</head>
-
-<body class="login">
-</body>
-
-<script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="https://cdn.bootcss.com/jquery-confirm/2.5.1/jquery-confirm.min.js" type="text/javascript"></script>
-<script src="/assets/js/zyd.tool.js"></script>
-</html>
+<#assign basePath=request.contextPath />
+<#include "${basePath}/header.ftl"/>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>欢迎光临
+                    <small>blackcat博客后台管理</small>
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>系统开发日志</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <ul class="list-unstyled timeline">
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="javascript:;" class="tag"><span>05月17日</span></a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"><span>添加Druid监控</span></h2>
+                                            <div class="byline"><span></span> by <a>zyd</a></div>
+                                            <p class="excerpt">Talk is cheap, show me the code.     -- Linus Torvalds</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="javascript:;" class="tag"><span>05月16日</span></a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"><span>完善代码、流程，测试角色权限</span></h2>
+                                            <div class="byline"><span></span> by <a>zyd</a></div>
+                                            <p class="excerpt">Talk is cheap, show me the code.     -- Linus Torvalds</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="block">
+                                        <div class="tags">
+                                            <a href="javascript:;" class="tag"><span>05月15日</span></a>
+                                        </div>
+                                        <div class="block_content">
+                                            <h2 class="title"><span>项目提交到Gitee</span></h2>
+                                            <div class="byline"><span></span> by <a>zyd</a></div>
+                                            <p class="excerpt">初次提交</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<#include "${basePath}/footer.ftl"/>

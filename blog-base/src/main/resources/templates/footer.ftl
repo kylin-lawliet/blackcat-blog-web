@@ -30,5 +30,6 @@
 <script src="/assets/js/zyd.tool.js"></script>
 <script src="/assets/js/zhyd.core.js"></script>
 <script src="/assets/js/zyd.table.js"></script>
+<#--<script src="/js/bootstrap.table.js"></script>-->
 </body>
 </html>
