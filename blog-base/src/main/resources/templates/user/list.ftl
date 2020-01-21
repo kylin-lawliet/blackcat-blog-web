@@ -1,5 +1,5 @@
 <#assign basePath=request.contextPath />
-<#include "${basePath}/header.ftl"/>
+<#include "/layout/header.ftl"/>
 <div class="clearfix"></div>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -29,7 +29,7 @@
         </div>
     </div>
 </div>
-<#include "${basePath}/footer.ftl"/>
+<#include "/layout/footer.ftl"/>
 <!--弹框-->
 <div class="modal fade bs-example-modal-sm" id="selectRole" tabindex="-1" role="dialog" aria-labelledby="selectRoleLabel">
     <div class="modal-dialog modal-sm" role="document">
@@ -114,10 +114,10 @@
         // 列表属性
         var options = {
         url: "/user/list",
-        //getInfoUrl: "/user/get/{id}",
-        //updateUrl: "/user/edit",
-        //removeUrl: "/user/remove",
-        //createUrl: "/user/add",
+        getInfoUrl: "/user/get/{id}",
+        updateUrl: "/user/edit",
+        removeUrl: "/user/remove",
+        createUrl: "/user/add",
         //saveRolesUrl: "/user/saveUserRoles",
         columns: [
             {

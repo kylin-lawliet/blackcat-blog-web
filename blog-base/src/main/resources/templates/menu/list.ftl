@@ -1,5 +1,5 @@
 <#assign basePath=request.contextPath />
-<#include "${basePath}/header.ftl"/>
+<#include "/layout/header.ftl"/>
 <div class="clearfix"></div>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -29,7 +29,7 @@
         </div>
     </div>
 </div>
-<#include "${basePath}/footer.ftl"/>
+<#include "/layout/footer.ftl"/>
 <!--添加资源弹框-->
 <div class="modal fade" id="addOrUpdateModal" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
     <div class="modal-dialog" role="document">
@@ -135,10 +135,10 @@
     $(function () {
         var options = {
             url: "/menu/list",
-            //getInfoUrl: "/menu/get/{id}",
-            //updateUrl: "/menu/edit",
-            //removeUrl: "/menu/remove",
-            //createUrl: "/menu/add",
+            getInfoUrl: "/menu/get/{id}",
+            updateUrl: "/menu/edit",
+            removeUrl: "/menu/remove",
+            createUrl: "/menu/add",
             //saveRolesUrl: "/menu/saveRoleResources",
             //data:[{"total":21,"rows":[{"available":true,"external":false,"icon":"fa fa-heartbeat","id":20,"name":"数据监控","permission":"","sort":3,"type":"menu","url":""}]}],
             columns: [{

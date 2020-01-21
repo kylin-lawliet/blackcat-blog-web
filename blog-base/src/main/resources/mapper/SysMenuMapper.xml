@@ -14,7 +14,6 @@
         <result property="external" jdbcType="BIT" column="external"/>
         <result property="available" jdbcType="BIT" column="available"/>
         <result property="icon" jdbcType="VARCHAR" column="icon"/>
-        <result property="checked" jdbcType="VARCHAR" column="checked"/>
         <association property="parent" javaType="com.blackcat.blog.core.entity.SysMenu">
             <result property="id" jdbcType="BIGINT" column="parent_id"/>
             <result property="name" jdbcType="VARCHAR" column="parent_name"/>

@@ -1,5 +1,6 @@
 package com.blackcat.blog.core.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.blackcat.blog.core.object.AbstractDO;
 import lombok.Data;
@@ -12,8 +13,6 @@ import java.util.List;
  * <p> 权限菜单
  * @author : blackcat
  * @date : 2020/1/16 15:05
- * @Param
- * @return
 */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -31,10 +30,13 @@ public class SysMenu extends AbstractDO {
 	private String icon;// 菜单图标
 
 	@Transient
+	@TableField(exist = false)
 	private String checked;
 	@Transient
+	@TableField(exist = false)
 	private SysMenu parent;
 	@Transient
+	@TableField(exist = false)
 	private List<SysMenu> nodes;
 
 }

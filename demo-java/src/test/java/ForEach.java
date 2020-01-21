@@ -89,6 +89,8 @@ public class ForEach {
         map.put("1", "2");
         map.put("6", 7);
 
+        map.forEach((k,v)->System.out.print("Item : " + k + " Count : " + v));
+
         map.forEach((k,v)->{
             System.out.println("Item : " + k + " Count : " + v);
             System.out.println(Objects.equals(k, "E"));

@@ -2,6 +2,7 @@ package com.blackcat.blog.core.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.blackcat.blog.common.base.AbstractServiceImpl;
 import com.blackcat.blog.core.entity.SysUser;
 import com.blackcat.blog.core.extend.UserExtend;
 import com.blackcat.blog.core.mapper.SysUserMapper;
@@ -22,17 +23,17 @@ import java.util.List;
  * @date : 2020/1/16 20:17
 */
 @Service("sysUserService")
-public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+public class SysUserServiceImpl extends AbstractServiceImpl<UserExtend,UserConditionVO,SysUser,SysUserMapper> implements SysUserService {
 
-    @Autowired(required = false)
-    private SysUserMapper sysUserMapper;
+//    @Autowired(required = false)
+//    private SysUserMapper sysUserMapper;
 
     /**
      * <p> : 分页查询
      * @author : blackcat
      * @date : 2020/1/18 15:00
     */
-    @Override
+    /*@Override
     public PageInfo<UserExtend> findPageBreakByCondition(UserConditionVO vo) {
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
         List<SysUser> sysUsers = sysUserMapper.findPageBreakByCondition(vo);
@@ -46,7 +47,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         PageInfo bean = new PageInfo<>(sysUsers);
         bean.setList(users);
         return bean;
-    }
+    }*/
 
     /**
      * <p> 根据用户名查询实体

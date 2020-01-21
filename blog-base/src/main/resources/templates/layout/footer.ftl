@@ -1,3 +1,4 @@
+<#assign basePath=request.contextPath />
 <footer>
     <div class="pull-right">
         Copyright © 2019 <a href="https://www.kylin-blackcat.com" target="_blank">blackcat</a>
@@ -24,12 +25,12 @@
 <script src="https://cdn.bootcss.com/zTree.v3/3.5.29/js/jquery.ztree.core.min.js"></script>
 <script src="https://cdn.bootcss.com/zTree.v3/3.5.29/js/jquery.ztree.excheck.min.js"></script>
 
-<script src="/assets/js/validator.js"></script>
-<script src="/assets/js/jquery-form.js"></script>
-<script src="/assets/js/wangEditor.min.js" type="text/javascript"></script>
-<script src="/assets/js/zyd.tool.js"></script>
-<script src="/assets/js/zhyd.core.js"></script>
-<script src="/assets/js/zyd.table.js"></script>
+<script src="${basePath}/js/validator.js"></script>
+<script src="${basePath}/js/jquery-form.js"></script>
+<script src="${basePath}/js/wangEditor.min.js" type="text/javascript"></script>
+<script src="${basePath}/js/zyd.tool.js"></script>
+<script src="${basePath}/js/zhyd.core.js"></script>
+<script src="${basePath}/js/zyd.table.js"></script>
 <#--<script src="/js/bootstrap.table.js"></script>-->
 </body>
 </html>

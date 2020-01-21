@@ -26,6 +26,10 @@ public class BaseConditionVO {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date endDate;
 
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
     public int getPageSize() {
         return pageSize > 0 ? pageSize : DEFAULT_PAGE_SIZE;
     }

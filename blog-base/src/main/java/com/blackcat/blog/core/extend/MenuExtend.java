@@ -12,14 +12,14 @@ import java.util.List;
  * @author : blackcat
  * @date : 2020/1/17 14:20
  */
-public class MenuExtend {
+public class MenuExtend extends BaseExtend<SysMenu>{
     private SysMenu SysMenu;
 
     public MenuExtend() {
         this.SysMenu = new SysMenu();
     }
 
-    public MenuExtend(com.blackcat.blog.core.entity.SysMenu SysMenu) {
+    public MenuExtend(SysMenu SysMenu) {
         this.SysMenu = SysMenu;
     }
 

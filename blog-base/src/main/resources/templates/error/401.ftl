@@ -1,5 +1,4 @@
-<#assign basePath=request.contextPath />
-<#include "${basePath}/header.ftl"/>
+<#include "/layout/header.ftl"/>
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -33,7 +32,7 @@
             </div>
         </div>
     </div>
-<#include "${basePath}/footer.ftl"/>
+<#include "/layout/footer.ftl"/>
 
 
 

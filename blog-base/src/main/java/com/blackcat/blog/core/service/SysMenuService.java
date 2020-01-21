@@ -1,8 +1,8 @@
 package com.blackcat.blog.core.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.blackcat.blog.core.entity.SysMenu;
 import com.blackcat.blog.core.extend.MenuExtend;
+import com.blackcat.blog.common.base.AbstractService;
+import com.blackcat.blog.core.object.AbstractIService;
 import com.blackcat.blog.core.vo.MenuConditionVO;
 import com.github.pagehelper.PageInfo;
 
@@ -16,7 +16,7 @@ import java.util.Map;
  * @Param
  * @return
 */
-public interface SysMenuService extends IService<SysMenu> {
+public interface SysMenuService extends AbstractIService<MenuExtend, Long> {
 
     /**
      * <p> : 分页查询

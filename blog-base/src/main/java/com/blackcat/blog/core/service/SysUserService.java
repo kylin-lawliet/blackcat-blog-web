@@ -1,6 +1,7 @@
 package com.blackcat.blog.core.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.blackcat.blog.common.base.AbstractService;
 import com.blackcat.blog.core.entity.SysUser;
 import com.blackcat.blog.core.extend.UserExtend;
 import com.blackcat.blog.core.vo.UserConditionVO;
@@ -11,7 +12,7 @@ import com.github.pagehelper.PageInfo;
  * @author : blackcat
  * @date : 2020/1/16 20:15
 */
-public interface SysUserService extends IService<SysUser> {
+public interface SysUserService extends AbstractService<UserExtend,UserConditionVO> {
 
     /**
      * <p> : 分页查询
@@ -20,7 +21,7 @@ public interface SysUserService extends IService<SysUser> {
      * @Param [vo:条件属性]
      * @return PageInfo<UserExtend>
     */
-    PageInfo<UserExtend> findPageBreakByCondition(UserConditionVO vo);
+    //PageInfo<UserExtend> findPageBreakByCondition(UserConditionVO vo);
 
     /**
      * <p> 根据用户名查询实体

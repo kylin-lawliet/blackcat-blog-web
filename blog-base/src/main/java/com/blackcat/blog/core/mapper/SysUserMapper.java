@@ -1,7 +1,7 @@
 package com.blackcat.blog.core.mapper;
 
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.blackcat.blog.common.base.BaseIMapper;
 import com.blackcat.blog.core.entity.SysUser;
 import com.blackcat.blog.core.vo.UserConditionVO;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * @author : blackcat
  * @date : 2020/1/16 20:10
 */
-public interface SysUserMapper extends BaseMapper<SysUser> {
+public interface SysUserMapper extends BaseIMapper<SysUser,UserConditionVO> {
 
     /**
      * <p> : 分页查询
@@ -21,5 +21,6 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @Param [vo]
      * @return List<SysUser>
     */
+    @Override
     List<SysUser> findPageBreakByCondition(UserConditionVO vo);
 }

@@ -15,6 +15,8 @@ server:
         port-header: X-Forwarded-Port
         uri-encoding: UTF-8
         basedir: /var/tmp/website-app
+    #servlet:
+        #context-path: /blackcat
 # SPRING PROFILES
 spring:
     datasource:
@@ -30,13 +32,13 @@ spring:
         allow-session-override: false
         cache: false #缓存配置
         charset: UTF-8 #编码格式
-        request-context-attribute: request #访问request名称
+        request-context-attribute: request # 访问request名称定义
         check-template-location: true
-        content-type: text/html
+        content-type: text/html # 设置Content-Type
         enabled: true
-        expose-request-attributes: false
-        expose-session-attributes: false
-        expose-spring-macro-helpers: true
+        expose-request-attributes: false # 设定所有request的属性在merge到模板的时候，是否要都添加到model中
+        expose-session-attributes: false # 是否在merge模板的时候，将HttpSession属性都添加到model中
+        expose-spring-macro-helpers: true # 设定是否以springMacroRequestContext的形式暴露RequestContext给Spring’s macro library使用
         prefer-file-system-access: true
         suffix: .ftl
         template-loader-path: classpath:/templates/ #模板加载路径 按需配置
@@ -59,6 +61,7 @@ spring:
         enabled: true
         default-domain: agentservice
     resources:
+        static-locations: classpath:/static/
         chain:
             strategy:
                 content:
@@ -109,7 +112,7 @@ mybatis-plus:
             logic-not-delete-value: 0
             db-type: mysql
         refresh: true
-          #自定义填充策略接口实现
+        #自定义填充策略接口实现
         #metaobjecthandler: com.baomidou.springboot.xxx
         #自定义SQL注入器
         #sqlinjector: com.baomidou.mybatisplus.extension.injector.LogicSqlInjector
