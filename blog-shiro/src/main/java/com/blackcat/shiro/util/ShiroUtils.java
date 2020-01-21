@@ -26,8 +26,8 @@ public class ShiroUtils {
 
     /**
      * <p> 获取当前用户Session
-     * @author: blackcat
-     * @date: 2020/1/14 13:33
+     * @author : blackcat
+     * @date : 2020/1/14 13:33
      * @return SysUserEntity 用户信息
     */
     public static Session getSession() {
@@ -36,8 +36,8 @@ public class ShiroUtils {
 
     /**
      * <p> 用户登出
-     * @author: blackcat
-     * @date: 2020/1/14 13:34
+     * @author : blackcat
+     * @date : 2020/1/14 13:34
      * @return void
     */
     public static void logout() {
@@ -46,8 +46,8 @@ public class ShiroUtils {
 
     /**
      * <p> 获取当前用户信息
-     * @author: blackcat
-     * @date: 2020/1/14 13:34
+     * @author : blackcat
+     * @date : 2020/1/14 13:34
      * @Param []
      * @return SysUserEntity 用户信息
     */
@@ -57,8 +57,8 @@ public class ShiroUtils {
 
     /**
      * <p> 删除用户缓存信息
-     * @author: blackcat
-     * @date: 2020/1/14 13:34
+     * @author : blackcat
+     * @date : 2020/1/14 13:34
      * @Param [username:用户名称, isRemoveSession:是否删除Session]
      * @return void
     */

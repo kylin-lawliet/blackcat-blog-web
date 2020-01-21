@@ -14,8 +14,8 @@ public class MyShiroException {
     
     /**
      * 处理Shiro权限拦截异常
-     * @author: blackcat
-     * @date: 2020/1/14 12:44
+     * @author : blackcat
+     * @date : 2020/1/14 12:44
      * @Param [] 
      * @return Map<Object> 返回结果集
     */
