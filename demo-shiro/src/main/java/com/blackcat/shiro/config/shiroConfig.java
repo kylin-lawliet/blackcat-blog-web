@@ -14,8 +14,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @author: blackcat
- * @date: 2020/1/13 17:38
+ * @author : blackcat
+ * @date : 2020/1/13 17:38
  */
 @Configuration
 public class shiroConfig {

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @author: blackcat
- * @date: 2020/1/13 12:01
+ * @author : blackcat
+ * @date : 2020/1/13 12:01
  */
 @Controller
 public class LoginController {

@@ -12,8 +12,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author: blackcat
- * @date: 2020/1/13 17:38
+ * @author : blackcat
+ * @date : 2020/1/13 17:38
  */
 public class CustomRealm extends AuthorizingRealm {
 
