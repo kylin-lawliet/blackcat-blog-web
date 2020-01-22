@@ -12,7 +12,7 @@ public interface  Ruler {
      * 规则化笔触走向
      * @author: blackcat
      * @date: 2019/12/24 7:44
-     * @Param []
+     * @param []
     */
     void regularize();
 }

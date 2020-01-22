@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * <p> ：
  * @author : blackcat
- * @date : 2020/1/21 10:43
+ * @serialData : 2020/1/21 10:43
  */
 public class BeanRefUtil {
 

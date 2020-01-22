@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * <p> 系统用户业务实现
  * @author : blackcat
- * @date : 2020/1/16 20:17
+ * @serialData : 2020/1/16 20:17
 */
 @Service("sysUserService")
 public class SysUserServiceImpl extends AbstractServiceImpl<UserExtend,UserConditionVO,SysUser,SysUserMapper> implements SysUserService {
@@ -31,7 +31,7 @@ public class SysUserServiceImpl extends AbstractServiceImpl<UserExtend,UserCondi
     /**
      * <p> : 分页查询
      * @author : blackcat
-     * @date : 2020/1/18 15:00
+     * @serialData : 2020/1/18 15:00
     */
     /*@Override
     public PageInfo<UserExtend> findPageBreakByCondition(UserConditionVO vo) {
@@ -52,8 +52,8 @@ public class SysUserServiceImpl extends AbstractServiceImpl<UserExtend,UserCondi
     /**
      * <p> 根据用户名查询实体
      * @author : blackcat
-     * @date : 2020/1/16 20:17
-     * @Param [username:用户名]
+     * @serialData : 2020/1/16 20:17
+     * @param [username:用户名]
      * @return 用户实体
     */
     /*@Override

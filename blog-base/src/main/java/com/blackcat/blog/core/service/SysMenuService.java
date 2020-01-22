@@ -12,8 +12,8 @@ import java.util.Map;
 /**
  * <p> 权限业务接口
  * @author : blackcat
- * @date : 2020/1/16 20:13
- * @Param
+ * @serialData : 2020/1/16 20:13
+ * @param
  * @return
 */
 public interface SysMenuService extends AbstractIService<MenuExtend, Long> {
@@ -21,8 +21,8 @@ public interface SysMenuService extends AbstractIService<MenuExtend, Long> {
     /**
      * <p> : 分页查询
      * @author : blackcat
-     * @date : 2020/1/19 13:32
-     * @Param [vo]
+     * @serialData : 2020/1/19 13:32
+     * @param [vo]
      * @return List<MenuExtend> 权限集合
     */
     PageInfo<MenuExtend> findPageBreakByCondition(MenuConditionVO vo);
@@ -31,8 +31,8 @@ public interface SysMenuService extends AbstractIService<MenuExtend, Long> {
    /* *//**
      * <p> 根据角色查询用户权限
      * @author : blackcat
-     * @date : 2020/1/16 20:12
-     * @Param [roleId:角色ID]
+     * @serialData : 2020/1/16 20:12
+     * @param [roleId:角色ID]
      * @return List<MenuExtend> 权限集合
     *//*
     List<MenuExtend> selectSysMenuByRoleId(Long roleId);*/
@@ -42,7 +42,7 @@ public interface SysMenuService extends AbstractIService<MenuExtend, Long> {
     /**
      * <p> : 获取所有可用的菜单资源
      * @author : blackcat
-     * @date : 2020/1/17 14:11
+     * @serialData : 2020/1/17 14:11
      * @return List<MenuExtend> 权限集合
     */
     List<MenuExtend> listAllAvailableMenu();
@@ -50,8 +50,8 @@ public interface SysMenuService extends AbstractIService<MenuExtend, Long> {
     /**
      * <p> : 获取用户的资源列表
      * @author : blackcat
-     * @date : 2020/1/17 14:17
-     * @Param [map]
+     * @serialData : 2020/1/17 14:17
+     * @param [map]
      * @return List<MenuExtend> 权限集合
     */
     List<MenuExtend> listUserMenu(Map<String, Object> map);

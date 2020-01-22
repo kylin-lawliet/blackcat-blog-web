@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * <p> 角色业务实现
  * @author : blackcat
- * @date : 2020/1/16 20:17
+ * @serialData : 2020/1/16 20:17
 */
 @Service("sysRoleService")
 public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
@@ -19,8 +19,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     /**
      * <p> 通过用户ID查询角色集合
      * @author : blackcat
-     * @date : 2020/1/16 20:16
-     * @Param [userId:用户ID]
+     * @serialData : 2020/1/16 20:16
+     * @param [userId:用户ID]
      * @return List<SysRole> 角色名集合
     */
     @Override

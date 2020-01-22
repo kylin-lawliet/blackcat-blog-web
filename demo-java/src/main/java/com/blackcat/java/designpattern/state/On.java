@@ -3,7 +3,7 @@ package com.blackcat.java.designpattern.state;
 /**
  * FileName: On
  * @author :   blackcat
- * @date :     2019/11/22 16:25
+ * @serialData :     2019/11/22 16:25
  */
 public class On implements State {
 

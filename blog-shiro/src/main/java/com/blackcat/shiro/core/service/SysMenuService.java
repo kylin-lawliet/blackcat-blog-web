@@ -17,7 +17,7 @@ public interface SysMenuService extends IService<SysMenuEntity> {
      * 根据角色查询用户权限
      * @Author Sans
      * @CreateTime 2019/6/19 10:14
-     * @Param  roleId 角色ID
+     * @param  roleId 角色ID
      * @Return List<SysMenuEntity> 权限集合
      */
     List<SysMenuEntity> selectSysMenuByRoleId(Long roleId);

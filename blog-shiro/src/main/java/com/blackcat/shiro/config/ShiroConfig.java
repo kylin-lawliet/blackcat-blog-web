@@ -18,7 +18,7 @@ import java.util.Map;
 /**
  * <p> ：Shiro配置类
  * @author : blackcat
- * @date : 2020/1/14 13:40
+ * @serialData : 2020/1/14 13:40
  */
 @Configuration
 public class ShiroConfig {

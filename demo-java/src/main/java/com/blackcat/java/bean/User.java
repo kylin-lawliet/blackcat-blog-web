@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * <p> ：测试类
  * @author : blackcat
- * @date : 2020/1/21 10:45
+ * @serialData : 2020/1/21 10:45
  */
 @Data
 public class User extends FatherReflectUtils<User>{

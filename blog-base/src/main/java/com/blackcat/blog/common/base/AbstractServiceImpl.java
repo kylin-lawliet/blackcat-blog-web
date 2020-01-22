@@ -18,7 +18,7 @@ import java.util.*;
 /**
  * <p> ：通用的ServiceImpl
  * @author : blackcat
- * @date : 2020/1/20 22:15
+ * @serialData : 2020/1/20 22:15
  */
 public class AbstractServiceImpl<T,BaseConditionVO,Entity,M extends BaseIMapper<Entity,BaseConditionVO>> implements AbstractService<T,BaseConditionVO>{
 
@@ -106,11 +106,11 @@ public class AbstractServiceImpl<T,BaseConditionVO,Entity,M extends BaseIMapper<
     /**
      * <p> : 将系统权限类转为扩展类
      * @author : blackcat
-     * @date : 2020/1/17 14:27
-     * @Param List<SysMenu>
+     * @serialData : 2020/1/17 14:27
+     * @param sysMenus
      * @return List<MenuExtend> 集合
      */
-    protected List<MenuExtend> getResources(List<SysMenu> sysMenus) {
+    /*protected List<MenuExtend> getResources(List<SysMenu> sysMenus) {
         if (CollectionUtils.isEmpty(sysMenus)) {
             return null;
         }
@@ -119,11 +119,11 @@ public class AbstractServiceImpl<T,BaseConditionVO,Entity,M extends BaseIMapper<
             resources.add(new MenuExtend(menu));
         }
         return resources;
-    }
+    }*/
     /**
      * <p> : 将系统类转为扩展类
      * @author : blackcat
-     * @date : 2020/1/17 14:27
+     * @serialData : 2020/1/17 14:27
      */
     private List<T> getResources(List<Entity> entitys) throws Exception {
         if (CollectionUtils.isEmpty(entitys)) {

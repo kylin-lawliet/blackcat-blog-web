@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 文件夹
  * @author :   blackcat
- * @date :     2019/12/1 10:12
+ * @serialData :     2019/12/1 10:12
  * 设计模式-组合 示例
  */
 public class Folder extends Node{

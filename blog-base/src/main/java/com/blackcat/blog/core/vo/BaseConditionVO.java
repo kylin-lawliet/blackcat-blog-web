@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * <p> : SQL查询条件公共属性
  * @author : blackcat
- * @date : 2020/1/18 14:52
+ * @serialData : 2020/1/18 14:52
 */
 @Data
 @EqualsAndHashCode(callSuper = false)

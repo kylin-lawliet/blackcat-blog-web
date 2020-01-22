@@ -14,7 +14,7 @@ import java.util.Properties;
 /**
  * <p> : Mybatis-Plus 配置类
  * @author : blackcat
- * @date : 2020/1/18 14:06
+ * @serialData : 2020/1/18 14:06
 */
 @Component
 @MapperScan("com.blackcat.blog.core.mapper") //扫描Mapper
@@ -23,7 +23,7 @@ public class MybatisConfig {
     /**
      * <p> : 分页插件
      * @author : blackcat
-     * @date : 2020/1/18 14:07
+     * @serialData : 2020/1/18 14:07
     */
     /*@Bean
     public PaginationInterceptor paginationInterceptor() {
@@ -35,7 +35,7 @@ public class MybatisConfig {
     /**
      * <p> : 配置mybatis的分页插件pageHelper
      * @author : blackcat
-     * @date : 2020/1/18 14:07
+     * @serialData : 2020/1/18 14:07
      */
     /*@Bean
     public PageHelper pageHelper() {
@@ -52,7 +52,7 @@ public class MybatisConfig {
     /**
      * <p> : sql注入器  逻辑删除插件
      * @author : blackcat
-     * @date : 2020/1/18 14:07
+     * @serialData : 2020/1/18 14:07
      */
     /*@Bean
     public ISqlInjector iSqlInjector() {
@@ -62,7 +62,7 @@ public class MybatisConfig {
     /**
      * <p> : sql性能分析插件，输出sql语句及所需时间
      * @author : blackcat
-     * @date : 2020/1/18 14:07
+     * @serialData : 2020/1/18 14:07
      */
     /*@Bean
     @Profile({"dev", "test"})// 设置 dev test 环境开启

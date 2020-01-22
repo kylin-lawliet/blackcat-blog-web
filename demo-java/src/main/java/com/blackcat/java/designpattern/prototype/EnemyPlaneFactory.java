@@ -4,7 +4,7 @@ package com.blackcat.java.designpattern.prototype;
  * 飞机制造工厂
  * FileName: EnemyPlaneFactory
  * @author :   blackcat
- * @date :     2019/11/13 15:45
+ * @serialData :     2019/11/13 15:45
  */
 public class EnemyPlaneFactory {
     // 此处用痴汉模式造一个敌机原型

@@ -4,7 +4,7 @@ package com.blackcat.java.designpattern.strategy;
  * 计算器
  * FileName: Calculator
  * @author :   blackcat
- * @date :     2019/11/22 10:43
+ * @serialData :     2019/11/22 10:43
  * 设计模式-策略 示例
  */
 public class Calculator {

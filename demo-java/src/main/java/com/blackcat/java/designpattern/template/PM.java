@@ -4,7 +4,7 @@ package com.blackcat.java.designpattern.template;
  * 软件项目管理
  * FileName: PM
  * @author :   blackcat
- * @date :     2019/11/25 17:49
+ * @serialData :     2019/11/25 17:49
  * 设计模式-模板方法 示例三
  */
 public abstract class PM {
@@ -18,8 +18,8 @@ public abstract class PM {
     /**
      * 任务流程
      * @author:     blackcat
-     * @date : 2019/11/25 17:51
-     * @Param []
+     * @serialData : 2019/11/25 17:51
+     * @param []
     */
     protected final void kickoff(){
         analyze();

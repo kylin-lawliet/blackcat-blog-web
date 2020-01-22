@@ -3,19 +3,19 @@ package com.blackcat.blog.core.enums;
 /**
  * <p> ：用户状态
  * @author : blackcat
- * @date : 2020/1/18 14:38
+ * @serialData : 2020/1/18 14:38
  */
 public enum UserStatusEnum {
     /**
      * <p> : 正常
      * @author : blackcat
-     * @date : 2020/1/18 14:38
+     * @serialData : 2020/1/18 14:38
     */
     NORMAL(1, "正常"),
     /**
      * <p> : 禁用
      * @author : blackcat
-     * @date : 2020/1/18 14:38
+     * @serialData : 2020/1/18 14:38
      */
     DISABLE(0, "禁用");
 

@@ -10,15 +10,15 @@ import com.github.pagehelper.PageInfo;
 /**
  * <p> 用户业务接口
  * @author : blackcat
- * @date : 2020/1/16 20:15
+ * @serialData : 2020/1/16 20:15
 */
 public interface SysUserService extends AbstractService<UserExtend,UserConditionVO> {
 
     /**
      * <p> : 分页查询
      * @author : blackcat
-     * @date : 2020/1/18 14:59
-     * @Param [vo:条件属性]
+     * @serialData : 2020/1/18 14:59
+     * @param [vo:条件属性]
      * @return PageInfo<UserExtend>
     */
     //PageInfo<UserExtend> findPageBreakByCondition(UserConditionVO vo);
@@ -26,8 +26,8 @@ public interface SysUserService extends AbstractService<UserExtend,UserCondition
     /**
      * <p> 根据用户名查询实体
      * @author : blackcat
-     * @date : 2020/1/16 20:14
-     * @Param [username:用户名]
+     * @serialData : 2020/1/16 20:14
+     * @param [username:用户名]
      * @return 用户实体
     */
     //SysUser selectUserByName(String username);

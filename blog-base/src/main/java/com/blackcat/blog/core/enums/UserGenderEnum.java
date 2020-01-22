@@ -4,25 +4,25 @@ package com.blackcat.blog.core.enums;
  * <p> ：
  *
  * @author : blackcat
- * @date : 2020/1/18 14:39
+ * @serialData : 2020/1/18 14:39
  */
 public enum UserGenderEnum {
     /**
      * <p> : 男
      * @author : blackcat
-     * @date : 2020/1/18 14:40
+     * @serialData : 2020/1/18 14:40
     */
     MALE(1, "男"),
     /**
      * <p> : 女
      * @author : blackcat
-     * @date : 2020/1/18 14:40
+     * @serialData : 2020/1/18 14:40
      */
     FEMALE(0, "女"),
     /**
      * <p> : 未知
      * @author : blackcat
-     * @date : 2020/1/18 14:40
+     * @serialData : 2020/1/18 14:40
      */
     UNKNOW(-1, "");
     private int code;

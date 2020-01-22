@@ -17,8 +17,8 @@ import java.util.*;
 /**
  * mybatis plus mysql 代码生成器
  * @author : blackcat
- * @date : 2020/1/6 17:22
- * @Param
+ * @serialData : 2020/1/6 17:22
+ * @param
 */
 public class MysqlGenerator {
 
@@ -52,8 +52,8 @@ public class MysqlGenerator {
     /* *
      * 代码生成
      * @author : blackcat
-     * @date : 2020/1/7 13:44
-     * @Param [param]
+     * @serialData : 2020/1/7 13:44
+     * @param [param]
     */
     public static void generator(Map<String, String> param,String[] tablse){
         // 代码生成器

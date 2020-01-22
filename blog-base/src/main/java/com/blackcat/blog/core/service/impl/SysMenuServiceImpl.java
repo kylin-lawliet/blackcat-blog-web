@@ -21,7 +21,7 @@ import java.util.*;
 /**
  * <p> 权限业务实现
  * @author : blackcat
- * @date : 2020/1/16 20:15
+ * @serialData : 2020/1/16 20:15
 */
 @Service("sysMenuService")
 public class SysMenuServiceImpl implements SysMenuService {
@@ -32,8 +32,8 @@ public class SysMenuServiceImpl implements SysMenuService {
     /**
      * <p> : 保存一个实体，null的属性不会保存，会使用数据库默认值
      * @author : blackcat
-     * @date : 2020/1/20 18:22
-     * @Param [entity]
+     * @serialData : 2020/1/20 18:22
+     * @param entity 扩展类
      * @return boolean
     */
     @Override
@@ -45,22 +45,9 @@ public class SysMenuServiceImpl implements SysMenuService {
     }
 
     /**
-     * <p> : 根据主键字段进行删除
-     * @author : blackcat
-     * @date : 2020/1/20 18:25
-     * @Param [primaryKey]
-     * @return boolean
-    */
-//    @Override
-//    public boolean removeByPrimaryKey(Long primaryKey) {
-////        sysMenuMapper.d
-//        return CommonMethod.retBool(sysMenuMapper.deleteById(primaryKey));
-//    }
-
-    /**
      * <p> : 批量删除
      * @author : blackcat
-     * @date : 2020/1/20 21:48
+     * @serialData : 2020/1/20 21:48
     */
     @Override
     public void deleteBatchIds(Long[] ids) {
@@ -70,8 +57,8 @@ public class SysMenuServiceImpl implements SysMenuService {
     /**
      * <p> : 根据主键更新属性不为null的值
      * @author : blackcat
-     * @date : 2020/1/20 18:30
-     * @Param [entity]
+     * @serialData : 2020/1/20 18:30
+     * @param entity 扩展类
      * @return boolean
     */
     @Override
@@ -84,8 +71,8 @@ public class SysMenuServiceImpl implements SysMenuService {
     /**
      * <p> : 根据主键字段进行查询
      * @author : blackcat
-     * @date : 2020/1/20 18:26
-     * @Param [primaryKey]
+     * @serialData : 2020/1/20 18:26
+     * @param primaryKey 主键
     */
     @Override
     public MenuExtend getByPrimaryKey(Long primaryKey) {
@@ -97,7 +84,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     /**
      * <p> : 分页查询
      * @author : blackcat
-     * @date : 2020/1/19 13:35
+     * @serialData : 2020/1/19 13:35
     */
     @Override
     public PageInfo<MenuExtend> findPageBreakByCondition(MenuConditionVO vo) {
@@ -112,7 +99,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     /**
      * <p> : 获取所有可用的菜单资源
      * @author : blackcat
-     * @date : 2020/1/17 14:26
+     * @serialData : 2020/1/17 14:26
      * @return List<MenuExtend> 权限集合
     */
     @Override
@@ -124,8 +111,8 @@ public class SysMenuServiceImpl implements SysMenuService {
     /**
      * <p> : 将系统权限类转为扩展类
      * @author : blackcat
-     * @date : 2020/1/17 14:27
-     * @Param List<SysMenu>
+     * @serialData : 2020/1/17 14:27
+     * @param sysMenus 系统权限类
      * @return List<MenuExtend> 集合
     */
     private List<MenuExtend> getResources(List<SysMenu> sysMenus) {
@@ -142,8 +129,8 @@ public class SysMenuServiceImpl implements SysMenuService {
     /**
      * <p> : 获取用户的资源列表
      * @author : blackcat
-     * @date : 2020/1/17 14:35
-     * @Param [map]
+     * @serialData : 2020/1/17 14:35
+     * @param map 参数
      * @return List<MenuExtend> 集合
     */
     @Override

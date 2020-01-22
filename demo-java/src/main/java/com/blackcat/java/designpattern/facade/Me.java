@@ -3,7 +3,7 @@ package com.blackcat.java.designpattern.facade;
 /**
  * FileName: Me
  * @author :   blackcat
- * @date :     2019/11/28 11:13
+ * @serialData :     2019/11/28 11:13
  * 设计模式-门面 示例
  */
 public class Me {

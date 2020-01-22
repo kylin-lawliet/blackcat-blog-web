@@ -4,7 +4,7 @@ package com.blackcat.java.designpattern.facade;
  * 保洁员 洗碗
  * FileName: Cleaner
  * @author :   blackcat
- * @date :     2019/11/28 11:16
+ * @serialData :     2019/11/28 11:16
  * 设计模式-门面 示例
  */
 public class Cleaner {

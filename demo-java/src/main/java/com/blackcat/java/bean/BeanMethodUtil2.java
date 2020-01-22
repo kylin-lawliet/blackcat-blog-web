@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  * <p> ：
  *
  * @author : blackcat
- * @date : 2020/1/21 11:41
+ * @serialData : 2020/1/21 11:41
  */
 public class BeanMethodUtil2 {
 

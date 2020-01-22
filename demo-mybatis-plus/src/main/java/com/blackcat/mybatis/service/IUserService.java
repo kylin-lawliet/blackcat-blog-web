@@ -6,7 +6,7 @@ import com.blackcat.mybatis.entity.User;
 /**
  * <p> ：
  * @author : blackcat
- * @date : 2020/1/18 12:59
+ * @serialData : 2020/1/18 12:59
  */
 public interface IUserService extends IService<User> {
 

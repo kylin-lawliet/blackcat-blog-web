@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * <p> 用户
  * @author : blackcat
- * @date : 2020/1/16 15:08
+ * @serialData : 2020/1/16 15:08
 */
 @Data
 @EqualsAndHashCode(callSuper = false)

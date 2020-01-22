@@ -4,7 +4,7 @@ package com.blackcat.java.designpattern.prototype;
  * 飞机对象
  * FileName: Enemyplan
  * @author :   blackcat
- * @date :     2019/11/13 15:27
+ * @serialData :     2019/11/13 15:27
  * 设计模式-原型 示例
  * 示例场景:打飞机游戏(单机) 单架主机 N架敌机
  */
@@ -38,8 +38,8 @@ public class Enemyplan implements Cloneable{// Cloneable 此处实现克隆接�
      * 为了保证飞机飞行的连贯性
      * 这里我们关闭setY方法，不支持随意更改Y纵坐标
      * @author:     blackcat
-     * @date : 2019/11/13 15:43
-     * @Param [y]
+     * @serialData : 2019/11/13 15:43
+     * @param [y]
     */
     /*public void setY(int y) {
         this.y = y;
@@ -52,8 +52,8 @@ public class Enemyplan implements Cloneable{// Cloneable 此处实现克隆接�
     /**
      * 重写克隆方法
      * @author:     blackcat
-     * @date : 2019/11/13 15:56
-     * @Param []
+     * @serialData : 2019/11/13 15:56
+     * @param []
      * Java中的变量分为原始类型和引用类型，所谓浅拷贝只是拷贝原始类型的指，
      * 比如坐标x, y的指会被拷贝到克隆对象中，对于对象bullet也会被拷贝，
      * 但是请注意拷贝的只是地址而已，那么多个地址其实真正指向的对象还是同一个bullet。

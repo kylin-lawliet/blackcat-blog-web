@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * <p> ：Controller
  * @author : blackcat
- * @date : 2020/1/18 13:20
+ * @serialData : 2020/1/18 13:20
  */
 @RestController
 public class UserController {

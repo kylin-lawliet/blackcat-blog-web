@@ -12,7 +12,7 @@ import java.io.Serializable;
 /**
  * <p> ：自定义获取Token
  * @author : blackcat
- * @date : 2020/1/14 13:37
+ * @serialData : 2020/1/14 13:37
  */
 public class ShiroSessionManager extends DefaultWebSessionManager {
     //定义常量

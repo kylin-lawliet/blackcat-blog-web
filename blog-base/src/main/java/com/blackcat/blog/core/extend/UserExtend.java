@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * <p> ：用户扩展类
  * @author : blackcat
- * @date : 2020/1/18 14:34
+ * @serialData : 2020/1/18 14:34
  */
 public class UserExtend {
     private SysUser sysUser;

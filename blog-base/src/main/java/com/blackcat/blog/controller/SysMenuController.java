@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * <p> ：权限管理
  * @author : blackcat
- * @date : 2020/1/17 14:06
+ * @serialData : 2020/1/17 14:06
  */
 @RestController
 @RequestMapping("/menu")
@@ -25,7 +25,7 @@ public class SysMenuController {
     /**
      * <p> : 获取权限管理页面数据
      * @author : blackcat
-     * @date : 2020/1/20 16:46
+     * @serialData : 2020/1/20 16:46
     */
     //@RequestMapping("/list")
     @PostMapping("/list")

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * @author : blackcat
- * @date : 2020/1/13 12:01
+ * @serialData : 2020/1/13 12:01
  */
 @Controller
 public class LoginController {

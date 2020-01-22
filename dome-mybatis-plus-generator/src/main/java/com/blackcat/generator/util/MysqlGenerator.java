@@ -14,8 +14,8 @@ import java.util.List;
 /**
  * mybatis plus mysql 代码生成器
  * @author : blackcat
- * @date : 2020/1/6 17:22
- * @Param
+ * @serialData : 2020/1/6 17:22
+ * @param
 */
 public class MysqlGenerator {
 

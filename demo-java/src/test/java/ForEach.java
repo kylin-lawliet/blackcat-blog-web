@@ -14,7 +14,7 @@ public class ForEach {
      * 遍历list String类型
      * @author: blackcat
      * @date: 2019/12/31 16:15
-     * @Param []
+     * @param []
     */
     @Test
     public void string(){
@@ -39,7 +39,7 @@ public class ForEach {
      * 遍历list Integer类型
      * @author: blackcat
      * @date: 2019/12/31 16:15
-     * @Param []
+     * @param []
      */
     @Test
     public void Integer(){
@@ -81,7 +81,7 @@ public class ForEach {
      * 遍历map
      * @author: blackcat
      * @date: 2019/12/31 16:15
-     * @Param []
+     * @param []
      */
     @Test
     public void queryMapExt(){

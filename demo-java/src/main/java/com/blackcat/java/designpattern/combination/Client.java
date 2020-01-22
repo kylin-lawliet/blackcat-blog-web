@@ -4,7 +4,7 @@ package com.blackcat.java.designpattern.combination;
  * 客户端
  * FileName: Client
  * @author :   blackcat
- * @date :     2019/12/1 10:15
+ * @serialData :     2019/12/1 10:15
  * 设计模式-组合 示例
  */
 public class Client {

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 用户管理Controller
  * @author : blackcat
- * @date : 2020/1/13 22:06
+ * @serialData : 2020/1/13 22:06
  */
 @RestController
 @RequestMapping("user")

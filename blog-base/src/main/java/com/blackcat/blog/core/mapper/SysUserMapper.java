@@ -10,15 +10,15 @@ import java.util.List;
 /**
  * <p> 用户Mapper
  * @author : blackcat
- * @date : 2020/1/16 20:10
+ * @serialData : 2020/1/16 20:10
 */
 public interface SysUserMapper extends BaseIMapper<SysUser,UserConditionVO> {
 
     /**
      * <p> : 分页查询
      * @author : blackcat
-     * @date : 2020/1/18 14:57
-     * @Param [vo]
+     * @serialData : 2020/1/18 14:57
+     * @param [vo]
      * @return List<SysUser>
     */
     @Override

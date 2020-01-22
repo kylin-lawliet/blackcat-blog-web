@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * <p> ：权限扩展类
  * @author : blackcat
- * @date : 2020/1/17 14:20
+ * @serialData : 2020/1/17 14:20
  */
 public class MenuExtend extends BaseExtend<SysMenu>{
     private SysMenu SysMenu;

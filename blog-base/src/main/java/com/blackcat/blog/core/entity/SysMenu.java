@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * <p> 权限菜单
  * @author : blackcat
- * @date : 2020/1/16 15:05
+ * @serialData : 2020/1/16 15:05
 */
 @Data
 @EqualsAndHashCode(callSuper = false)

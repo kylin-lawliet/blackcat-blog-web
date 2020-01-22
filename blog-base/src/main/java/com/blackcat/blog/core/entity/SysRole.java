@@ -10,7 +10,7 @@ import javax.persistence.Transient;
 /**
  * <p> 角色
  * @author : blackcat
- * @date : 2020/1/16 15:06
+ * @serialData : 2020/1/16 15:06
 */
 @Data
 @EqualsAndHashCode(callSuper = false)

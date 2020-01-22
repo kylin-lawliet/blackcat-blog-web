@@ -3,7 +3,7 @@ package com.blackcat.java.designpattern.state;
 /**
  * FileName: Client
  * @author :   blackcat
- * @date :     2019/11/22 16:17
+ * @serialData :     2019/11/22 16:17
  * 设计模式-状态 示例
  */
 public class Client {

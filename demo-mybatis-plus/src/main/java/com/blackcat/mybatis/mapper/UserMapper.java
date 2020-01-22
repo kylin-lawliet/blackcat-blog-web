@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * <p> ：Mapper
  * @author : blackcat
- * @date : 2020/1/18 12:57
+ * @serialData : 2020/1/18 12:57
  */
 public interface UserMapper  extends BaseMapper<User> {
     /**

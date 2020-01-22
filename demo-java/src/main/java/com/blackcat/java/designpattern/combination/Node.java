@@ -4,7 +4,7 @@ package com.blackcat.java.designpattern.combination;
  * 节点
  * FileName: Node
  * @author :   blackcat
- * @date :     2019/12/1 10:11
+ * @serialData :     2019/12/1 10:11
  * 设计模式-组合 示例
  */
 public abstract class Node {

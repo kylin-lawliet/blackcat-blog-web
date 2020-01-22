@@ -13,7 +13,7 @@ import java.util.*;
 /**
  * <p> ：权限测试
  * @author : blackcat
- * @date : 2020/1/14 13:44
+ * @serialData : 2020/1/14 13:44
  */
 @RestController
 @RequestMapping("/menu")
@@ -95,7 +95,7 @@ public class UserMenuController {
      * 添加管理员角色权限(测试动态权限更新)
      * @Author Sans
      * @CreateTime 2019/6/19 10:39
-     * @Param  username 用户ID
+     * @param  username 用户ID
      * @Return Map<String,Object> 返回结果
      */
     @RequestMapping("/addMenu")
