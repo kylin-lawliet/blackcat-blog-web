@@ -11,21 +11,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 /**
  * <p> ：通用的controller实现
  * @author : blackcat
- * @serialData : 2020/1/20 21:57
+ * @date : 2020/1/20 21:57
  */
 public abstract class AbstractController<T,BaseConditionVO> extends BaseController{
 
     /**
      * <p> : controller所属模块名称
      * @author : blackcat
-     * @serialData : 2020/1/20 22:11
+     * @date : 2020/1/20 22:11
     */
     protected abstract String getName();
 
     /**
      * <p> : 获取service实现类
      * @author : blackcat
-     * @serialData : 2020/1/20 22:00
+     * @date : 2020/1/20 22:00
      * @return AbstractService实现类
     */
     protected abstract AbstractService<T, BaseConditionVO> getService();
@@ -33,7 +33,7 @@ public abstract class AbstractController<T,BaseConditionVO> extends BaseControll
     /**
      * <p> : 获取权限管理页面数据
      * @author : blackcat
-     * @serialData : 2020/1/20 16:46
+     * @date : 2020/1/20 16:46
      */
     //@RequestMapping("/list")
     @PostMapping("/list")
