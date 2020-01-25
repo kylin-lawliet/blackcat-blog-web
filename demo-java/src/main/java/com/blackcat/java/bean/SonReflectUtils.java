@@ -1,10 +1,12 @@
 package com.blackcat.java.bean;
 
+import com.blackcat.java.common.User;
+
 /**
  * <p> ：
  *
  * @author : blackcat
- * @serialData : 2020/1/21 13:20
+ * @date : 2020/1/21 13:20
  */
 public class SonReflectUtils extends FatherReflectUtils<User>{
     public static void main(String[] args) {

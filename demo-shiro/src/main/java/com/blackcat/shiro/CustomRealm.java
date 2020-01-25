@@ -13,7 +13,7 @@ import java.util.Set;
 
 /**
  * @author : blackcat
- * @serialData : 2020/1/13 17:38
+ * @date : 2020/1/13 17:38
  */
 public class CustomRealm extends AuthorizingRealm {
 

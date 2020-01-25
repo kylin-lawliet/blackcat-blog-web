@@ -1,5 +1,6 @@
 package com.blackcat.blog.core.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.blackcat.blog.core.object.AbstractDO;
 import lombok.Data;
@@ -10,7 +11,7 @@ import javax.persistence.Transient;
 /**
  * <p> 角色
  * @author : blackcat
- * @serialData : 2020/1/16 15:06
+ * @date : 2020/1/16 15:06
 */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -21,5 +22,6 @@ public class SysRole extends AbstractDO {
 	private Boolean available;// 是否可用
 
 	@Transient
+	@TableField(exist = false)
 	private Integer selected;
 }

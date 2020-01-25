@@ -2,9 +2,11 @@ package com.blackcat.blog.core.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.blackcat.blog.core.enums.MenuTypeEnum;
 import com.blackcat.blog.core.object.AbstractDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Transient;
 import java.util.List;
@@ -12,10 +14,11 @@ import java.util.List;
 /**
  * <p> 权限菜单
  * @author : blackcat
- * @serialData : 2020/1/16 15:05
+ * @date : 2020/1/16 15:05
 */
 @Data
 @EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
 @TableName("sys_menu")
 public class SysMenu extends AbstractDO {
 

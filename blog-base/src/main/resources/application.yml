@@ -22,7 +22,7 @@ spring:
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false
+        url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
         username: root
         password: 111111
     application:
@@ -132,5 +132,6 @@ banner:
     #charset: UTF-8
 
 logging.level.com.blackcat.blog.core.mapper: debug
+
 ################################### 程序自定义配置 ###################################
 

@@ -1,0 +1,56 @@
+2020-01-23 15:37:48.888  INFO 2380 --- [main] com.blackcat.blog.BlogBaseApplication    : Starting BlogBaseApplication on DESKTOP-7OHM8U2 with PID 2380 (D:\project\blackcat-blog-web\blog-base\target\classes started by kylin in D:\project\blackcat-blog-web)
+2020-01-23 15:37:48.893  INFO 2380 --- [main] com.blackcat.blog.BlogBaseApplication    : No active profile set, falling back to default profiles: default
+2020-01-23 15:37:50.313  INFO 2380 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-01-23 15:37:50.317  INFO 2380 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-01-23 15:37:50.376  INFO 2380 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 34ms. Found 0 Redis repository interfaces.
+2020-01-23 15:37:50.762  INFO 2380 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2020-01-23 15:37:50.776  INFO 2380 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2020-01-23 15:37:50.782  INFO 2380 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2020-01-23 15:37:50.900  INFO 2380 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-01-23 15:37:50.950  INFO 2380 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-01-23 15:37:50.959  INFO 2380 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-01-23 15:37:50.961  INFO 2380 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-01-23 15:37:51.465  INFO 2380 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8087 (http)
+2020-01-23 15:37:51.478  INFO 2380 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-01-23 15:37:51.478  INFO 2380 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-01-23 15:37:51.480  INFO 2380 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.14] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.23]
+2020-01-23 15:37:51.481  INFO 2380 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.14] using APR version [1.6.2].
+2020-01-23 15:37:51.481  INFO 2380 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-01-23 15:37:51.481  INFO 2380 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-01-23 15:37:52.615  INFO 2380 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017]
+2020-01-23 15:37:52.790  INFO 2380 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-01-23 15:37:52.791  INFO 2380 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3798 ms
+2020-01-23 15:37:53.410  WARN 2380 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'freeMarkerConfig': Unsatisfied dependency expressed through field 'customTag'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customTag': Unsatisfied dependency expressed through field 'sysMenuService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysMenuService': Unsatisfied dependency expressed through field 'sysMenuMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysMenuMapper' defined in file [D:\project\blackcat-blog-web\blog-base\target\classes\com\blackcat\blog\core\mapper\SysMenuMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is java.lang.BootstrapMethodError: java.lang.NoSuchMethodError: com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean.setDefaultScriptingLanguageDriver(Ljava/lang/Class;)V
+2020-01-23 15:37:53.413  INFO 2380 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-01-23 15:37:53.458  INFO 2380 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-01-23 15:37:53.465 ERROR 2380 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+An attempt was made to call a method that does not exist. The attempt was made from the following location:
+
+    java.lang.invoke.MethodHandleNatives.resolve(Native Method)
+
+The following method did not exist:
+
+    com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean.setDefaultScriptingLanguageDriver(Ljava/lang/Class;)V
+
+The method's class, com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean, is available from the following locations:
+
+    jar:file:/D:/software/maven/localRepository/com/baomidou/mybatis-plus-extension/3.1.0/mybatis-plus-extension-3.1.0.jar!/com/baomidou/mybatisplus/extension/spring/MybatisSqlSessionFactoryBean.class
+
+It was loaded from the following location:
+
+    file:/D:/software/maven/localRepository/com/baomidou/mybatis-plus-extension/3.1.0/mybatis-plus-extension-3.1.0.jar
+
+
+Action:
+
+Correct the classpath of your application so that it contains a single, compatible version of com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean
+

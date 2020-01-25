@@ -3,7 +3,7 @@ package com.blackcat.java.designpattern.mediation;
 /**
  * FileName: User
  * @author :   blackcat
- * @serialData :     2019/11/29 12:48
+ * @date :     2019/11/29 12:48
  * 设计模式-中介 优化代码示例
  */
 public class User {

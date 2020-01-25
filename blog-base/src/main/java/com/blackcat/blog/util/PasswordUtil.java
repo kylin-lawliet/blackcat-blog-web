@@ -9,7 +9,7 @@ import java.security.*;
 /**
  * <p> ：密码加密解密
  * @author : blackcat
- * @serialData : 2020/1/18 14:41
+ * @date : 2020/1/18 14:41
  */
 public class PasswordUtil {
     private static final String KEY_ALGORITHM = "AES";
@@ -49,7 +49,7 @@ public class PasswordUtil {
     /**
      * <p> : AES加密
      * @author : blackcat
-     * @serialData : 2020/1/18 14:47
+     * @date : 2020/1/18 14:47
      * @param [passwd:加密的密钥, content:需要加密的字符串]
      * @return 返回Base64转码后的加密数据
     */
@@ -68,7 +68,7 @@ public class PasswordUtil {
     /**
      * <p> : AES解密
      * @author : blackcat
-     * @serialData : 2020/1/18 14:46
+     * @date : 2020/1/18 14:46
      * @param [passwd:加密的密钥, encrypted:已加密的密文]
      * @return 返回解密后的数据
     */
@@ -85,7 +85,7 @@ public class PasswordUtil {
     /**
      * <p> : AES生成加密秘钥
      * @author : blackcat
-     * @serialData : 2020/1/18 14:45
+     * @date : 2020/1/18 14:45
      * @param [password:密码字符]
      * @return 加密秘钥
     */
@@ -108,7 +108,7 @@ public class PasswordUtil {
     /**
      * <p> : 通过盐值对字符串进行MD5加密
      * @author : blackcat
-     * @serialData : 2020/1/18 14:44
+     * @date : 2020/1/18 14:44
      * @param [param:需要加密的字符串, salt:盐值]
      * @return java.lang.String
     */
@@ -119,7 +119,7 @@ public class PasswordUtil {
     /**
      * <p> : MD5加密字符串
      * @author : blackcat
-     * @serialData : 2020/1/18 14:44
+     * @date : 2020/1/18 14:44
      * @param [s:字符串]
      * @return 加密字符串
     */

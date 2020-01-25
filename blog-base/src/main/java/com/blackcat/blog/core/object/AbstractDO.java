@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * <p> 公共属性
  * @author : blackcat
- * @serialData : 2020/1/16 14:30
+ * @date : 2020/1/16 14:30
 */
 @Data
 // 此注解会生成equals(Object other) 和 hashCode()方法。

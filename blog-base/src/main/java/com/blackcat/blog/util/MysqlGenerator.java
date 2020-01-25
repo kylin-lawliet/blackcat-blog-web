@@ -17,17 +17,18 @@ import java.util.*;
 /**
  * mybatis plus mysql 代码生成器
  * @author : blackcat
- * @serialData : 2020/1/6 17:22
+ * @date : 2020/1/6 17:22
  * @param
 */
 public class MysqlGenerator {
 
     public static void main(String[] args) {
         Map<String, String> param = new HashMap<>();
-        param.put("projectPath","D:\\project\\blackcat-blog\\blog-base");// 代码输出项目地址
+        //D:\project\blackcat-blog\blog-base
+        param.put("projectPath","D:\\test");// 代码输出项目地址
         param.put("author","blackcat");// 作者
-        param.put("url","172.17.0.3:3306/blackcat_blog");// ip/数据库
-        param.put("driverName","com.mysql.jdbc.Driver");
+        param.put("url","localhost:3306/blog");// ip/数据库
+        param.put("driverName","com.mysql.cj.jdbc.Driver");
         param.put("username","root");// 数据库用户
         param.put("password","111111");// 数据库密码
         param.put("parent","com.blackcat.blog");// 顶层包结构
@@ -52,7 +53,7 @@ public class MysqlGenerator {
     /* *
      * 代码生成
      * @author : blackcat
-     * @serialData : 2020/1/7 13:44
+     * @date : 2020/1/7 13:44
      * @param [param]
     */
     public static void generator(Map<String, String> param,String[] tablse){

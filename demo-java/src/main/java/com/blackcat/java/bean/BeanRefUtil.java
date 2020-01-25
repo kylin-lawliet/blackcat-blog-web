@@ -1,6 +1,7 @@
 package com.blackcat.java.bean;
 
-import java.beans.PropertyDescriptor;
+import com.blackcat.java.common.User;
+
 import java.lang.reflect.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -8,7 +9,7 @@ import java.util.*;
 /**
  * <p> ：
  * @author : blackcat
- * @serialData : 2020/1/21 10:43
+ * @date : 2020/1/21 10:43
  */
 public class BeanRefUtil {
 
@@ -16,7 +17,7 @@ public class BeanRefUtil {
         Map<String,String> map = new HashMap<>();
         map.put("username","joe");
         map.put("userpassword","123456");
-        User  user = new User();
+        User user = new User();
         BeanRefUtil.setFieldValue(user, map);
         Map<String, String> valueMap = BeanRefUtil.getFieldValueMap(user);
         valueMap.forEach((k,v)->System.out.println("Item : " + k + " Count : " + v));

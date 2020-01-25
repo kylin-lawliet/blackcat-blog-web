@@ -3,7 +3,7 @@ package com.blackcat.blog.core.enums;
 /**
  * <p> : controller返回状态枚举
  * @author : blackcat
- * @serialData : 2020/1/20 16:51
+ * @date : 2020/1/20 16:51
 */
 public enum ResponseStatusEnum {
 

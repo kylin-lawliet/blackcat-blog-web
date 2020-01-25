@@ -12,7 +12,7 @@ import java.util.Properties;
 /**
  * <p> ：Mybatis-Plus配置类
  * @author : blackcat
- * @serialData : 2020/1/18 12:44
+ * @date : 2020/1/18 12:44
  */
 @Configuration
 @MapperScan("com.blackcat.mybatis.mapper")//这个注解，作用相当于下面的@Bean MapperScannerConfigurer，2者配置1份即可

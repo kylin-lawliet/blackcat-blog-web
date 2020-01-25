@@ -6,7 +6,7 @@ import java.lang.reflect.Type;
 /**
  * <p> ：
  * @author : blackcat
- * @serialData : 2020/1/20 23:01
+ * @date : 2020/1/20 23:01
  */
 public abstract class BaseExtend<T> {
 

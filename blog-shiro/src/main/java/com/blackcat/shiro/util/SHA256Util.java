@@ -5,7 +5,7 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 /**
  * <p> ： Sha-256加密工具
  * @author : blackcat
- * @serialData : 2020/1/14 12:45
+ * @date : 2020/1/14 12:45
  */
 public class SHA256Util {
     /**  私有构造器 **/

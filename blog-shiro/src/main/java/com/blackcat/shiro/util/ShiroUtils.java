@@ -16,7 +16,7 @@ import java.util.Objects;
 /**
  * <p> ： Shiro工具类
  * @author : blackcat
- * @serialData : 2020/1/14 13:27
+ * @date : 2020/1/14 13:27
  */
 public class ShiroUtils {
     /** 私有构造器 **/
@@ -27,7 +27,7 @@ public class ShiroUtils {
     /**
      * <p> 获取当前用户Session
      * @author : blackcat
-     * @serialData : 2020/1/14 13:33
+     * @date : 2020/1/14 13:33
      * @return SysUserEntity 用户信息
     */
     public static Session getSession() {
@@ -37,7 +37,7 @@ public class ShiroUtils {
     /**
      * <p> 用户登出
      * @author : blackcat
-     * @serialData : 2020/1/14 13:34
+     * @date : 2020/1/14 13:34
      * @return void
     */
     public static void logout() {
@@ -47,7 +47,7 @@ public class ShiroUtils {
     /**
      * <p> 获取当前用户信息
      * @author : blackcat
-     * @serialData : 2020/1/14 13:34
+     * @date : 2020/1/14 13:34
      * @param []
      * @return SysUserEntity 用户信息
     */
@@ -58,7 +58,7 @@ public class ShiroUtils {
     /**
      * <p> 删除用户缓存信息
      * @author : blackcat
-     * @serialData : 2020/1/14 13:34
+     * @date : 2020/1/14 13:34
      * @param [username:用户名称, isRemoveSession:是否删除Session]
      * @return void
     */

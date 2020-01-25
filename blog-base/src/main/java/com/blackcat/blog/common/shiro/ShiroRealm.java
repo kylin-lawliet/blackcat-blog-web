@@ -15,7 +15,7 @@
 ///**
 // * <p> ： Shiro权限匹配和账号密码匹配
 // * @author : blackcat
-// * @serialData : 2020/1/13 17:38
+// * @date : 2020/1/13 17:38
 // */
 //public class ShiroRealm extends AuthorizingRealm {
 //    @Autowired
@@ -29,7 +29,7 @@
 //     * <p>  授权权限
 //     * <p> 用户进行权限验证时候Shiro会去缓存中找,如果查不到数据,会执行这个方法去查权限,并放入缓存中
 //     * @author : blackcat
-//     * @serialData : 2020/1/14 19:40
+//     * @date : 2020/1/14 19:40
 //     * @param [principalCollection]
 //    */
 //    @Override
@@ -60,7 +60,7 @@
 //     * <p> 身份认证
 //     * <p> 获取即将需要认证的信息
 //     * @author : blackcat
-//     * @serialData : 2020/1/14 19:41
+//     * @date : 2020/1/14 19:41
 //     * @param [authenticationToken]
 //     * @return org.apache.shiro.authc.AuthenticationInfo
 //    */

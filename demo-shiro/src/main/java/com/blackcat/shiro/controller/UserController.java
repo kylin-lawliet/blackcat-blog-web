@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * @author : blackcat
- * @serialData : 2020/1/13 22:06
+ * @date : 2020/1/13 22:06
  */
 @RequestMapping("/user")
 //@Controller

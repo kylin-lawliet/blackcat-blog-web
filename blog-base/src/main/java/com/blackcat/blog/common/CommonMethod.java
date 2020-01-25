@@ -3,14 +3,14 @@ package com.blackcat.blog.common;
 /**
  * <p> ：公共方法
  * @author : blackcat
- * @serialData : 2020/1/20 17:25
+ * @date : 2020/1/20 17:25
  */
 public class CommonMethod {
 
     /**
      * <p> : sql返回结果
      * @author : blackcat
-     * @serialData : 2020/1/20 17:25
+     * @date : 2020/1/20 17:25
      * @param [result]
      * @return boolean
     */

@@ -4,7 +4,7 @@ package com.blackcat.java.designpattern.facade;
  * 门面
  * FileName: Facade
  * @author :   blackcat
- * @serialData :     2019/11/28 11:14
+ * @date :     2019/11/28 11:14
  * 设计模式-门面 示例
  */
 public class Facade {

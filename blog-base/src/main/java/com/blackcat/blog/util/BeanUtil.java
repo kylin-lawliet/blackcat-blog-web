@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 /**
  * <p> : Bean属性操作类
  * @author : blackcat
- * @serialData : 2020/1/20 22:26
+ * @date : 2020/1/20 22:26
 */
 public class BeanUtil {
 
@@ -88,7 +88,7 @@ public class BeanUtil {
     /**
      * <p> : 根据属性，获取get方法值
      * @author : blackcat
-     * @serialData : 2020/1/21 11:45
+     * @date : 2020/1/21 11:45
      * @param [ob:对象, propertyName:属性名]
      * @return java.lang.Object     
     */
@@ -105,7 +105,7 @@ public class BeanUtil {
     /**
      * <p> : 得到带构造的类的实例
      * @author : blackcat
-     * @serialData : 2020/1/21 13:10
+     * @date : 2020/1/21 13:10
      * @param [className, args]
      * @return java.lang.Object     
     */

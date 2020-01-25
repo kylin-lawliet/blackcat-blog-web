@@ -18,7 +18,7 @@ import java.util.Map;
 /**
  * <p> ：用户登录
  * @author : blackcat
- * @serialData : 2020/1/14 13:45
+ * @date : 2020/1/14 13:45
  */
 @RestController
 @RequestMapping("/userLogin")

@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 /**
  * <p> 角色与权限
  * @author : blackcat
- * @serialData : 2020/1/16 15:07
+ * @date : 2020/1/16 15:07
 */
 @Data
 @EqualsAndHashCode(callSuper = false)

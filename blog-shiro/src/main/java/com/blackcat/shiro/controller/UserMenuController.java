@@ -13,7 +13,7 @@ import java.util.*;
 /**
  * <p> ：权限测试
  * @author : blackcat
- * @serialData : 2020/1/14 13:44
+ * @date : 2020/1/14 13:44
  */
 @RestController
 @RequestMapping("/menu")

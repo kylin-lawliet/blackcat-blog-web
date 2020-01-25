@@ -6,7 +6,7 @@ import com.blackcat.blog.core.entity.SysRoleMenu;
 /**
  * <p> 角色权限Mapper
  * @author : blackcat
- * @serialData : 2020/1/16 20:10
+ * @date : 2020/1/16 20:10
 */
 public interface SysRoleMenuMapper extends BaseMapper<SysRoleMenu> {
 	

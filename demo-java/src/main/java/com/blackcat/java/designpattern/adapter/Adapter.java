@@ -3,7 +3,7 @@ package com.blackcat.java.designpattern.adapter;
 /**
  * 适配器:转换插头
  * @author :   blackcat
- * @serialData :     2019/11/21 11:02
+ * @date :     2019/11/21 11:02
  * 设计模式-适配器 示例
  * 对象适配
  */

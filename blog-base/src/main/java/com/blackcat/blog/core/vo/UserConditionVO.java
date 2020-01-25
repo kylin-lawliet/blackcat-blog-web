@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 /**
  * <p> : 用户查询条件
  * @author : blackcat
- * @serialData : 2020/1/18 14:55
+ * @date : 2020/1/18 14:55
 */
 @Data
 @EqualsAndHashCode(callSuper = false)

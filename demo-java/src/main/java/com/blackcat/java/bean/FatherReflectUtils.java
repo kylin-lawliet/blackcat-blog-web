@@ -7,7 +7,7 @@ import java.lang.reflect.Type;
  * <p> ：
  *
  * @author : blackcat
- * @serialData : 2020/1/21 13:18
+ * @date : 2020/1/21 13:18
  */
 public abstract  class FatherReflectUtils<T> {
 

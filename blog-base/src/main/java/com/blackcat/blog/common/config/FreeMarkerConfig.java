@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
 /**
  * <p> ：freemarker配置类
  * @author : blackcat
- * @serialData : 2020/1/17 13:52
+ * @date : 2020/1/17 13:52
  */
 @Configuration
 public class FreeMarkerConfig {
@@ -23,7 +23,7 @@ public class FreeMarkerConfig {
     /**
      * <p> 添加自定义标签
      * @author : blackcat
-     * @serialData : 2020/1/17 13:53
+     * @date : 2020/1/17 13:53
     */
     @PostConstruct
     public void setSharedVariable() {

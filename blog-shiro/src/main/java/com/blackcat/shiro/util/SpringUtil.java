@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationContextAware;
 /**
  * <p> ：Spring上下文工具类
  * @author : blackcat
- * @serialData : 2020/1/14 12:52
+ * @date : 2020/1/14 12:52
  */
 public class SpringUtil implements ApplicationContextAware {
     private static ApplicationContext context;
@@ -15,7 +15,7 @@ public class SpringUtil implements ApplicationContextAware {
      * <p> Spring在bean初始化后会判断是不是ApplicationContextAware的子类
      * <p> 如果该类是setApplicationContext()方法,会将容器中ApplicationContext作为参数传入进去
      * @author : blackcat
-     * @serialData : 2020/1/14 13:26
+     * @date : 2020/1/14 13:26
      * @param [applicationContext]
      * @return void
     */
@@ -26,7 +26,7 @@ public class SpringUtil implements ApplicationContextAware {
     /**
      * <p> 通过Name返回指定的Bean
      * @author : blackcat
-     * @serialData : 2020/1/14 13:26
+     * @date : 2020/1/14 13:26
      * @param [beanClass]
      * @return T
     */

@@ -15,7 +15,7 @@ import java.util.*;
 /**
  * <p> ： Shiro权限匹配和账号密码匹配
  * @author : blackcat
- * @serialData : 2020/1/14 13:36
+ * @date : 2020/1/14 13:36
  */
 public class ShiroRealm  extends AuthorizingRealm {
     @Autowired

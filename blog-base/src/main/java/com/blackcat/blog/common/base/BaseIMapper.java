@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * <p> ：通用Mapper
  * @author : blackcat
- * @serialData : 2020/1/21 10:15
+ * @date : 2020/1/21 10:15
  */
 public interface BaseIMapper<T,BaseConditionVO> extends BaseMapper<T> {
     List<SysUser> findPageBreakByCondition(BaseConditionVO vo);

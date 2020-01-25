@@ -165,6 +165,58 @@
         //2.初始化Button的点击事件
         $.buttonUtil.init(options);
 
+        /* 分配用户角色 */
+        $('#tablelist').on('click', '.btn-allot', function () {
+            console.log("分配权限");
+            var $this = $(this);
+            var userId = $this.attr("data-id");
+            $.ajax({
+                async: false,
+                type: "POST",
+                data: {uid: userId},
+                url: '/roles/rolesWithSelected',
+                dataType: 'json',
+                success: function (json) {
+                    var data = json.data;
+                    console.log(data);
+                    var setting = {
+                        check: {
+                        enable: true,
+                        chkboxType: {"Y": "ps", "N": "ps"},
+                        chkStyle: "radio"
+                        },
+                        data: {
+                            simpleData: {
+                                enable: true
+                            }
+                        },
+                        callback: {
+                            onCheck: function (event, treeId, treeNode) {
+                            console.log(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
+                            var treeObj = $.fn.zTree.getZTreeObj(treeId);
+                            var nodes = treeObj.getCheckedNodes(true);
+                            var ids = new Array();
+                            for (var i = 0; i < nodes.length; i++) {
+                                //获取选中节点的值
+                                ids.push(nodes[i].id);
+                            }
+                            console.log(ids);
+                            console.log(userId);
+                            $.post(
+                                options.saveRolesUrl,
+                                {"userId": userId, "roleIds": ids.join(",")},
+                                function (obj) {
+                                }, 'json');
+                            }
+                        }
+                    };
+                    var tree = $.fn.zTree.init($("#treeDemo"), setting, data);
+                    tree.expandAll(true);//全部展开
+
+                    $('#selectRole').modal('show');
+                }
+            });
+        });
     });
 
 
@@ -187,109 +239,4 @@
         return operateBtn.join('');
     }
 
-    <#--$(function () {-->
-        <#--var options = {-->
-            <#--url: "/user/list",-->
-            <#--getInfoUrl: "/user/get/{id}",-->
-            <#--updateUrl: "/user/edit",-->
-            <#--removeUrl: "/user/remove",-->
-            <#--createUrl: "/user/add",-->
-            <#--saveRolesUrl: "/user/saveUserRoles",-->
-            <#--columns: [-->
-                <#--{-->
-                    <#--checkbox: true-->
-                <#--}, {-->
-                    <#--field: 'username',-->
-                    <#--title: '用户名',-->
-                    <#--editable: false,-->
-                <#--}, {-->
-                    <#--field: 'nickname',-->
-                    <#--title: '昵称',-->
-                    <#--editable: true-->
-                <#--}, {-->
-                    <#--field: 'email',-->
-                    <#--title: '邮箱',-->
-                    <#--editable: true-->
-                <#--}, {-->
-                    <#--field: 'userType',-->
-                    <#--title: '用户类型',-->
-                    <#--editable: false-->
-                <#--}, {-->
-                    <#--field: 'statusEnum',-->
-                    <#--title: '状态',-->
-                    <#--editable: false-->
-                <#--}, {-->
-                    <#--field: 'lastLoginTime',-->
-                    <#--title: '最后登录时间',-->
-                    <#--editable: false,-->
-                    <#--formatter: function (code) {-->
-                        <#--return new Date(code).format("yyyy-MM-dd hh:mm:ss")-->
-                    <#--}-->
-                <#--}, {-->
-                    <#--field: 'loginCount',-->
-                    <#--title: '登录次数',-->
-                    <#--editable: false-->
-                <#--}, {-->
-                    <#--field: 'operate',-->
-                    <#--title: '操作',-->
-                    <#--formatter: operateFormatter //自定义方法，添加操作按钮-->
-                <#--}-->
-            <#--],-->
-            <#--modalName: "用户"-->
-        <#--};-->
-        <#--//1.初始化Table-->
-        <#--$.tableUtil.init(options);-->
-        <#--//2.初始化Button的点击事件-->
-        <#--$.buttonUtil.init(options);-->
-
-        <#--/* 分配用户角色 */-->
-        <#--$('#tablelist').on('click', '.btn-allot', function () {-->
-            <#--console.log("分配权限");-->
-            <#--var $this = $(this);-->
-            <#--var userId = $this.attr("data-id");-->
-            <#--$.ajax({-->
-                <#--async: false,-->
-                <#--type: "POST",-->
-                <#--data: {uid: userId},-->
-                <#--url: '/roles/rolesWithSelected',-->
-                <#--dataType: 'json',-->
-                <#--success: function (json) {-->
-                    <#--var data = json.data;-->
-                    <#--console.log(data);-->
-                    <#--var setting = {-->
-                        <#--check: {-->
-                            <#--enable: true,-->
-                            <#--chkboxType: {"Y": "ps", "N": "ps"},-->
-                            <#--chkStyle: "radio"-->
-                        <#--},-->
-                        <#--data: {-->
-                            <#--simpleData: {-->
-                                <#--enable: true-->
-                            <#--}-->
-                        <#--},-->
-                        <#--callback: {-->
-                            <#--onCheck: function (event, treeId, treeNode) {-->
-                                <#--console.log(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);-->
-                                <#--var treeObj = $.fn.zTree.getZTreeObj(treeId);-->
-                                <#--var nodes = treeObj.getCheckedNodes(true);-->
-                                <#--var ids = new Array();-->
-                                <#--for (var i = 0; i < nodes.length; i++) {-->
-                                    <#--//获取选中节点的值-->
-                                    <#--ids.push(nodes[i].id);-->
-                                <#--}-->
-                                <#--console.log(ids);-->
-                                <#--console.log(userId);-->
-                                <#--$.post(options.saveRolesUrl, {"userId": userId, "roleIds": ids.join(",")}, function (obj) {-->
-                                <#--}, 'json');-->
-                            <#--}-->
-                        <#--}-->
-                    <#--};-->
-                    <#--var tree = $.fn.zTree.init($("#treeDemo"), setting, data);-->
-                    <#--tree.expandAll(true);//全部展开-->
-
-                    <#--$('#selectRole').modal('show');-->
-                <#--}-->
-            <#--});-->
-        <#--});-->
-    <#--});-->
 </script>

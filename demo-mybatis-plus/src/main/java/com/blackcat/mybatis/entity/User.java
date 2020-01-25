@@ -7,7 +7,7 @@ import lombok.*;
 /**
  * <p> ：测试用户
  * @author : blackcat
- * @serialData : 2020/1/18 12:58
+ * @date : 2020/1/18 12:58
  */
 @Data
 @NoArgsConstructor// 生成一个无参数的构造方法

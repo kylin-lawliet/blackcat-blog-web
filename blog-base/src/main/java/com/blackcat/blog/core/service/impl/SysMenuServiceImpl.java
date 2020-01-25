@@ -1,8 +1,6 @@
 package com.blackcat.blog.core.service.impl;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.blackcat.blog.common.CommonMethod;
 import com.blackcat.blog.core.entity.*;
 import com.blackcat.blog.core.extend.MenuExtend;
@@ -21,7 +19,7 @@ import java.util.*;
 /**
  * <p> 权限业务实现
  * @author : blackcat
- * @serialData : 2020/1/16 20:15
+ * @date : 2020/1/16 20:15
 */
 @Service("sysMenuService")
 public class SysMenuServiceImpl implements SysMenuService {
@@ -32,7 +30,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     /**
      * <p> : 保存一个实体，null的属性不会保存，会使用数据库默认值
      * @author : blackcat
-     * @serialData : 2020/1/20 18:22
+     * @date : 2020/1/20 18:22
      * @param entity 扩展类
      * @return boolean
     */
@@ -47,7 +45,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     /**
      * <p> : 批量删除
      * @author : blackcat
-     * @serialData : 2020/1/20 21:48
+     * @date : 2020/1/20 21:48
     */
     @Override
     public void deleteBatchIds(Long[] ids) {
@@ -57,7 +55,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     /**
      * <p> : 根据主键更新属性不为null的值
      * @author : blackcat
-     * @serialData : 2020/1/20 18:30
+     * @date : 2020/1/20 18:30
      * @param entity 扩展类
      * @return boolean
     */
@@ -71,7 +69,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     /**
      * <p> : 根据主键字段进行查询
      * @author : blackcat
-     * @serialData : 2020/1/20 18:26
+     * @date : 2020/1/20 18:26
      * @param primaryKey 主键
     */
     @Override
@@ -84,7 +82,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     /**
      * <p> : 分页查询
      * @author : blackcat
-     * @serialData : 2020/1/19 13:35
+     * @date : 2020/1/19 13:35
     */
     @Override
     public PageInfo<MenuExtend> findPageBreakByCondition(MenuConditionVO vo) {
@@ -99,7 +97,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     /**
      * <p> : 获取所有可用的菜单资源
      * @author : blackcat
-     * @serialData : 2020/1/17 14:26
+     * @date : 2020/1/17 14:26
      * @return List<MenuExtend> 权限集合
     */
     @Override
@@ -111,7 +109,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     /**
      * <p> : 将系统权限类转为扩展类
      * @author : blackcat
-     * @serialData : 2020/1/17 14:27
+     * @date : 2020/1/17 14:27
      * @param sysMenus 系统权限类
      * @return List<MenuExtend> 集合
     */
@@ -129,7 +127,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     /**
      * <p> : 获取用户的资源列表
      * @author : blackcat
-     * @serialData : 2020/1/17 14:35
+     * @date : 2020/1/17 14:35
      * @param map 参数
      * @return List<MenuExtend> 集合
     */

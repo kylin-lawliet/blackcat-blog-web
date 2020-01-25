@@ -7,7 +7,7 @@ import java.util.List;
  * 聊天室
  * FileName: ChatRoom
  * @author :   blackcat
- * @serialData :     2019/11/29 12:49
+ * @date :     2019/11/29 12:49
  * 设计模式-中介 优化代码示例
  */
 public class ChatRoom {

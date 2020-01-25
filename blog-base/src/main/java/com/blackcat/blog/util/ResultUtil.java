@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * <p> ：接口返回工具类
  * @author : blackcat
- * @serialData : 2020/1/18 15:05
+ * @date : 2020/1/18 15:05
  */
 public class ResultUtil {
     /**

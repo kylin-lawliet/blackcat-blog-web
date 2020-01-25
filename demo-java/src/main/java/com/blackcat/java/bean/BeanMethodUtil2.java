@@ -1,5 +1,7 @@
 package com.blackcat.java.bean;
 
+import com.blackcat.java.common.User;
+
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 
@@ -7,7 +9,7 @@ import java.math.BigDecimal;
  * <p> ：
  *
  * @author : blackcat
- * @serialData : 2020/1/21 11:41
+ * @date : 2020/1/21 11:41
  */
 public class BeanMethodUtil2 {
 

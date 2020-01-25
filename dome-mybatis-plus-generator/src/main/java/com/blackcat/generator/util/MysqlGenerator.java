@@ -14,8 +14,7 @@ import java.util.List;
 /**
  * mybatis plus mysql 代码生成器
  * @author : blackcat
- * @serialData : 2020/1/6 17:22
- * @param
+ * @date  : 2020/1/6 17:22
 */
 public class MysqlGenerator {
 
@@ -48,8 +47,8 @@ public class MysqlGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://192.168.31.77:4306/testdata?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC");
-        dsc.setDriverName("com.mysql.jdbc.Driver");
+        dsc.setUrl("jdbc:mysql://localhost:3306/blog?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC");
+        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("111111");
         mpg.setDataSource(dsc);

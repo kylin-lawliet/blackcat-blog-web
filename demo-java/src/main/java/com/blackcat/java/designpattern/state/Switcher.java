@@ -4,7 +4,7 @@ package com.blackcat.java.designpattern.state;
  * 开关
  * FileName: Switcher
  * @author :   blackcat
- * @serialData :     2019/11/22 16:10
+ * @date :     2019/11/22 16:10
  * 设计模式-状态 示例
  */
 public class Switcher {

@@ -4,7 +4,7 @@ package com.blackcat.java.designpattern.singleton;
  * 定义神
  * FileName: God
  * @author :   blackcat
- * @serialData :     2019/11/21 10:27
+ * @date :     2019/11/21 10:27
  * 设计模式-单例 示例
  */
 public class God {
@@ -12,7 +12,7 @@ public class God {
     /**
      * 构造方法私有化
      * @author:     blackcat
-     * @serialData : 2019/11/21 10:33
+     * @date : 2019/11/21 10:33
      * @param []
      * 因为有默认的无参构造器！那就把构造方法改成private吧，也就是神可以自己创造自己，但别人不能。
     */
@@ -21,7 +21,7 @@ public class God {
     /**
      * 自有永有的神单例
      * @author:     blackcat
-     * @serialData : 2019/11/21 10:35
+     * @date : 2019/11/21 10:35
      * @param
      * private关键字保证了上帝的私有性，不可见性，不可访问性。
      * static关键字保证上帝的静态性，他与类同在，不依赖于类的实例化就自有永有，他将在内存中永生，GC垃圾回收器也回收不了他。
@@ -34,7 +34,7 @@ public class God {
     /**
      * 请神方法公开化
      * @author:     blackcat
-     * @serialData : 2019/11/21 10:37
+     * @date : 2019/11/21 10:37
      * @param []
      * 静态方法main()，不需要实例化类就能运行的入口，同样我们需要一个静态方法getInstance()来请神
      * synchronized 解决多线程下并发请神

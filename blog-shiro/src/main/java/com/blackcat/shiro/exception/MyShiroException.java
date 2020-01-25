@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * <p>  ： 自定义异常
  * @author : blackcat
- * @serialData : 2020/1/14 12:45
+ * @date : 2020/1/14 12:45
  */
 @ControllerAdvice
 public class MyShiroException {
@@ -15,7 +15,7 @@ public class MyShiroException {
     /**
      * 处理Shiro权限拦截异常
      * @author : blackcat
-     * @serialData : 2020/1/14 12:44
+     * @date : 2020/1/14 12:44
      * @param []
      * @return Map<Object> 返回结果集
     */

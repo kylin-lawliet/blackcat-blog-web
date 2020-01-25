@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * <p> : controller返回json
  * @author : blackcat
- * @serialData : 2020/1/20 16:54
+ * @date : 2020/1/20 16:54
 */
 @Data
 @EqualsAndHashCode(callSuper = false)

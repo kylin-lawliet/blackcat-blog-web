@@ -4,7 +4,7 @@ package com.blackcat.java.designpattern.template;
  * 自动测试项目管理
  * FileName: AutoTestPM
  * @author :   blackcat
- * @serialData :     2019/11/25 17:52
+ * @date :     2019/11/25 17:52
  * 设计模式-模板方法 示例三
  */
 public class AutoTestPM extends PM {

@@ -4,12 +4,11 @@ import org.springframework.beans.BeanUtils;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.*;
-import java.math.BigDecimal;
 
 /**
  * <p> : Bean属性操作类
  * @author : blackcat
- * @serialData : 2020/1/20 22:26
+ * @date : 2020/1/20 22:26
 */
 public class BeanUtil {
 
@@ -108,7 +107,7 @@ public class BeanUtil {
     /**
      * <p> : 根据属性，获取get方法
      * @author : blackcat
-     * @serialData : 2020/1/21 11:45
+     * @date : 2020/1/21 11:45
      * @param [ob:对象, name:属性名]
      * @return java.lang.Object     
     */

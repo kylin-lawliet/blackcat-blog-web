@@ -4,7 +4,7 @@ package com.blackcat.java.designpattern.facade;
  * 女友
  * FileName: GirlFriend
  * @author :   blackcat
- * @serialData :     2019/11/28 11:12
+ * @date :     2019/11/28 11:12
  * 设计模式-门面 示例
  */
 public class GirlFriend {

@@ -3,7 +3,7 @@ package com.blackcat.java.designpattern.state;
 /**
  * 状态
  * @author:     blackcat
- * @serialData : 2019/11/22 16:24
+ * @date : 2019/11/22 16:24
  * @param
  * 设计模式-状态 示例
 */
