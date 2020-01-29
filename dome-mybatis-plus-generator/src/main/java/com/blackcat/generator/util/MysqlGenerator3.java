@@ -1,6 +1,7 @@
 package com.blackcat.generator.util;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
+import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
@@ -98,16 +99,17 @@ public class MysqlGenerator3 {
         //tableFillList.add(createField);
         //tableFillList.add(modifiedField);
 
-        /*// 自定义配置
+        // 自定义配置
         InjectionConfig cfg = new InjectionConfig() {
             @Override
             public void initMap() {
                 Map<String, Object> map = new HashMap<>();
-                map.put("abc", "自定义属性描述"); //.vm模板中，通过${cfg.abc}获取属性
+//                map.put("abc", "自定义属性描述"); //.vm模板中，通过${cfg.abc}获取属性
+                map.put("projectPath", param.get("parent"));
                 this.setMap(map);
             }
         };
-        // 模板引擎
+        /*// 模板引擎
         String htmlTemplatePath = param.get("htmlTemplatePath");
         // 自定义输出配置
         List<FileOutConfig> focList = new ArrayList<>();
@@ -119,8 +121,8 @@ public class MysqlGenerator3 {
                 return param.get("projectPath") + "/" + tableInfo.getEntityName() + "/list.html";
             }
         });
-        cfg.setFileOutConfigList(focList);
-        mpg.setCfg(cfg);*/
+        cfg.setFileOutConfigList(focList);*/
+        mpg.setCfg(cfg);
 
 
         // 配置模板

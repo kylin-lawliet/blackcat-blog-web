@@ -1,12 +1,13 @@
 package ${package.Mapper};
 
 import ${package.Entity}.${entity};
+import ${cfg.projectPath}.vo.BaseConditionVO;
 import ${superMapperClassPackage};
-
+import java.util.List;
 /**
  * <p> ${table.comment!} Mapper 接口
  * @author ${author}
- * @data ${date}
+ * @date ${date}
  */
 <#if kotlin>
 interface ${table.mapperName} : ${superMapperClass}<${entity}>
@@ -20,6 +21,6 @@ public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
      * @param vo 条件封装
      * @return  List<SysMenu>
      */
-     List<${entity}> findPageBreakByCondition(BaseConditionVO vo);
+    List<SysMenu> findPageBreakByCondition(BaseConditionVO vo);
 }
 </#if>

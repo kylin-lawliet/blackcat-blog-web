@@ -3,6 +3,7 @@ package ${package.ServiceImpl};
 import ${package.Entity}.${entity};
 import ${package.Mapper}.${table.mapperName};
 import ${package.Service}.${table.serviceName};
+import ${cfg.projectPath}.vo.BaseConditionVO;
 import ${superServiceImplClassPackage};
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 /**
  * <p> ${table.comment!} 服务实现类
  * @author ${author}
- * @data ${date}
+ * @date ${date}
  */
 @Service
 <#if kotlin>

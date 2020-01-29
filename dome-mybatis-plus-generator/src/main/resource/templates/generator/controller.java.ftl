@@ -6,11 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ${package.Service}.${table.serviceName};
 import ${package.Entity}.${entity};
-<#if restControllerStyle>
+import ${cfg.projectPath}.vo.BaseConditionVO;
 import org.springframework.web.bind.annotation.RestController;
-<#else>
-import org.springframework.stereotype.Controller;
-</#if>
 <#if superControllerClassPackage??>
 import ${superControllerClassPackage};
 </#if>
@@ -18,7 +15,7 @@ import ${superControllerClassPackage};
 /**
  * <p> ${table.comment!} 前端控制器
  * @author ${author}
- * @data ${date}
+ * @date ${date}
  */
 @RestController
 @RequestMapping("<#if package.ModuleName??>/${package.ModuleName}</#if>/<#if controllerMappingHyphenStyle??>${controllerMappingHyphen}<#else>${table.entityPath}</#if>")
@@ -42,7 +39,7 @@ public class ${table.controllerName} {
 
      @PostMapping(value = "/add")
      public ResultUtil add(SysMenu menu) {
-         sysMenuService.save(menu);
+         i${entity}Service.save(menu);
          return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
      }
 
