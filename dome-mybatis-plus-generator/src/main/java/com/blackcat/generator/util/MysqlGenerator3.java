@@ -104,7 +104,7 @@ public class MysqlGenerator3 {
             @Override
             public void initMap() {
                 Map<String, Object> map = new HashMap<>();
-//                map.put("abc", "自定义属性描述"); //.vm模板中，通过${cfg.abc}获取属性
+//                map.put("abc", "自定义属性描述"); // 模板中，通过${cfg.abc}获取属性
                 map.put("projectPath", param.get("parent"));
                 this.setMap(map);
             }
