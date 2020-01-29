@@ -33,7 +33,7 @@ public class ${table.controllerName} {
 
     @RequestMapping("/list")
     public PageResult list(BaseConditionVO vo){
-        PageInfo<SysMenu> pageInfo = i${entity}Service.findPageBreakByCondition(vo);
+        PageInfo<${entity}> pageInfo = i${entity}Service.findPageBreakByCondition(vo);
         return ResultUtil.tablePage(pageInfo);
     }
 

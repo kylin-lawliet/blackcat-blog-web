@@ -21,6 +21,6 @@ public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
      * @param vo 条件封装
      * @return  List<SysMenu>
      */
-    List<SysMenu> findPageBreakByCondition(BaseConditionVO vo);
+    List<${entity}> findPageBreakByCondition(BaseConditionVO vo);
 }
 </#if>
