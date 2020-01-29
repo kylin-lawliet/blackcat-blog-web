@@ -15,6 +15,7 @@ import java.util.List;
  * mybatis plus mysql 代码生成器
  * @author : blackcat
  * @date  : 2020/1/6 17:22
+ * 简单版  参考官网示例最基础版
 */
 public class MysqlGenerator {
 
