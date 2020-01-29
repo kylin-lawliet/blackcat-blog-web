@@ -38,8 +38,8 @@ public class ${table.controllerName} {
     }
 
      @PostMapping(value = "/add")
-     public ResultUtil add(SysMenu menu) {
-         i${entity}Service.save(menu);
+     public ResultUtil add(${entity} entity) {
+         i${entity}Service.save(entity);
          return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
      }
 
@@ -58,9 +58,9 @@ public class ${table.controllerName} {
      }
 
      @PostMapping("/edit")
-     public ResultUtil edit(SysMenu menu) {
+     public ResultUtil edit(${entity} entity) {
          try {
-             i${entity}Service.updateById(menu);
+             i${entity}Service.updateById(entity);
          } catch (Exception e) {
              e.printStackTrace();
              return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));
