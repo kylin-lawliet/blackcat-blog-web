@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ${package.Service}.${table.serviceName};
 import ${package.Entity}.${entity};
 import ${cfg.projectPath}.vo.BaseConditionVO;
+import ${cfg.projectPath}.util.ResultUtil;
 import org.springframework.web.bind.annotation.RestController;
 <#if superControllerClassPackage??>
 import ${superControllerClassPackage};
