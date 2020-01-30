@@ -1,19 +1,56 @@
 package com.blackcat.blog.core.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.blackcat.blog.core.object.AbstractDO;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.time.LocalDateTime;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 /**
- * <p> 用户与角色
- * @author : blackcat
- * @date : 2020/1/16 15:09
-*/
+ * <p>
+ * 用户与角色关系表
+ * </p>
+ *
+ * @author blackcat
+ * @since 2020-01-29
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_user_role")
-public class SysUserRole extends AbstractDO {
-	private Long userId;// 用户ID
-	private Long roleId;// 角色ID
+@Accessors(chain = true)
+public class SysUserRole extends Model<SysUserRole> {
+
+    private static final long serialVersionUID = 1L;
+
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
+    /**
+     * 用户ID
+     */
+    private Long userId;
+
+    /**
+     * 角色ID
+     */
+    private Long roleId;
+
+    /**
+     * 添加时间
+     */
+    private LocalDateTime createTime;
+
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateTime;
+
+
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
+
 }

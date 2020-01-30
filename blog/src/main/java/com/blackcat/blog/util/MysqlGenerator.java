@@ -1,17 +1,13 @@
 package com.blackcat.blog.util;
 
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
-import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -19,12 +15,12 @@ import java.util.Map;
  * mybatis plus mysql 代码生成器
  * @author : blackcat
  * @date : 2020/1/6 17:22
-*/
+ * 进阶版 自定义模板输出
+ */
 public class MysqlGenerator {
 
     public static void main(String[] args) {
         Map<String, String> param = new HashMap<>();
-        //D:\project\blackcat-blog\blog-base
         param.put("projectPath","D:\\test");// 代码输出项目地址
         param.put("author","blackcat");// 作者
         param.put("url","localhost:3306/blog");// ip/数据库
@@ -32,7 +28,7 @@ public class MysqlGenerator {
         param.put("username","root");// 数据库用户
         param.put("password","111111");// 数据库密码
         param.put("open","true");// 是否打开输出目录
-        param.put("parent","com.blackcat.mybatis");// 顶层包结构
+        param.put("parent","com.blackcat.blog.core");// 顶层包结构
         param.put("mapper","mapper");// 生成的mapper包名
         param.put("entity","entity");// 生成的entity包名
         param.put("service","service");// 生成的service包名
@@ -40,15 +36,12 @@ public class MysqlGenerator {
         param.put("xml","mappers");// 生成的mapper.xml包名
         param.put("model","");// 生成的mapper.xml包名下的模块名称 空则无 如:mappers.shiro
         param.put("xmlName","Mapper");// 生成的mapper.xml的文件结尾名称如UserMapper.xml
-        // 设置模板 freemarker模板:/templates/mapper.xml.ftl  velocity模板:/templates/mapper.xml.vm
-        param.put("templatePath","/templates/mapper.xml.ftl");//
-        param.put("table","");//数据库表名 一张表时使用
-        // 多表时使用,当数组大于0时使用数组
-        // 示例:String[] tablse={"sys_menu","sys_role","sys_role_menu","sys_user_role","sys_user_role"};// shiro所需表
+        // 设置模板 freemarker模板:/templates/xx.ftl  velocity模板:/templates/xx.vm
+        //param.put("htmlTemplatePath","/templates/list.html.ftl");//
+        param.put("table","");//数据库表名，多个英文逗号分割  如果不设置就是生成所有的表
+        //"sys_menu,sys_role,sys_role_menu,sys_user,sys_user_role"
 
-        // shiro所需表
-        String[] tablse={"sys_menu","sys_role","sys_role_menu","sys_user","sys_user_role"};
-        generator(param,tablse);
+        generator(param);
     }
 
     /* *
@@ -56,8 +49,8 @@ public class MysqlGenerator {
      * @author : blackcat
      * @date : 2020/1/7 13:44
      * @param [param]
-    */
-    private static void generator(Map<String, String> param,String[] tablse){
+     */
+    private static void generator(Map<String, String> param){
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
 
@@ -106,42 +99,41 @@ public class MysqlGenerator {
         //tableFillList.add(createField);
         //tableFillList.add(modifiedField);
 
-
         // 自定义配置
         InjectionConfig cfg = new InjectionConfig() {
             @Override
             public void initMap() {
-                // to do nothing
+                Map<String, Object> map = new HashMap<>();
+//                map.put("abc", "自定义属性描述"); // 模板中，通过${cfg.abc}获取属性
+                map.put("projectPath", param.get("parent"));
+                this.setMap(map);
             }
         };
-        // 模板引擎
-        String templatePath = param.get("templatePath");
+        /*// 模板引擎
+        String htmlTemplatePath = param.get("htmlTemplatePath");
         // 自定义输出配置
         List<FileOutConfig> focList = new ArrayList<>();
-        // 自定义配置会被优先输出 这里设置xml的存放路径
-        focList.add(new FileOutConfig(templatePath) {
+        // 自定义 XXlist.html 生成
+        focList.add(new FileOutConfig(htmlTemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                // 自定义输出文件名
-                StringBuilder customPath = new StringBuilder();
-                customPath.append(param.get("projectPath"));
-                customPath.append("/src/main/resources/");
-                customPath.append(param.get("xml"));
-                customPath.append("/");
-                if(StringUtils.isNotBlank(pc.getModuleName())){
-                    customPath.append(pc.getModuleName());
-                }
-                customPath.append("/");
-                customPath.append(tableInfo.getEntityName());
-                customPath.append(param.get("xmlName"));
-                customPath.append(StringPool.DOT_XML);
-               /* return param.get("projectPath") + "/src/main/resources/"+param.get("xml")+"/"
-                        + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;*/
-                return customPath.toString();
+                // 自定义输入文件名称
+                return param.get("projectPath") + "/" + tableInfo.getEntityName() + "/list.html";
             }
         });
-        cfg.setFileOutConfigList(focList);
+        cfg.setFileOutConfigList(focList);*/
         mpg.setCfg(cfg);
+
+
+        // 配置模板
+        TemplateConfig templateConfig = new TemplateConfig();
+        // 配置自定义输出模板
+        //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
+        templateConfig.setService("templates/generator/service.java");
+        templateConfig.setServiceImpl("templates/generator/serviceImpl.java");
+        templateConfig.setMapper("templates/generator/mapper.java");
+        templateConfig.setController("templates/generator/controller.java");
+        mpg.setTemplate(templateConfig);
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
@@ -150,15 +142,32 @@ public class MysqlGenerator {
         //数据库表字段映射到实体的命名策略，未指定按照 naming 执行
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setEntityLombokModel(true);// 是否使用lombok
-        if (tablse.length > 0) {
-            strategy.setInclude(tablse);// 数据库表 多表
-        } else {
-            strategy.setInclude(param.get("table"));// 数据库表 一张表
-        }
         strategy.setControllerMappingHyphenStyle(true);// 驼峰转连字符
-        //strategy.setSuperControllerClass("com.sxt.BaseController");// 公共父类
-        //strategy.setSuperEntityColumns("person_id","person_name");// 写于父类中的公共字段
-        //strategy.setInclude(("表名，多个英文逗号分割").split(","));//要设置生成哪些表 如果不设置就是生成所有的表
+        if (StringUtils.isNotEmpty(param.get("table"))) {
+            strategy.setInclude(param.get("table").split(","));//要设置生成哪些表 如果不设置就是生成所有的表
+        }
+        // strategy.setSuperControllerClass("com.sxt.BaseController");// 公共父类
+        // strategy.setSuperEntityColumns("person_id","person_name");// 写于父类中的公共字段
+        // strategy.setExclude(new String[]{"test"}); // 排除生成的表
+        // 自定义实体父类
+        // strategy.setSuperEntityClass("com.baomidou.demo.TestEntity");
+        // 自定义实体，公共字段
+        // strategy.setSuperEntityColumns(new String[] { "test_id", "age" });
+        // 自定义 mapper 父类
+        // strategy.setSuperMapperClass("com.baomidou.demo.TestMapper");
+        // 自定义 service 父类
+        // strategy.setSuperServiceClass("com.baomidou.demo.TestService");
+        // 自定义 service 实现类父类
+        // strategy.setSuperServiceImplClass("com.baomidou.demo.TestServiceImpl");
+        // 自定义 controller 父类
+        // strategy.setSuperControllerClass("com.baomidou.demo.TestController");
+        // 【实体】是否生成字段常量（默认 false）
+        // public static final String ID = "test_id";
+        // strategy.setEntityColumnConstant(true);
+        // 【实体】是否为构建者模型（默认 false）
+        // public User setName(String name) {this.name = name; return this;}
+        // strategy.setEntityBuilderModel(true);
+
         mpg.setStrategy(strategy);// 数据库表配置
         // 选择 freemarker 引擎需要指定如下加，注意 pom 依赖必须有！ 默认 Veloctiy
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());

@@ -1,35 +1,122 @@
 package com.blackcat.blog.core.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.blackcat.blog.core.object.AbstractDO;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
+import java.time.LocalDate;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.time.LocalDateTime;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.util.Date;
+import lombok.experimental.Accessors;
 
 /**
- * <p> 用户
- * @author : blackcat
- * @date : 2020/1/16 15:08
-*/
+ * <p>
+ * 系统用户表
+ * </p>
+ *
+ * @author blackcat
+ * @since 2020-01-29
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_user")
-public class SysUser extends AbstractDO {
-	private String username;// 用户名称
-	private String password;// 登录密码
-	private String nickname;// 昵称
-	private String mobile;// 手机号
-	private String email;// 邮箱地址
-	private Date birthday;// 生日
-	private Integer gender;// 性别
-	private String avatar;// 头像地址
-	private String userType;// 用户类型 超级管理员、管理员、普通用户
-	private String regIp;// 注册IP
-	private String lastLoginIp;// 最近登录IP
-	private Date lastLoginTime;// 最近登录时间
-	private Integer loginCount;// 登录次数
-	private String remark;// 备注
-	private Integer status;// 状态
+@Accessors(chain = true)
+public class SysUser extends Model<SysUser> {
+
+    private static final long serialVersionUID = 1L;
+
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
+
+    /**
+     * 用户名称
+     */
+    private String username;
+
+    /**
+     * 登录密码
+     */
+    private String password;
+
+    /**
+     * 昵称
+     */
+    private String nickname;
+
+    /**
+     * 手机号
+     */
+    private String mobile;
+
+    /**
+     * 邮箱地址
+     */
+    private String email;
+
+    /**
+     * 生日
+     */
+    private LocalDate birthday;
+
+    /**
+     * 性别
+     */
+    private Integer gender;
+
+    /**
+     * 头像地址
+     */
+    private String avatar;
+
+    /**
+     * 超级管理员、管理员、普通用户
+     */
+    private String userType;
+
+    /**
+     * 注册IP
+     */
+    private String regIp;
+
+    /**
+     * 最近登录IP
+     */
+    private String lastLoginIp;
+
+    /**
+     * 最近登录时间
+     */
+    private LocalDateTime lastLoginTime;
+
+    /**
+     * 登录次数
+     */
+    private Integer loginCount;
+
+    /**
+     * 备注
+     */
+    private String remark;
+
+    /**
+     * 状态
+     */
+    private Integer status;
+
+    /**
+     * 注册时间
+     */
+    private LocalDateTime createTime;
+
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateTime;
+
+
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
 
 }

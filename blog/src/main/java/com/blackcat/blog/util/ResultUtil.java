@@ -1,27 +1,63 @@
 package com.blackcat.blog.util;
 
-import com.blackcat.blog.core.enums.ResponseStatusEnum;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.blackcat.blog.core.object.PageResult;
-import com.blackcat.blog.core.vo.ResponseVO;
 import com.github.pagehelper.PageInfo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p> ：接口返回工具类
  * @author : blackcat
  * @date : 2020/1/18 15:05
  */
-public class ResultUtil {
+public class ResultUtil extends HashMap<String, Object> {
     /**
      * 程序默认的成功状态码
      */
-    public static final int DEFAULT_SUCCESS_CODE = 200;
+    private static final int DEFAULT_SUCCESS_CODE = 200;
     /**
      * 程序默认的错误状态码
      */
-    public static final int DEFAULT_ERROR_CODE = 500;
+    private static final int DEFAULT_ERROR_CODE = 500;
+
+    private ResultUtil() {
+        put("code", DEFAULT_SUCCESS_CODE);
+    }
+
+    public static ResultUtil error() {
+        return error(DEFAULT_ERROR_CODE, "未知异常，请联系管理员");
+    }
+
+    public static ResultUtil error(String msg) {
+        return error(500, msg);
+    }
+
+    public static ResultUtil error(int code, String msg) {
+        ResultUtil result = new ResultUtil();
+        result.put("code", code);
+        result.put("msg", msg);
+        return result;
+    }
+
+    public static ResultUtil ok(String msg) {
+        ResultUtil result = new ResultUtil();
+        result.put("msg", msg);
+        return result;
+    }
+
+    public static ResultUtil ok(Map<String, Object> map) {
+        ResultUtil result = new ResultUtil();
+        result.putAll(map);
+        return result;
+    }
+
+    public static ResultUtil ok() {
+        return new ResultUtil();
+    }
 
     public static PageResult tablePage(Long total, List<?> list) {
         return new PageResult(total, list);
@@ -34,50 +70,17 @@ public class ResultUtil {
         return tablePage(info.getTotal(), info.getList());
     }
 
-    public static ResponseVO error(int code, String message) {
-        return vo(code, message, null);
-    }
-
-    public static ResponseVO error(ResponseStatusEnum status) {
-        return vo(status.getCode(), status.getMessage(), null);
-    }
-
-    public static ResponseVO error(String message) {
-        return vo(DEFAULT_ERROR_CODE, message, null);
-    }
-
-    public static ResponseVO success(String message, Object data) {
-        return vo(DEFAULT_SUCCESS_CODE, message, data);
-    }
-
-    public static ResponseVO success(String message) {
-        return success(message, null);
-    }
-
-    public static ResponseVO success(ResponseStatusEnum status) {
-        return vo(status.getCode(), status.getMessage(), null);
-    }
-
-    public static ResponseVO vo(int code, String message, Object data) {
-        return new ResponseVO<>(code, message, data);
-    }
-
-
-    /*public static JSONObject tablePage(Long total, List<?> list){
-        JSONObject jsonResult = new JSONObject();
-        jsonResult.put("total",total);
-        jsonResult.put("rows",list);
-        return jsonResult;
-    }
-
-    public static JSONObject tablePage(PageInfo info){
+    public static PageResult tablePage(Page info) {
         if (info == null) {
-            JSONObject jsonResult = new JSONObject();
-            jsonResult.put("total",0L);
-            jsonResult.put("rows",new ArrayList());
-            return jsonResult;
+            return new PageResult(0L, new ArrayList());
         }
-        return tablePage(info.getTotal(), info.getList());
-    }*/
+        return tablePage(info.getTotal(), info.getRecords());
+    }
 
+
+    @Override
+    public ResultUtil put(String key, Object value) {
+        super.put(key, value);
+        return this;
+    }
 }

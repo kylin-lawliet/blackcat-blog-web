@@ -1,27 +1,68 @@
 package com.blackcat.blog.core.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.blackcat.blog.core.object.AbstractDO;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 import javax.persistence.Transient;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
- * <p> 角色
- * @author : blackcat
- * @date : 2020/1/16 15:06
-*/
+ * <p>
+ * 角色表
+ * </p>
+ *
+ * @author blackcat
+ * @since 2020-01-29
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_role")
-public class SysRole extends AbstractDO {
-	private String name;// 角色名
-	private String description;// 描述
-	private Boolean available;// 是否可用
+@Accessors(chain = true)
+public class SysRole extends Model<SysRole> {
 
-	@Transient
-	@TableField(exist = false)
-	private Integer selected;
+    private static final long serialVersionUID = 1L;
+
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
+    /**
+     * 角色名
+     */
+    private String name;
+
+    /**
+     * 描述
+     */
+    private String description;
+
+    /**
+     * 是否可用
+     */
+    private Boolean available;
+
+    /**
+     * 添加时间
+     */
+    private LocalDateTime createTime;
+
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateTime;
+
+
+    @Transient
+    @TableField(exist = false)
+    private Integer selected;
+
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
+
 }

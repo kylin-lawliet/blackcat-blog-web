@@ -1,19 +1,57 @@
 package com.blackcat.blog.core.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.blackcat.blog.core.object.AbstractDO;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
- * <p> 角色与权限
- * @author : blackcat
- * @date : 2020/1/16 15:07
-*/
+ * <p>
+ * 角色与权限关系表
+ * </p>
+ *
+ * @author blackcat
+ * @since 2020-01-29
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_role_menu")
-public class SysRoleMenu extends AbstractDO {
-	private Long roleId;// 角色ID
-	private Long menuId;// 权限ID
+@Accessors(chain = true)
+public class SysRoleMenu extends Model<SysRoleMenu> {
+
+    private static final long serialVersionUID = 1L;
+
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
+    /**
+     * 角色ID
+     */
+    private Long roleId;
+
+    /**
+     * 权限ID
+     */
+    private Long menuId;
+
+    /**
+     * 添加时间
+     */
+    private LocalDateTime createTime;
+
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateTime;
+
+
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
+
 }

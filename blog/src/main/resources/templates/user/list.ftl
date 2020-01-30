@@ -93,12 +93,6 @@
                             <input type="email" class="form-control col-md-7 col-xs-12" name="email" id="email" placeholder="请输入邮箱"/>
                         </div>
                     </div>
-                    <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="qq">QQ:</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="number" class="form-control col-md-7 col-xs-12" name="qq" id="qq" placeholder="请输入QQ"/>
-                        </div>
-                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -174,7 +168,7 @@
                 async: false,
                 type: "POST",
                 data: {uid: userId},
-                url: '/roles/rolesWithSelected',
+                url: '/role/rolesWithSelected',
                 dataType: 'json',
                 success: function (json) {
                     var data = json.data;
@@ -232,7 +226,7 @@
         ];
         if (currentUserId != trUserId) {
             operateBtn.push('<a class="btn btn-xs btn-danger btn-remove" data-id="' + trUserId + '"><i class="fa fa-trash-o"></i>删除</a>');
-            operateBtn.push('<a class="btn btn-xs btn-info btn-allot" data-id="' + trUserId + '"><i class="fa fa-circle-thin"></i>分配角色</a>');
+            operateBtn.push('<a class="btn btn-xs btn-info btn-allot" data-id="' + trUserId + '"><i class="fa fa-cog"></i>分配角色</a>');
             <#--operateBtn.push('<@shiro.hasPermission name="user:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trUserId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>');-->
             <#--operateBtn.push('<@shiro.hasPermission name="user:allotRole"><a class="btn btn-xs btn-info btn-allot" data-id="' + trUserId + '"><i class="fa fa-circle-thin"></i>分配角色</a></@shiro.hasPermission>')-->
         }

@@ -8,18 +8,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>后台管理系统</title>
     <link href="${basePath}/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
-    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/jquery-confirm/2.5.1/jquery-confirm.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/toastr.js/2.0.3/css/toastr.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/iCheck/1.0.2/skins/square/green.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.24/daterangepicker.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/zTree.v3/3.5.29/css/metroStyle/metroStyle.min.css" rel="stylesheet">
+    <link href="${basePath}/ztree/css/metroStyle/metroStyle.css" rel="stylesheet">
+    <link href="${basePath}/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="${basePath}/bootstrap/css/daterangepicker1.css" rel="stylesheet">
+    <link href="${basePath}/bootstrap/css/datetimepicker.css" rel="stylesheet">
+    <#--图标字体库-->
+    <link href="${basePath}/bootstrap/css/font-awesome.css" rel="stylesheet">
+    <link href="${basePath}/bootstrap/css/bootstrap-table.min.css" rel="stylesheet">
     <link href="${basePath}/css/zhyd.core.css" rel="stylesheet">
+    <link href="${basePath}/css/toastr.min.css" rel="stylesheet">
+    <#--iCheck 插件样式-->
+    <link href="${basePath}/css/green.css" rel="stylesheet">
+    <#--左侧菜单图标-->
+    <link href="${basePath}/css/nprogress2.min.css" rel="stylesheet">
+    <#--弹窗插件-->
+    <link href="${basePath}/css/jquery-confirm.min.css" rel="stylesheet">
+
 </head>
 <body class="nav-md">
 <div class="container body">

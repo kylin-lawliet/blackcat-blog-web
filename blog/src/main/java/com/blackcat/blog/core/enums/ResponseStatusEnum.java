@@ -4,15 +4,17 @@ package com.blackcat.blog.core.enums;
  * <p> : controller返回状态枚举
  * @author : blackcat
  * @date : 2020/1/20 16:51
-*/
+ */
 public enum ResponseStatusEnum {
 
     /**
      * @param code 错误码
      * @param message 错误信息
-    */
+     */
     SUCCESS(200, "操作成功！"),
     ERROR(500, "服务器未知错误！"),
+    SAVE_ERROR(500, "资源修改失败！"),
+    REMOVE_ERROR(500, "请至少选择一条记录！"),
     UNAUTHORIZED(500, "尚未登录！"),
     FORBIDDEN(500, "您没有操作权限！"),
     NOT_FOUND(500, "资源不存在！"),

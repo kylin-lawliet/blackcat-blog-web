@@ -1,10 +1,8 @@
 package com.blackcat.blog.core.vo;
 
+import com.blackcat.blog.core.entity.SysUser;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
 
 /**
  * <p> : SQL查询条件公共属性
@@ -21,10 +19,12 @@ public class BaseConditionVO {
     private String orderField;
     private String orderDirection;
     private String keywords;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date startDate;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date endDate;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    private Date startDate;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    private Date endDate;
+
+    private SysUser user;
 
     public int getPageNumber() {
         return pageNumber;
@@ -34,7 +34,7 @@ public class BaseConditionVO {
         return pageSize > 0 ? pageSize : DEFAULT_PAGE_SIZE;
     }
 
-    public int getPageStart() {
+    /*public int getPageStart() {
         return pageNumber > 0 ? (pageNumber - 1) * getPageSize() : 0;
-    }
+    }*/
 }

@@ -1,30 +1,32 @@
 package com.blackcat.blog.core.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.blackcat.blog.core.entity.SysUserRole;
-import com.blackcat.blog.core.extend.UserExtend;
-import com.blackcat.blog.core.extend.UserRoleExtend;
-import com.blackcat.blog.core.object.AbstractIService;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.blackcat.blog.core.vo.BaseConditionVO;
+import com.github.pagehelper.PageInfo;
+import java.util.List;
 
 /**
- * <p> 用户与角色业务接口
- * @author : blackcat
- * @date : 2020/1/16 20:14
-*/
-public interface SysUserRoleService extends AbstractIService<UserRoleExtend,Long> {
-    /**
-     * 添加用户角色
-     *
-     * @param userId
-     * @param roleIds
-     */
-    void addUserRole(Long userId, String roleIds);
+ * <p> 用户与角色关系表 服务类
+ * @author blackcat
+ * @date 2020-01-29
+ */
+public interface SysUserRoleService extends IService<SysUserRole> {
 
-    /**
-     * 根据用户ID删除用户角色
-     *
-     * @param userId
-     */
-    void removeByUserId(Long userId);
+  /**
+   * <p> : 分页查询
+   * @author : blackcat
+   * @date : 2020-01-29
+   * @param vo 条件封装
+   * @return  List<SysMenu>
+   */
+  PageInfo<SysUserRole> findPageBreakByCondition(BaseConditionVO vo);
+
+  /**
+   * <p> : 批量删除
+   * @author : blackcat
+   * @date : 2020-01-29
+   * @param ids 主键
+   */
+  void deleteBatchIds(Long[] ids);
 }
-

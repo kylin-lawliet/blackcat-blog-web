@@ -1,36 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.blackcat.blog.core.mapper.SysRoleMapper">
 
-	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.blackcat.blog.core.entity.SysRole" id="sysRoleMap">
-        <result property="id" jdbcType="BIGINT" column="id"/>
-        <result property="name" jdbcType="VARCHAR" column="name"/>
-        <result property="description" jdbcType="VARCHAR" column="description"/>
-        <result property="available" jdbcType="BIT" column="available"/>
-        <result property="createTime" jdbcType="TIMESTAMP" column="create_time"/>
-        <result property="updateTime" jdbcType="TIMESTAMP" column="update_time"/>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.blackcat.blog.core.entity.SysRole">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="description" property="description" />
+        <result column="available" property="available" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
 
-
-    <select id="findPageBreakByCondition" parameterType="com.blackcat.blog.core.vo.RoleConditionVO" resultMap="sysRoleMap">
-        SELECT
-        com.*
-        FROM
-        sys_role com
-        WHERE
-        1 = 1
-        <if test="keywords !=null and keywords != ''">
-            AND (
-            com.description  LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%')
-            )
-        </if>
-        ORDER BY
-        com.create_time DESC
-    </select>
-
-    <select id="queryRoleListWithSelected" parameterType="Integer" resultMap="sysRoleMap">
+	<!--获取ztree使用的角色列表-->
+    <select id="queryRoleListWithSelected" parameterType="Integer" resultMap="BaseResultMap">
 		SELECT
 			r.id,
 			r.name,
@@ -57,7 +40,7 @@
 			r.available = 1
 	</select>
 
-    <select id="listRolesByUserId" parameterType="Long" resultMap="sysRoleMap">
+    <select id="listRolesByUserId" parameterType="Long" resultMap="BaseResultMap">
 		SELECT
 			r.id,
 			r.name,
@@ -69,5 +52,4 @@
 			ur.user_id = #{userId}
 		AND r.available = 1
 	</select>
-
 </mapper>

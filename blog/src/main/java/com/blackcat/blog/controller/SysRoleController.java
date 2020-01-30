@@ -1,101 +1,80 @@
 package com.blackcat.blog.controller;
 
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.blackcat.blog.core.entity.SysRole;
 import com.blackcat.blog.core.enums.ResponseStatusEnum;
-import com.blackcat.blog.core.extend.RoleExtend;
 import com.blackcat.blog.core.object.PageResult;
-import com.blackcat.blog.core.service.SysRoleMenuService;
 import com.blackcat.blog.core.service.SysRoleService;
-import com.blackcat.blog.core.vo.ResponseVO;
-import com.blackcat.blog.core.vo.RoleConditionVO;
+import com.blackcat.blog.core.vo.BaseConditionVO;
 import com.blackcat.blog.util.ResultUtil;
-import com.github.pagehelper.PageInfo;
-import org.apache.shiro.authz.annotation.Logical;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
+import javax.annotation.Resource;
 
 /**
- * 系统角色管理
- *
- * @author zjjlive)
- * @version 1.0
- * @website https://www.foreknow.me
- * @date 2018/4/24 14:37
- * @since 1.0
+ * <p> 角色表 前端控制器
+ * @author blackcat
+ * @date 2020-01-29
  */
 @RestController
-@RequestMapping("/roles")
+@RequestMapping("/role")
 public class SysRoleController {
-    @Autowired
-    private SysRoleService roleService;
-    @Autowired
-    private SysRoleMenuService roleResourcesService;
 
-//    @RequiresPermissions("roles")
-    @PostMapping("/list")
-    public PageResult getAll(RoleConditionVO vo) {
-        PageInfo<RoleExtend> pageInfo = roleService.findPageBreakByCondition(vo);
-        return ResultUtil.tablePage(pageInfo);
-    }
+    @Resource
+    private SysRoleService iSysRoleService;
 
-    //@RequiresPermissions("user:allotRole")
     @PostMapping("/rolesWithSelected")
-    public ResponseVO<List<RoleExtend>> rolesWithSelected(Integer uid) {
-        return ResultUtil.success(null, roleService.queryRoleListWithSelected(uid));
+    public ResultUtil rolesWithSelected(Integer uid) {
+        return ResultUtil.ok().put("data",iSysRoleService.queryRoleListWithSelected(uid));
     }
 
-   // @RequiresPermissions("role:allotResource")
-    @PostMapping("/saveRoleResources")
-    public ResponseVO saveRoleResources(Long roleId, String resourcesId) {
-        if (StringUtils.isEmpty(roleId)) {
-            return ResultUtil.error("error");
+    @RequestMapping("/list")
+    public PageResult list(BaseConditionVO vo){
+        Page<SysRole> page = new Page<>(vo.getPageNumber(), vo.getPageSize());
+        QueryWrapper<SysRole> queryWrapper = new QueryWrapper<>();
+        if(StringUtils.isNotBlank(vo.getKeywords())){
+            queryWrapper.lambda()
+                    .like(SysRole::getDescription,vo.getKeywords())
+                    .orderByDesc(SysRole::getCreateTime);
         }
-        roleResourcesService.addRoleMenu(roleId, resourcesId);
-        // 重新加载所有拥有roleId的用户的权限信息
-        //shiroService.reloadAuthorizingByRoleId(roleId);
-        return ResultUtil.success("成功");
+        iSysRoleService.page(page, queryWrapper);
+        return ResultUtil.tablePage(page);
     }
 
-    //@RequiresPermissions("role:add")
-    @PostMapping(value = "/add")
-    public ResponseVO add(RoleExtend role) {
-        //roleService.insert(role);
-        return ResultUtil.success("成功");
-    }
+     @PostMapping(value = "/add")
+     public ResultUtil add(SysRole entity) {
+         iSysRoleService.save(entity);
+         return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
+     }
 
-   // @RequiresPermissions(value = {"role:batchDelete", "role:delete"}, logical = Logical.OR)
-    @PostMapping(value = "/remove")
-    public ResponseVO remove(Long[] ids) {
-        if (null == ids) {
-            return ResultUtil.error(500, "请至少选择一条记录");
-        }
-        roleResourcesService.deleteBatchIds(ids);
-        return ResultUtil.success("成功删除 [" + ids.length + "] 个角色");
-    }
+     @PostMapping(value = "/remove")
+     public ResultUtil remove(Long[] ids) {
+         if (null == ids) {
+         return ResultUtil.error(String.valueOf(ResponseStatusEnum.REMOVE_ERROR));
+         }
+         iSysRoleService.deleteBatchIds(ids);
+         return ResultUtil.ok("成功删除 [" + ids.length + "] 个数据");
+     }
 
-    //@RequiresPermissions("role:edit")
-    @PostMapping("/get/{id}")
-    public ResponseVO get(@PathVariable Long id) throws Exception {
-        return ResultUtil.success(null, this.roleService.getByPrimaryKey(id));
-    }
+     @PostMapping("/get/{id}")
+     public ResultUtil get(@PathVariable Long id) {
+         return ResultUtil.ok().put("data",iSysRoleService.getById(id));
+     }
 
-    //@RequiresPermissions("role:edit")
-    @PostMapping("/edit")
-    public ResponseVO edit(RoleExtend role) {
-        try {
-            roleService.updateById(role);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResultUtil.error("角色修改失败！");
-        }
-        return ResultUtil.success(ResponseStatusEnum.SUCCESS);
-    }
-
+     @PostMapping("/edit")
+     public ResultUtil edit(SysRole entity) {
+         try {
+             iSysRoleService.updateById(entity);
+         } catch (Exception e) {
+             e.printStackTrace();
+             return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));
+         }
+         return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
+     }
 }

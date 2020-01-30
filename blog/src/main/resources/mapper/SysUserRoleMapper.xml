@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.blackcat.blog.core.mapper.SysUserRoleMapper">
 
-	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.blackcat.blog.core.entity.SysUserRole" id="sysUserRoleMap">
-        <result property="id" jdbcType="BIGINT" column="id"/>
-        <result property="userId" jdbcType="BIGINT" column="user_id"/>
-        <result property="roleId" jdbcType="BIGINT" column="role_id"/>
-        <result property="createTime" jdbcType="TIMESTAMP" column="create_time"/>
-        <result property="updateTime" jdbcType="TIMESTAMP" column="update_time"/>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.blackcat.blog.core.entity.SysUserRole">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="role_id" property="roleId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
 
-    <select id="findUserIdByRoleId" parameterType="Integer" resultType="Integer">
-        SELECT
-            user_id
-        FROM
-            sys_user_role
-        WHERE
-            role_id = #{roleId}
-    </select>
 </mapper>

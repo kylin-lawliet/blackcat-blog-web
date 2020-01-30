@@ -104,19 +104,19 @@
             <#--'<@shiro.hasPermission name="role:allotResource"><a class="btn btn-xs btn-info btn-allot" data-id="' + trId + '"><i class="fa fa-circle-thin"></i>分配资源</a></@shiro.hasPermission>'-->
             '<a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a>',
             '<a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a>',
-            '<a class="btn btn-xs btn-info btn-allot" data-id="' + trId + '"><i class="fa fa-circle-thin"></i>分配资源</a>'
+            '<a class="btn btn-xs btn-info btn-allot" data-id="' + trId + '"><i class="fa fa-cog"></i>分配资源</a>'
         ];
         return operateBtn.join('');
     }
 
     $(function () {
         var options = {
-            url: "/roles/list",
-            getInfoUrl: "/roles/get/{id}",
-            updateUrl: "/roles/edit",
-            removeUrl: "/roles/remove",
-            createUrl: "/roles/add",
-            saveRolesUrl: "/roles/saveRoleMenu",
+            url: "/role/list",
+            getInfoUrl: "/role/get/{id}",
+            updateUrl: "/role/edit",
+            removeUrl: "/role/remove",
+            createUrl: "/role/add",
+            //saveRolesUrl: "/roles/saveRoleMenu",
             columns: [{
                 checkbox: true
             }, {

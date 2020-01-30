@@ -1,29 +1,32 @@
 package com.blackcat.blog.core.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.blackcat.blog.core.entity.SysRoleMenu;
-import com.blackcat.blog.core.extend.RoleMenuExtend;
-import com.blackcat.blog.core.object.AbstractIService;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.blackcat.blog.core.vo.BaseConditionVO;
+import com.github.pagehelper.PageInfo;
+import java.util.List;
 
 /**
- * <p> 角色与权限业务接口
- * @author : blackcat
- * @date : 2020/1/16 20:13
-*/
-public interface SysRoleMenuService extends AbstractIService<RoleMenuExtend, Long> {
-    /**
-     * 添加角色资源
-     *
-     * @param roleId
-     * @param resourcesIds
-     */
-    void addRoleMenu(Long roleId, String resourcesIds);
+ * <p> 角色与权限关系表 服务类
+ * @author blackcat
+ * @date 2020-01-29
+ */
+public interface SysRoleMenuService extends IService<SysRoleMenu> {
 
-    /**
-     * 通过角色id批量删除
-     *
-     * @param roleId
-     */
-    void removeByRoleId(Long roleId);
+  /**
+   * <p> : 分页查询
+   * @author : blackcat
+   * @date : 2020-01-29
+   * @param vo 条件封装
+   * @return  List<SysMenu>
+   */
+  PageInfo<SysRoleMenu> findPageBreakByCondition(BaseConditionVO vo);
+
+  /**
+   * <p> : 批量删除
+   * @author : blackcat
+   * @date : 2020-01-29
+   * @param ids 主键
+   */
+  void deleteBatchIds(Long[] ids);
 }
-
