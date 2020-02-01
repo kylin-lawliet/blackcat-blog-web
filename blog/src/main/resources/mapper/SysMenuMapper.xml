@@ -16,6 +16,7 @@
         <result column="icon" property="icon" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
+        <result property="checked" jdbcType="VARCHAR" column="checked"/>
         <association property="parent" javaType="com.blackcat.blog.core.entity.SysMenu">
             <result property="id" jdbcType="BIGINT" column="parent_id"/>
             <result property="name" jdbcType="VARCHAR" column="parent_name"/>
@@ -125,5 +126,37 @@
         re.sort ASC,
         node.sort ASC
     </select>
+
+    <!--查询角色资源-->
+    <select id="queryMenuListWithSelected" parameterType="Long" resultMap="BaseResultMap">
+		SELECT
+            re.id,
+            re.`name`,
+            re.parent_id,
+            re.url,
+            re.type,
+            re.icon,
+            (
+                CASE
+                WHEN EXISTS (
+                    SELECT
+                        1
+                    FROM
+                        sys_role_menu rr
+                    WHERE
+                        rr.menu_id = re.id
+                    AND rr.role_id = #{rid}
+                )
+                    THEN
+                        'true'
+                    ELSE
+                        'false'
+                    END
+            ) AS checked
+        FROM
+            sys_menu re
+        ORDER BY
+            re.sort ASC
+	</select>
 
 </mapper>

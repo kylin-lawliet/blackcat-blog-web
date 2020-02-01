@@ -15,6 +15,14 @@ import java.util.Map;
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
     /**
+     * <p> 描述 : 查询角色资源
+     * @author : blackcat
+     * @date  : 2020/1/31 10:32
+     * @param rid 角色id
+    */
+    List<SysMenu> queryMenuListWithSelected(Long rid);
+
+    /**
      * <p> : 分页查询
      * @author : blackcat
      * @date : 2020-01-29

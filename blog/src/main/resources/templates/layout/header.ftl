@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--自动适应移动屏幕-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>后台管理系统</title>
     <link href="${basePath}/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
@@ -31,7 +32,10 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/" class="site_title"><i class="fa fa-coffee"></i> <span>后台管理</span></a>
+                    <a href="/" class="site_title">
+                        <i class="fa fa-coffee"></i>
+                        <span>后台管理</span>
+                    </a>
                 </div>
                 <div class="clearfix"></div>
                 <div class="profile clearfix">

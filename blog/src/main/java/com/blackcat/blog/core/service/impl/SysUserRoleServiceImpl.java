@@ -29,7 +29,7 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
     public PageInfo<SysUserRole> findPageBreakByCondition(BaseConditionVO vo) {
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
         List<SysUserRole> list = sysUserRoleMapper.findPageBreakByCondition(vo);
-        PageInfo bean = new PageInfo<>(list);
+        PageInfo<SysUserRole> bean = new PageInfo<>(list);
         bean.setList(list);
         return bean;
     }

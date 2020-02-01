@@ -112,7 +112,7 @@
         updateUrl: "/user/edit",
         removeUrl: "/user/remove",
         createUrl: "/user/add",
-        //saveRolesUrl: "/user/saveUserRoles",
+        saveRolesUrl: "/user-role/saveUserRoles",
         columns: [
             {
                 checkbox: true

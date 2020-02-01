@@ -16,6 +16,14 @@ import java.util.Map;
 public interface SysMenuService extends IService<SysMenu> {
 
   /**
+   * <p> 描述 : 查询角色资源
+   * @author : blackcat
+   * @date  : 2020/1/31 10:32
+   * @param rid 角色id
+   */
+  List<Map<String, Object>> queryMenuListWithSelected(Long rid);
+
+  /**
    * <p> : 获取所有可用的菜单资源
    * @author : blackcat
    * @serialData : 2020/1/17 14:13

@@ -28,10 +28,10 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         if (CollectionUtils.isEmpty(sysRole)) {
             return null;
         }
-        List<Map<String, Object>> mapList = new ArrayList();
+        List<Map<String, Object>> mapList = new ArrayList(sysRole.size());
         Map<String, Object> map ;
         for (SysRole role : sysRole) {
-            map = new HashMap<>(4);
+            map = new HashMap<>(7);
             map.put("id", role.getId());
             map.put("pId", 0);
             map.put("checked", role.getSelected() != null && role.getSelected() == 1);

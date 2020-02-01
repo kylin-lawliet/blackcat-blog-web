@@ -1,19 +1,20 @@
 package com.blackcat.blog.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.blackcat.blog.core.entity.SysRoleMenu;
 import com.blackcat.blog.core.enums.ResponseStatusEnum;
-import com.blackcat.blog.core.object.PageResult;
 import com.blackcat.blog.core.service.SysRoleMenuService;
-import com.blackcat.blog.core.vo.BaseConditionVO;
 import com.blackcat.blog.util.ResultUtil;
-import com.github.pagehelper.PageInfo;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p> 角色与权限关系表 前端控制器
@@ -27,40 +28,37 @@ public class SysRoleMenuController {
     @Resource
     private SysRoleMenuService iSysRoleMenuService;
 
-    @RequestMapping("/list")
-    public PageResult list(BaseConditionVO vo){
-        PageInfo<SysRoleMenu> pageInfo = iSysRoleMenuService.findPageBreakByCondition(vo);
-        return ResultUtil.tablePage(pageInfo);
+    /**
+     * <p> 描述 : 添加角色资源
+     * @author : blackcat
+     * @date  : 2020/1/31 10:18
+     * @param roleId 角色Id
+     * @param menuId 资源Id 此处获取的参数的角色id是以 “,” 分隔的字符串
+     */
+    @PostMapping("/saveRoleMenus")
+    public ResultUtil saveRoleMenus(Long roleId, String menuId) {
+        if (StringUtils.isNotBlank(menuId)) {
+            String[] resourcesArr = menuId.split(",");
+            UpdateWrapper<SysRoleMenu> updateWrapper  = new UpdateWrapper<>();
+            updateWrapper.eq("role_id", roleId);
+            updateWrapper.in("menu_id",resourcesArr);
+            iSysRoleMenuService.remove(updateWrapper);
+            if (resourcesArr.length > 0) {
+                SysRoleMenu r ;
+                List<SysRoleMenu> roleMenus = new ArrayList<>();
+                for (String ri : resourcesArr) {
+                    if (StringUtils.isNotBlank(ri)) {
+                        r = new SysRoleMenu();
+                        r.setRoleId(roleId);
+                        r.setMenuId(Long.parseLong(ri));
+                        r.setCreateTime(LocalDateTime.now());
+                        r.setUpdateTime(LocalDateTime.now());
+                        roleMenus.add(r);
+                    }
+                }
+                iSysRoleMenuService.saveBatch(roleMenus);
+            }
+        }
+        return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
     }
-
-     @PostMapping(value = "/add")
-     public ResultUtil add(SysRoleMenu menu) {
-         iSysRoleMenuService.save(menu);
-         return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
-     }
-
-     @PostMapping(value = "/remove")
-     public ResultUtil remove(Long[] ids) {
-         if (null == ids) {
-         return ResultUtil.error(String.valueOf(ResponseStatusEnum.REMOVE_ERROR));
-         }
-         iSysRoleMenuService.deleteBatchIds(ids);
-         return ResultUtil.ok("成功删除 [" + ids.length + "] 个数据");
-     }
-
-     @PostMapping("/get/{id}")
-     public ResultUtil get(@PathVariable Long id) {
-         return ResultUtil.ok().put("data",iSysRoleMenuService.getById(id));
-     }
-
-     @PostMapping("/edit")
-     public ResultUtil edit(SysRoleMenu menu) {
-         try {
-             iSysRoleMenuService.updateById(menu);
-         } catch (Exception e) {
-             e.printStackTrace();
-             return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));
-         }
-         return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
-     }
 }

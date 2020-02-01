@@ -116,7 +116,7 @@
             updateUrl: "/role/edit",
             removeUrl: "/role/remove",
             createUrl: "/role/add",
-            //saveRolesUrl: "/roles/saveRoleMenu",
+            saveRolesUrl: "/role-menu/saveRoleMenus",
             columns: [{
                 checkbox: true
             }, {

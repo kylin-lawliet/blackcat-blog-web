@@ -139,8 +139,7 @@
             updateUrl: "/menu/edit",
             removeUrl: "/menu/remove",
             createUrl: "/menu/add",
-            //saveRolesUrl: "/menu/saveRoleResources",
-            //data:[{"total":21,"rows":[{"available":true,"external":false,"icon":"fa fa-heartbeat","id":20,"name":"数据监控","permission":"","sort":3,"type":"menu","url":""}]}],
+            saveRolesUrl: "/role-menu/saveRoleMenus",
             columns: [{
                 checkbox: true
             }, {

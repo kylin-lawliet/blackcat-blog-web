@@ -7,7 +7,7 @@
     <groupId>com.blackcat</groupId>
     <artifactId>blackcat-blog</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>blackcat-blog</name>
+    <name>blackcat-blog-web</name>
     <description>Demo project for Spring Boot</description>
     <!-- 模块说明：这里声明多个子模块 -->
     <modules>
@@ -18,6 +18,7 @@
         <module>demo-mybatis-plus</module>
         <module>demo-java</module>
         <module>demo-mybatis-plus-level2</module>
+        <module>demo-bootstrap</module>
     </modules>
     <!-- 继承说明：这里继承SpringBoot提供的父工程 -->
     <parent>
@@ -38,16 +39,24 @@
         <shiro-freemarker-tags.version>0.1</shiro-freemarker-tags.version>
 
         <mybytis-plus.version>3.3.0</mybytis-plus.version>
+        <mybatis-plus-core.version>3.2.0</mybatis-plus-core.version>
         <mybatis-plus-generator.version>3.3.1</mybatis-plus-generator.version>
         <pagehelper-spring-boot-starter.version>1.2.12</pagehelper-spring-boot-starter.version>
         <pagehelper.version>5.1.2</pagehelper.version>
 
         <persistence-api.version>1.0</persistence-api.version>
         <druid.version>1.1.18</druid.version>
+        <fastjson.version>1.2.32</fastjson.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!--fastjson-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
             <!--druid-->
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -66,6 +75,11 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybytis-plus.version}</version>
             </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.baomidou</groupId>-->
+                <!--<artifactId>mybatis-plus-core</artifactId>-->
+                <!--<version>${mybatis-plus-core.version}</version>-->
+            <!--</dependency>-->
             <!--分页-->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
@@ -123,6 +137,11 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+            <scope>test</scope>
         </dependency>
         <!--lombok-->
         <dependency>

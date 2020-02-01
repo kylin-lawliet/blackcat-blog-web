@@ -8,11 +8,10 @@ import com.blackcat.blog.core.vo.BaseConditionVO;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -25,6 +24,24 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
     @Resource
     private SysMenuMapper sysMenuMapper;
+
+    @Override
+    public List<Map<String, Object>> queryMenuListWithSelected(Long rid) {
+        List<SysMenu> sysMenus = sysMenuMapper.queryMenuListWithSelected(rid);
+        List<Map<String, Object>> mapList = new ArrayList<>(sysMenus.size());
+        if (!CollectionUtils.isEmpty(sysMenus)) {
+            Map<String, Object> map ;
+            for (SysMenu resources : sysMenus) {
+                map = new HashMap<>(7);
+                map.put("id", resources.getId());
+                map.put("pId", resources.getParentId());
+                map.put("checked", resources.getChecked());
+                map.put("name", resources.getName());
+                mapList.add(map);
+            }
+        }
+        return mapList;
+    }
 
     @Override
     public List<SysMenu> listAllAvailableMenu() {
@@ -40,7 +57,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     public PageInfo<SysMenu> findPageBreakByCondition(BaseConditionVO vo) {
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
         List<SysMenu> list = sysMenuMapper.findPageBreakByCondition(vo);
-        PageInfo bean = new PageInfo<>(list);
+        PageInfo<SysMenu> bean = new PageInfo<>(list);
         bean.setList(list);
         return bean;
     }

@@ -27,6 +27,11 @@ public class SysMenuController {
     @Resource
     private SysMenuService iSysMenuService;
 
+    @PostMapping("/menuWithSelected")
+    public ResultUtil menuWithSelected(Long rid) {
+        return ResultUtil.ok().put("data", iSysMenuService.queryMenuListWithSelected(rid));
+    }
+
     @RequestMapping("/list")
     public PageResult list(BaseConditionVO vo){
         PageInfo<SysMenu> pageInfo = iSysMenuService.findPageBreakByCondition(vo);
@@ -42,7 +47,7 @@ public class SysMenuController {
      @PostMapping(value = "/remove")
      public ResultUtil remove(Long[] ids) {
          if (null == ids) {
-         return ResultUtil.error(String.valueOf(ResponseStatusEnum.REMOVE_ERROR));
+            return ResultUtil.error(String.valueOf(ResponseStatusEnum.REMOVE_ERROR));
          }
          iSysMenuService.deleteBatchIds(ids);
          return ResultUtil.ok("成功删除 [" + ids.length + "] 个数据");
