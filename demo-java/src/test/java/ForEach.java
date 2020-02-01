@@ -14,7 +14,6 @@ public class ForEach {
      * 遍历list String类型
      * @author: blackcat
      * @date: 2019/12/31 16:15
-     * @param []
     */
     @Test
     public void string(){
