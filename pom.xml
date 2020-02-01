@@ -12,7 +12,6 @@
     <!-- 模块说明：这里声明多个子模块 -->
     <modules>
         <module>blog</module>
-        <module>blog-shiro</module>
         <module>dome-mybatis-plus-generator</module>
         <module>demo-shiro</module>
         <module>demo-mybatis-plus</module>
@@ -39,7 +38,6 @@
         <shiro-freemarker-tags.version>0.1</shiro-freemarker-tags.version>
 
         <mybytis-plus.version>3.3.0</mybytis-plus.version>
-        <mybatis-plus-core.version>3.2.0</mybatis-plus-core.version>
         <mybatis-plus-generator.version>3.3.1</mybatis-plus-generator.version>
         <pagehelper-spring-boot-starter.version>1.2.12</pagehelper-spring-boot-starter.version>
         <pagehelper.version>5.1.2</pagehelper.version>
@@ -75,11 +73,6 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybytis-plus.version}</version>
             </dependency>
-            <!--<dependency>-->
-                <!--<groupId>com.baomidou</groupId>-->
-                <!--<artifactId>mybatis-plus-core</artifactId>-->
-                <!--<version>${mybatis-plus-core.version}</version>-->
-            <!--</dependency>-->
             <!--分页-->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
