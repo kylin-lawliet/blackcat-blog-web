@@ -21,9 +21,9 @@
 <script src="${basePath}/js/validator.js"></script>
 <script src="${basePath}/js/jquery-form.js"></script>
 <#--<script src="${basePath}/js/wangEditor.min.js" type="text/javascript"></script>-->
-<script src="${basePath}/js/blog-tool.js"></script>
 <script src="${basePath}/js/zhyd.core.js"></script>
 <script src="${basePath}/js/blog-table.js"></script>
+<script src="${basePath}/js/blog-table-tool.js"></script>
 
 </body>
 </html>

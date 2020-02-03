@@ -22,12 +22,8 @@ public class PasswordUtil {
 
     /**
      * AES 加密
-     * @param password
-     *         未加密的密码
-     * @param salt
-     *         盐值，默认使用用户名就可
-     * @return
-     * @throws Exception
+     * @param password 未加密的密码
+     * @param salt 盐值，默认使用用户名就可
      */
     public static String encrypt(String password, String salt) throws Exception {
         return encryptAES(MD5(salt + ZYD_SECURITY_KEY), password);
@@ -35,12 +31,8 @@ public class PasswordUtil {
 
     /**
      * AES 解密
-     * @param encryptPassword
-     *         加密后的密码
-     * @param salt
-     *         盐值，默认使用用户名就可
-     * @return
-     * @throws Exception
+     * @param encryptPassword 加密后的密码
+     * @param salt 盐值，默认使用用户名就可
      */
     public static String decrypt(String encryptPassword, String salt) throws Exception {
         return decryptAES(MD5(salt + ZYD_SECURITY_KEY), encryptPassword);
@@ -50,7 +42,8 @@ public class PasswordUtil {
      * <p> : AES加密
      * @author : blackcat
      * @date : 2020/1/18 14:47
-     * @param [passwd:加密的密钥, content:需要加密的字符串]
+     * @param passwd 加密的密钥,
+     * @param content 需要加密的字符串
      * @return 返回Base64转码后的加密数据
     */
     public static String encryptAES(String passwd, String content) throws Exception {
@@ -69,7 +62,8 @@ public class PasswordUtil {
      * <p> : AES解密
      * @author : blackcat
      * @date : 2020/1/18 14:46
-     * @param [passwd:加密的密钥, encrypted:已加密的密文]
+     * @param passwd 加密的密钥
+     * @param encrypted 已加密的密文
      * @return 返回解密后的数据
     */
     public static String decryptAES(String passwd, String encrypted) throws Exception {
@@ -86,7 +80,7 @@ public class PasswordUtil {
      * <p> : AES生成加密秘钥
      * @author : blackcat
      * @date : 2020/1/18 14:45
-     * @param [password:密码字符]
+     * @param password 密码字符
      * @return 加密秘钥
     */
     private static SecretKeySpec getSecretKey(final String password) throws NoSuchAlgorithmException {
@@ -109,7 +103,8 @@ public class PasswordUtil {
      * <p> : 通过盐值对字符串进行MD5加密
      * @author : blackcat
      * @date : 2020/1/18 14:44
-     * @param [param:需要加密的字符串, salt:盐值]
+     * @param param 需要加密的字符串
+     * @param salt 盐值
      * @return java.lang.String
     */
     public static String MD5(String param, String salt) {
@@ -120,7 +115,7 @@ public class PasswordUtil {
      * <p> : MD5加密字符串
      * @author : blackcat
      * @date : 2020/1/18 14:44
-     * @param [s:字符串]
+     * @param s 字符串
      * @return 加密字符串
     */
     public static String MD5(String s) {

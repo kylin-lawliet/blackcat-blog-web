@@ -13,6 +13,13 @@ import java.util.List;
 public interface SysRoleMapper extends BaseMapper<SysRole> {
 
     /**
+     * <p> 描述 : 查询用户角色
+     * @author : blackcat
+     * @date  : 2020/2/1 13:41
+     */
+    List<SysRole> listRolesByUserId(Integer userId);
+
+    /**
      * <p> 描述 : 获取ztree使用的角色列表
      * @author : blackcat
      * @param userId 用户id

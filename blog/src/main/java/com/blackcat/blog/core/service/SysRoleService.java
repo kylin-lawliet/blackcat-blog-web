@@ -14,6 +14,13 @@ import java.util.Map;
 public interface SysRoleService extends IService<SysRole> {
 
   /**
+   * <p> 描述 : 查询用户角色
+   * @author : blackcat
+   * @date  : 2020/2/1 13:41
+  */
+  List<SysRole> listRolesByUserId(Integer userId);
+
+  /**
    * <p> 描述 : 获取ztree使用的角色列表
    * @author : blackcat
    * @param uid 用户id

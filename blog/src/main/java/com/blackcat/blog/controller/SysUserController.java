@@ -8,6 +8,7 @@ import com.blackcat.blog.core.enums.ResponseStatusEnum;
 import com.blackcat.blog.core.object.PageResult;
 import com.blackcat.blog.core.service.SysUserService;
 import com.blackcat.blog.core.vo.BaseConditionVO;
+import com.blackcat.blog.util.PasswordUtil;
 import com.blackcat.blog.util.ResultUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,7 +49,12 @@ public class SysUserController {
     }
 
      @PostMapping(value = "/add")
-     public ResultUtil add(SysUser entity) {
+     public ResultUtil add(SysUser entity) throws Exception {
+         SysUser user = iSysUserService.getOne(new QueryWrapper<SysUser>().eq("username",  entity.getUsername()));
+         if (user != null) {
+             return ResultUtil.error("该用户名[" + user.getUsername() + "]已存在！请更改用户名");
+         }
+         entity.setPassword(PasswordUtil.encrypt(entity.getPassword(), entity.getUsername()));
          iSysUserService.save(entity);
          return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
      }

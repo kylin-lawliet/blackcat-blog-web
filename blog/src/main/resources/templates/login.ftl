@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>后台管理</title>
     <link href="${basePath}/images/favicon.ico" rel="icon">
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://cdn.bootcss.com/jquery-confirm/2.5.1/jquery-confirm.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+    <link href="${basePath}/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="${basePath}/bootstrap/css/font-awesome.css" rel="stylesheet">
+    <link href="${basePath}/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="${basePath}/css/nprogress2.min.css" rel="stylesheet">
     <link href="${basePath}/css/zhyd.core.css" rel="stylesheet">
 </head>
 
@@ -24,7 +24,7 @@
                 <div class="login_wrapper">
                     <div class="animate form login_form" style="position: relative;">
                         <section class="login_content">
-                            <form action="/passport/signin" method="POST" id="login-form">
+                            <form action="/login" method="POST" id="login-form">
                                 <h1>登录管理系统</h1>
                                 <div>
                                     <input type="text" class="form-control" placeholder="请输入用户名" name="username" required=""/>
@@ -58,31 +58,32 @@
 </div>
 </body>
 
-<script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="https://cdn.bootcss.com/jquery-confirm/2.5.1/jquery-confirm.min.js" type="text/javascript"></script>
-<script src="${basePath}/js/blog.tool.js"></script>
+<script src="${basePath}/jquery/jquery-2.1.4.min.js" type="text/javascript"></script>
+<script src="${basePath}/js/jquery-confirm.min.js" type="text/javascript"></script>
+<script src="${basePath}/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+<script src="${basePath}/js/blog-table-tool.js"></script>
+
 <script>
     $("#modal").modal('show');
     $(".btn-login").click(function () {
         $.ajax({
             type: "POST",
-            url: "/passport/signin",
+            url: "/login",
             data: $("#login-form").serialize(),
             dataType: "json",
-            success: function (json) {
-                if (json.status === 200) {
+            success: function () {
+                // if (json.status === 200) {
                     window.location.href = "/";
-                }else{
+                /*}else{
                     $.tool.ajaxSuccess(json);
                     $("#img-kaptcha").attr("src", '/getKaptcha?time=' + new Date().getTime());
-                }
+                }*/
             }
         });
     });
-    $("#img-kaptcha").click(function () {
-        $(this).attr("src", '/getKaptcha?time=' + new Date().getTime());
-    });
+    // $("#img-kaptcha").click(function () {
+    //     $(this).attr("src", '/getKaptcha?time=' + new Date().getTime());
+    // });
     document.onkeydown = function (event) {
         var e = event || window.event || arguments.callee.caller.arguments[0];
         if (e && e.keyCode === 13) {

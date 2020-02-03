@@ -18,17 +18,12 @@
     </properties>
 
     <dependencies>
-        <!--子版本依赖-->
-        <!--<dependency>
-            <groupId>com.blackcat</groupId>
-            <artifactId>blog-shiro</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>-->
-        <!-- AOP依赖,一定要加,否则权限拦截验证不生效 -->
-        <!--<dependency>
+        <!--配置文件注解-->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>-->
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!--freemarker模板-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -44,6 +39,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
+        <!--AOP依赖,一定要加,否则权限拦截验证不生效-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <!-- Shiro 核心依赖 -->
         <dependency>
             <groupId>org.apache.shiro</groupId>
@@ -53,6 +53,11 @@
         <dependency>
             <groupId>net.mingsoft</groupId>
             <artifactId>shiro-freemarker-tags</artifactId>
+        </dependency>
+        <!--shiro redis-->
+        <dependency>
+            <groupId>org.crazycake</groupId>
+            <artifactId>shiro-redis</artifactId>
         </dependency>
         <!-- Redis -->
         <dependency>

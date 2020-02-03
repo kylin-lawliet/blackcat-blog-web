@@ -1,5 +1,9 @@
 package com.blackcat.blog.controller;
 
+import com.blackcat.blog.core.entity.SysUser;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -12,13 +16,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PageController {
 
     /**
-     * <p> : 后台主页
+     * <p> 描述 : 访问项目根路径
      * @author : blackcat
-     * @date : 2020/1/20 19:19
-    */
-    @GetMapping("/index")
-    public String index() {
-        return "index";
+     * @date  : 2020/2/3 17:02
+     */
+    @RequiresAuthentication
+    @GetMapping(value = {"", "/index"})
+    public String home() {
+        Subject subject = SecurityUtils.getSubject();
+        SysUser user=(SysUser) subject.getPrincipal();
+        if (user == null){
+            return "login";
+        }else{
+            return "index";
+        }
     }
 
     /**
@@ -43,6 +54,11 @@ public class PageController {
         return "user/list";
     }
 
+    /**
+     * <p> : 跳转角色管理列表页面
+     * @author : blackcat
+     * @date : 2020/1/19 13:46
+     */
     @GetMapping("/role/index")
     public String role() {
         return "role/list";

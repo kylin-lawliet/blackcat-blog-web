@@ -159,4 +159,26 @@
             re.sort ASC
 	</select>
 
+    <!--查询用户权限-->
+    <select id="listByUserId" parameterType="Integer" resultMap="BaseResultMap">
+		SELECT
+            re.id,
+            re.`name`,
+            re.parent_id,
+            re.url,
+            re.permission,
+            re.icon,
+            re.sort
+        FROM
+            sys_menu re
+        INNER JOIN sys_role_menu rr ON re.id = rr.menu_id
+        INNER JOIN sys_user_role ur ON rr.role_id = ur.role_id
+        WHERE
+            ur.user_id = #{userId}
+        AND re.available = 1
+        ORDER BY
+            re.parent_id ASC,
+            re.sort ASC
+	</select>
+
 </mapper>

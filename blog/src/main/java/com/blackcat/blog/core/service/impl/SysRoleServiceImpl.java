@@ -23,6 +23,11 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     private SysRoleMapper sysRoleMapper;
 
     @Override
+    public List<SysRole> listRolesByUserId(Integer userId) {
+        return sysRoleMapper.listRolesByUserId(userId);
+    }
+
+    @Override
     public List<Map<String, Object>> queryRoleListWithSelected(Integer uid) {
         List<SysRole> sysRole = sysRoleMapper.queryRoleListWithSelected(uid);
         if (CollectionUtils.isEmpty(sysRole)) {

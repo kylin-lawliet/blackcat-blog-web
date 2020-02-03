@@ -18,6 +18,7 @@
         <module>demo-java</module>
         <module>demo-mybatis-plus-level2</module>
         <module>demo-bootstrap</module>
+        <module>demo-shiro2</module>
     </modules>
     <!-- 继承说明：这里继承SpringBoot提供的父工程 -->
     <parent>
@@ -35,6 +36,7 @@
         <spring-boot-test.version>1.4.2.RELEASE</spring-boot-test.version>
 
         <shiro-spring.version>1.4.0</shiro-spring.version>
+        <shiro-redis>3.1.0</shiro-redis>
         <shiro-freemarker-tags.version>0.1</shiro-freemarker-tags.version>
 
         <mybytis-plus.version>3.3.0</mybytis-plus.version>
@@ -114,6 +116,12 @@
                 <groupId>net.mingsoft</groupId>
                 <artifactId>shiro-freemarker-tags</artifactId>
                 <version>${shiro-freemarker-tags.version}</version>
+            </dependency>
+            <!--shiro redis-->
+            <dependency>
+                <groupId>org.crazycake</groupId>
+                <artifactId>shiro-redis</artifactId>
+                <version>${shiro-redis}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

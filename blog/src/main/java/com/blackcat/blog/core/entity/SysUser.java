@@ -1,14 +1,15 @@
 package com.blackcat.blog.core.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
-import java.time.LocalDate;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -69,7 +70,7 @@ public class SysUser extends Model<SysUser> {
     private String avatar;
 
     /**
-     * 超级管理员、管理员、普通用户
+     * ROOT超级管理员、ADMIN管理员、USER普通用户
      */
     private String userType;
 
@@ -99,7 +100,7 @@ public class SysUser extends Model<SysUser> {
     private String remark;
 
     /**
-     * 状态
+     * 状态 0:禁用 1:正常
      */
     private Integer status;
 

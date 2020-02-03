@@ -41,7 +41,8 @@
 			r.available = 1
 	</select>
 
-    <select id="listRolesByUserId" parameterType="Long" resultMap="BaseResultMap">
+	<!--查询用户角色-->
+    <select id="listRolesByUserId" parameterType="Integer" resultMap="BaseResultMap">
 		SELECT
 			r.id,
 			r.name,

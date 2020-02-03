@@ -134,4 +134,17 @@ banner:
 logging.level.com.blackcat.blog.core.mapper: debug
 
 ################################### 程序自定义配置 ###################################
-
+blog:
+    druid:
+        # druid访问用户名（默认：zyd-druid）
+        username: blog-druid
+        # druid访问密码（默认：zyd-druid）
+        password: blog-druid
+        # druid访问地址（默认：/druid/*）
+        servletPath: /druid/*
+        # 启用重置功能（默认false）
+        resetEnable: false
+        # 白名单(非必填)， list
+        allowIps[0]:
+        # 黑名单(非必填)， list
+        denyIps[0]:

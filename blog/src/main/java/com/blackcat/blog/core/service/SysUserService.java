@@ -3,6 +3,8 @@ package com.blackcat.blog.core.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.blackcat.blog.core.entity.SysUser;
 
+import java.util.Map;
+
 /**
  * <p> 系统用户表 服务类
  * @author blackcat
@@ -17,4 +19,6 @@ public interface SysUserService extends IService<SysUser> {
    * @param ids 主键
    */
   void deleteBatchIds(Long[] ids);
+
+  SysUser getByUserName(Map<String,String> map);
 }

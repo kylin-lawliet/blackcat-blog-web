@@ -3,6 +3,7 @@ package com.blackcat.blog.util;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.blackcat.blog.core.object.PageResult;
 import com.github.pagehelper.PageInfo;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +34,7 @@ public class ResultUtil extends HashMap<String, Object> {
     }
 
     public static ResultUtil error(String msg) {
-        return error(500, msg);
+        return error(DEFAULT_ERROR_CODE, msg);
     }
 
     public static ResultUtil error(int code, String msg) {
@@ -77,6 +78,9 @@ public class ResultUtil extends HashMap<String, Object> {
         return tablePage(info.getTotal(), info.getRecords());
     }
 
+    public static ModelAndView redirect(String view) {
+        return new ModelAndView("redirect:" + view);
+    }
 
     @Override
     public ResultUtil put(String key, Object value) {

@@ -26,6 +26,11 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     private SysMenuMapper sysMenuMapper;
 
     @Override
+    public List<SysMenu> listByUserId(Integer userId) {
+        return sysMenuMapper.listByUserId(userId);
+    }
+
+    @Override
     public List<Map<String, Object>> queryMenuListWithSelected(Long rid) {
         List<SysMenu> sysMenus = sysMenuMapper.queryMenuListWithSelected(rid);
         List<Map<String, Object>> mapList = new ArrayList<>(sysMenus.size());

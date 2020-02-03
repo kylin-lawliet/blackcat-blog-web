@@ -15,6 +15,13 @@ import java.util.Map;
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
     /**
+     * <p> 描述 : 获取用户关联的所有资源
+     * @author : blackcat
+     * @date  : 2020/2/1 13:51
+    */
+    List<SysMenu> listByUserId(Integer userId);
+
+    /**
      * <p> 描述 : 查询角色资源
      * @author : blackcat
      * @date  : 2020/1/31 10:32
