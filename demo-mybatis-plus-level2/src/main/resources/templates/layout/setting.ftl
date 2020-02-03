@@ -12,7 +12,7 @@
                         <span class=" fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                        <li><a href="/passport/logout"><i class="fa fa-sign-out pull-right"></i> 退出系统</a></li>
+                        <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> 退出系统</a></li>
                     </ul>
                 </li>
             </ul>

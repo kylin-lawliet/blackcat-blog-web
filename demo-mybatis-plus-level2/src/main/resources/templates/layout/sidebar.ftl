@@ -33,7 +33,7 @@
     <a >&nbsp;</a>
     <a >&nbsp;</a>
     <a >&nbsp;</a>
-    <a href="/passport/logout" data-toggle="tooltip" data-placement="top" title="" data-original-title="退出系统">
+    <a href="/logout" data-toggle="tooltip" data-placement="top" title="" data-original-title="退出系统">
         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
     </a>
 </div>
