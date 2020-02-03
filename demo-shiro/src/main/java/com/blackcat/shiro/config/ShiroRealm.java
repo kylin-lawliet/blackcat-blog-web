@@ -1,4 +1,4 @@
-package com.blackcat.shiro;
+package com.blackcat.shiro.config;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -15,7 +15,7 @@ import java.util.Set;
  * @author : blackcat
  * @date : 2020/1/13 17:38
  */
-public class CustomRealm extends AuthorizingRealm {
+public class ShiroRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -49,16 +49,5 @@ public class CustomRealm extends AuthorizingRealm {
         //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配
         return new SimpleAuthenticationInfo(userName, password,
                 ByteSource.Util.bytes(userName + "salt"), getName());
-        /*System.out.println("-------身份认证方法--------");
-        String userName = (String) authenticationToken.getPrincipal();
-        String userPwd = new String((char[]) authenticationToken.getCredentials());
-        //根据用户名从数据库获取密码
-        String password = "123";
-        if (userName == null) {
-            throw new AccountException("用户名不正确");
-        } else if (!userPwd.equals(password )) {
-            throw new AccountException("密码不正确");
-        }
-        return new SimpleAuthenticationInfo(userName, password,getName());*/
     }
 }

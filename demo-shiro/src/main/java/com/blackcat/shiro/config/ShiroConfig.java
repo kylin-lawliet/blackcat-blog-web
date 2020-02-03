@@ -1,6 +1,5 @@
 package com.blackcat.shiro.config;
 
-import com.blackcat.shiro.CustomRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -18,7 +17,7 @@ import java.util.Map;
  * @date : 2020/1/13 17:38
  */
 @Configuration
-public class shiroConfig {
+public class ShiroConfig {
 
     @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
@@ -28,7 +27,6 @@ public class shiroConfig {
         shiroFilterFactoryBean.setUnauthorizedUrl("/notRole");
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
-        filterChainDefinitionMap.put("/webjars/**", "anon");
         filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/front/**", "anon");
@@ -49,12 +47,6 @@ public class shiroConfig {
         defaultSecurityManager.setRealm(customRealm());
         return defaultSecurityManager;
     }
-
-    /*@Bean
-    public CustomRealm customRealm() {
-        CustomRealm customRealm = new CustomRealm();
-        return customRealm;
-    }*/
 
     @Bean
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
@@ -96,11 +88,11 @@ public class shiroConfig {
     }
 
     @Bean
-    public CustomRealm customRealm() {
-        CustomRealm customRealm = new CustomRealm();
+    public ShiroRealm customRealm() {
+        ShiroRealm shiroRealm = new ShiroRealm();
         // 告诉realm,使用credentialsMatcher加密算法类来验证密文
-        customRealm.setCredentialsMatcher(hashedCredentialsMatcher());
-        customRealm.setCachingEnabled(false);
-        return customRealm;
+        shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+        shiroRealm.setCachingEnabled(false);
+        return shiroRealm;
     }
 }
