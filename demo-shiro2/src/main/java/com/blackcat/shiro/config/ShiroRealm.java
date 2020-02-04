@@ -18,8 +18,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * <p> 描述 ：
- *
+ * <p> 描述 ：身份认证
  * @author : blackcat
  * @date : 2020/2/3 10:54
  */

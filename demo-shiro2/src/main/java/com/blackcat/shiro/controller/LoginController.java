@@ -24,22 +24,6 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
 
     /**
-     * 访问项目根路径
-     * @return
-     */
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-    public String root(Model model) {
-        Subject subject = SecurityUtils.getSubject();
-        SysUser user=(SysUser) subject.getPrincipal();
-        if (user == null){
-            return "redirect:/login";
-        }else{
-            return "redirect:/index";
-        }
-    }
-
-
-    /**
      * 跳转到login页面
      * @return
      */

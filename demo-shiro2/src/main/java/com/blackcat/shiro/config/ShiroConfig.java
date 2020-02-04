@@ -15,8 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.Properties;
 
 /**
- * <p> 描述 ：
- *
+ * <p> 描述 ：Shiro配置
  * @author : blackcat
  * @date : 2020/2/3 10:53
  */

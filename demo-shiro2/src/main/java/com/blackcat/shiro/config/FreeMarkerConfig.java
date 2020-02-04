@@ -1,6 +1,5 @@
 package com.blackcat.shiro.config;
 
-import com.blackcat.shiro.tag.CustomTag;
 import com.jagregory.shiro.freemarker.ShiroTags;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,8 +17,6 @@ public class FreeMarkerConfig {
     @Resource
     protected freemarker.template.Configuration configuration;
 
-    @Resource
-    protected CustomTag customTag;
 
     /**
      * <p> 添加自定义标签
@@ -28,8 +25,6 @@ public class FreeMarkerConfig {
     */
     @PostConstruct
     public void setSharedVariable() {
-        // 自定义标签
-        configuration.setSharedVariable("blog", customTag);
         // shiro标签
         configuration.setSharedVariable("shiro", new ShiroTags());
     }
