@@ -1,6 +1,13 @@
 package com.blackcat.shiro.controller;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author : blackcat
@@ -9,7 +16,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class LoginController {
 
-    /*@RequestMapping("toLogin")
+    @RequestMapping("toLogin")
     public String toLogin(){
         return "login";
     }
@@ -47,5 +54,5 @@ public class LoginController {
             token.clear();
             return "登录失败";
         }
-    }*/
+    }
 }
