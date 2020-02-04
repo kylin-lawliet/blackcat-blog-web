@@ -3,7 +3,8 @@ package com.blackcat.java.bean;
 import org.springframework.beans.BeanUtils;
 
 import java.beans.PropertyDescriptor;
-import java.lang.reflect.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 
 /**
  * <p> : Bean属性操作类
@@ -11,26 +12,6 @@ import java.lang.reflect.*;
  * @date : 2020/1/20 22:26
 */
 public class BeanUtil {
-
-    public static void main(String[] args) {
-
-    }
-
-
-    /**
-     * 得到带构造的类的实例
-     * */
-    public static Object newInstance(String className, Object[] args) throws Exception {
-        Class newoneClass = Class.forName(className);
-        Class[] argsClass = new Class[args.length];
-        for (int i = 0, j = args.length; i < j; i++) {
-            argsClass[i] = args[i].getClass();
-        }
-        Constructor cons = newoneClass.getConstructor(argsClass);
-        return cons.newInstance(args);
-    }
-
-
 
     /**
      * 获取属性描述信息
@@ -105,19 +86,40 @@ public class BeanUtil {
     }
 
     /**
-     * <p> : 根据属性，获取get方法
+     * <p> : 根据属性，获取get方法值
      * @author : blackcat
      * @date : 2020/1/21 11:45
-     * @param [ob:对象, name:属性名]
+     * @param ob:对象
+     * @param propertyName:属性名
      * @return java.lang.Object     
     */
-    public static Object getGetMethod(Object ob, String name) throws Exception {
+    public static Object getGetMethodValue(Object ob, String propertyName) throws Exception {
         Method[] m = ob.getClass().getMethods();
         for (int i = 0; i < m.length; i++) {
-            if (("get" + name).toLowerCase().equals(m[i].getName().toLowerCase())) {
+            if (("get" + propertyName).toLowerCase().equals(m[i].getName().toLowerCase())) {
                 return m[i].invoke(ob);
             }
         }
         return null;
     }
+
+    /**
+     * <p> : 得到带构造的类的实例
+     * @author : blackcat
+     * @date : 2020/1/21 13:10
+     * @param className 类名
+     * @param args 参数
+     * @return java.lang.Object     
+    */
+    public static Object newInstance(String className, Object[] args) throws Exception {
+        Class newoneClass = Class.forName(className);
+        Class[] argsClass = new Class[args.length];
+        for (int i = 0, j = args.length; i < j; i++) {
+            argsClass[i] = args[i].getClass();
+        }
+        Constructor cons = newoneClass.getConstructor(argsClass);
+        return cons.newInstance(args);
+    }
+
+
 }

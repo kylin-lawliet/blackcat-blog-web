@@ -1,25 +1,18 @@
 package com.blackcat.blog.util;
 
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 获取IP的工具类
- *
- * @author zjjlive)
- * @version 1.0
- * @website https://www.foreknow.me
- * @date 2018/4/16 16:26
- * @since 1.0
- */
+ * <p> 描述 : 获取IP的工具类
+ * @author : blackcat
+ * @date  : 2020/2/4 10:59
+*/
 public class IpUtil {
 
     /**
      * 获取真实IP
-     *
-     * @param request
-     * @return
      */
     public static String getRealIp(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
@@ -31,11 +24,8 @@ public class IpUtil {
 
     /**
      * 校验IP
-     *
-     * @param ip
-     * @return
      */
     private static boolean checkIp(String ip) {
-        return !StringUtils.isEmpty(ip) && !"unknown".equalsIgnoreCase(ip);
+        return StringUtils.isNotBlank(ip) && !"unknown".equalsIgnoreCase(ip);
     }
 }
