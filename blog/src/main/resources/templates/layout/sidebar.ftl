@@ -3,7 +3,7 @@
     <div class="menu_section">
         <ul class="nav side-menu">
             <#--<@shiro.user>-->
-                <li><a href="/index"><i class="fa fa-home"></i>首页</a></li>
+                <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
             <#--</@shiro.user>-->
             <#--userId="${user.id}"-->
             <@blog method="menus" userId="1">

@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 */
 @Slf4j
 @Controller
-public class SysLoginController {
+public class LoginController {
 
 
     /**
@@ -45,8 +45,9 @@ public class SysLoginController {
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil loginUser(String username, String password, boolean rememberMe) {
+        // 如果有点击  记住我
         UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
-        //获取当前的Subject
+        // 获取当前的Subject
         Subject currentUser = SecurityUtils.getSubject();
         try {
             // 在调用了login方法后,SecurityManager会收到AuthenticationToken,并将其发送给已配置的Realm执行必须的认证检查

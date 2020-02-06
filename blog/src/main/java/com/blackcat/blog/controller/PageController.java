@@ -2,7 +2,7 @@ package com.blackcat.blog.controller;
 
 import com.blackcat.blog.core.entity.SysUser;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +20,7 @@ public class PageController {
      * @author : blackcat
      * @date  : 2020/2/3 17:02
      */
-    @RequiresAuthentication
+    @RequiresUser
     @GetMapping(value = {"", "/index"})
     public String home() {
         Subject subject = SecurityUtils.getSubject();
