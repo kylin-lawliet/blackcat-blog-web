@@ -8,9 +8,10 @@ import com.blackcat.blog.core.enums.ResponseStatusEnum;
 import com.blackcat.blog.core.object.PageResult;
 import com.blackcat.blog.core.service.SysUserService;
 import com.blackcat.blog.core.vo.BaseConditionVO;
-import com.blackcat.blog.util.PasswordUtil;
 import com.blackcat.blog.util.ResultUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,12 @@ public class SysUserController {
     @Resource
     private SysUserService iSysUserService;
 
+    /**
+     * <p> 描述 : 查询列表数据
+     * @author : blackcat
+     * @date  : 2020/2/6 16:27
+     */
+    @RequiresPermissions("users")
     @RequestMapping("/list")
     public PageResult list(BaseConditionVO vo){
         Page<SysUser> page = new Page<>(vo.getPageNumber(), vo.getPageSize());
@@ -48,39 +55,62 @@ public class SysUserController {
         return ResultUtil.tablePage(page);
     }
 
-     @PostMapping(value = "/add")
-     public ResultUtil add(SysUser entity) throws Exception {
-         SysUser user = iSysUserService.getOne(new QueryWrapper<SysUser>().eq("username",  entity.getUsername()));
-         if (user != null) {
+    /**
+     * <p> 描述 : 添加
+     * @author : blackcat
+     * @date  : 2020/2/6 16:27
+     */
+    @RequiresPermissions("user:add")
+    @PostMapping(value = "/add")
+    public ResultUtil add(SysUser entity) throws Exception {
+        SysUser user = iSysUserService.getOne(new QueryWrapper<SysUser>().eq("username",  entity.getUsername()));
+        if (user != null) {
              return ResultUtil.error("该用户名[" + user.getUsername() + "]已存在！请更改用户名");
-         }
-         entity.setPassword(PasswordUtil.encrypt(entity.getPassword(), entity.getUsername()));
-         iSysUserService.save(entity);
-         return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
-     }
+        }
+        //entity.setUserType("USER");
+        //entity.setPassword(PasswordUtil.encrypt(entity.getPassword(), entity.getUsername()));
+        iSysUserService.save(entity);
+        return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
+    }
 
-     @PostMapping(value = "/remove")
-     public ResultUtil remove(Long[] ids) {
-         if (null == ids) {
+    /**
+     * <p> 描述 : 删除
+     * @author : blackcat
+     * @date  : 2020/2/6 16:27
+     */
+    @RequiresPermissions(value = {"user:batchDelete", "user:delete"}, logical = Logical.OR)
+    @PostMapping(value = "/remove")
+    public ResultUtil remove(Long[] ids) {
+        if (null == ids) {
          return ResultUtil.error(String.valueOf(ResponseStatusEnum.REMOVE_ERROR));
-         }
-         iSysUserService.deleteBatchIds(ids);
-         return ResultUtil.ok("成功删除 [" + ids.length + "] 个数据");
-     }
+        }
+        iSysUserService.deleteBatchIds(ids);
+        return ResultUtil.ok("成功删除 [" + ids.length + "] 个数据");
+    }
 
-     @PostMapping("/get/{id}")
-     public ResultUtil get(@PathVariable Long id) {
-         return ResultUtil.ok().put("data",iSysUserService.getById(id));
-     }
+    /**
+     * <p> 描述 : 查询详情
+     * @author : blackcat
+     * @date  : 2020/2/6 16:27
+     */
+    @PostMapping("/get/{id}")
+    public ResultUtil get(@PathVariable Long id) {
+     return ResultUtil.ok().put("data",iSysUserService.getById(id));
+    }
 
-     @PostMapping("/edit")
-     public ResultUtil edit(SysUser entity) {
-         try {
-             iSysUserService.updateById(entity);
-         } catch (Exception e) {
-             e.printStackTrace();
-             return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));
-         }
-         return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
-     }
+    /**
+     * <p> 描述 : 编辑
+     * @author : blackcat
+     * @date  : 2020/2/6 16:27
+     */
+    @PostMapping("/edit")
+    public ResultUtil edit(SysUser entity) {
+        try {
+         iSysUserService.updateById(entity);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));
+        }
+        return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
+    }
 }

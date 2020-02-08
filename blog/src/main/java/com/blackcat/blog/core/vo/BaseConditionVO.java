@@ -16,8 +16,8 @@ public class BaseConditionVO {
     private int pageNumber = 1;
     private int pageSize = 0;
     private int pageStart = 0;
-    private String orderField;
-    private String orderDirection;
+    private String sortName;
+    private String sortOrder;
     private String keywords;
 //    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 //    private Date startDate;
@@ -34,7 +34,4 @@ public class BaseConditionVO {
         return pageSize > 0 ? pageSize : DEFAULT_PAGE_SIZE;
     }
 
-    /*public int getPageStart() {
-        return pageNumber > 0 ? (pageNumber - 1) * getPageSize() : 0;
-    }*/
 }

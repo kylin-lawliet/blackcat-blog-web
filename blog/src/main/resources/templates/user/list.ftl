@@ -11,16 +11,16 @@
             <div class="x_content">
                 <div class="<#--table-responsive-->">
                     <div class="btn-group hidden-xs" id="toolbar">
-                        <#--<@shiro.hasPermission name="user:add">-->
+                        <@shiro.hasPermission name="user:add">
                         <button id="btn_add" type="button" class="btn btn-default" title="新增用户">
                             <i class="fa fa-plus"></i> 新增用户
                         </button>
-                        <#--</@shiro.hasPermission>-->
-                        <#--<@shiro.hasPermission name="user:batchDelete">-->
+                        </@shiro.hasPermission>
+                        <@shiro.hasPermission name="user:batchDelete">
                             <button id="btn_delete_ids" type="button" class="btn btn-default" title="删除选中">
                                 <i class="fa fa-trash-o"></i> 批量删除
                             </button>
-                        <#--</@shiro.hasPermission>-->
+                        </@shiro.hasPermission>
                     </div>
                     <table id="tablelist">
                     </table>
@@ -118,35 +118,40 @@
                 checkbox: true
             }, {
                 field: 'username',
-                title: '用户名',
-                editable: false,
+                title: '用户名'
             }, {
                 field: 'nickname',
-                title: '昵称',
-                editable: true
+                title: '昵称'
             }, {
                 field: 'email',
-                title: '邮箱',
-                editable: true
+                title: '邮箱'
             }, {
                 field: 'userType',
                 title: '用户类型',
-                editable: false
+                formatter: function (code) {
+                    if (code == "ROOT") {
+                        return "超级管理员";
+                    } else if (code == "ADMIN") {
+                        return "管理员";
+                    } else {
+                        return "普通用户";
+                    }
+                }
             }, {
-                field: 'statusEnum',
+                field: 'status',
                 title: '状态',
-                editable: false
+                formatter: function (code) {
+                    return code == 1 ? '<span class="label label-success" style="font-size: 12px;">可用</span>' : '<span class="label label-warning" style="font-size: 12px;">不可用</span>';
+                }
             }, {
                 field: 'lastLoginTime',
                 title: '最后登录时间',
-                editable: false,
                 formatter: function (code) {
                     return new Date(code).format("yyyy-MM-dd hh:mm:ss")
                 }
             }, {
                 field: 'loginCount',
-                title: '登录次数',
-                editable: false
+                title: '登录次数'
             }, {
                 field: 'operate',
                 title: '操作',
@@ -221,14 +226,14 @@
         var currentUserId = '${user.id}';
         var trUserId = row.id;
         var operateBtn = [
-            '<a class="btn btn-xs btn-primary btn-update" data-id="' + trUserId + '"><i class="fa fa-edit"></i>编辑</a>'
-            <#--'<@shiro.hasPermission name="user:edit"><a class="btn btn-xs btn-primary btn-update" data-id="' + trUserId + '"><i class="fa fa-edit"></i>编辑</a></@shiro.hasPermission>',-->
+            // '<a class="btn btn-xs btn-primary btn-update" data-id="' + trUserId + '"><i class="fa fa-edit"></i>编辑</a>'
+            '<@shiro.hasPermission name="user:edit"><a class="btn btn-xs btn-primary btn-update" data-id="' + trUserId + '"><i class="fa fa-edit"></i>编辑</a></@shiro.hasPermission>',
         ];
         if (currentUserId != trUserId) {
-            operateBtn.push('<a class="btn btn-xs btn-danger btn-remove" data-id="' + trUserId + '"><i class="fa fa-trash-o"></i>删除</a>');
-            operateBtn.push('<a class="btn btn-xs btn-info btn-allot" data-id="' + trUserId + '"><i class="fa fa-cog"></i>分配角色</a>');
-            <#--operateBtn.push('<@shiro.hasPermission name="user:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trUserId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>');-->
-            <#--operateBtn.push('<@shiro.hasPermission name="user:allotRole"><a class="btn btn-xs btn-info btn-allot" data-id="' + trUserId + '"><i class="fa fa-circle-thin"></i>分配角色</a></@shiro.hasPermission>')-->
+            // operateBtn.push('<a class="btn btn-xs btn-danger btn-remove" data-id="' + trUserId + '"><i class="fa fa-trash-o"></i>删除</a>');
+            // operateBtn.push('<a class="btn btn-xs btn-info btn-allot" data-id="' + trUserId + '"><i class="fa fa-cog"></i>分配角色</a>');
+            operateBtn.push('<@shiro.hasPermission name="user:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trUserId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>');
+            operateBtn.push('<@shiro.hasPermission name="user:allotRole"><a class="btn btn-xs btn-info btn-allot" data-id="' + trUserId + '"><i class="fa fa-cog"></i>分配角色</a></@shiro.hasPermission>')
         }
         return operateBtn.join('');
     }

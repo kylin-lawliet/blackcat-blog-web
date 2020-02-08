@@ -11,16 +11,16 @@
             <div class="x_content">
                 <div class="<#--table-responsive-->">
                     <div class="btn-group hidden-xs" id="toolbar">
-                        <#--<@shiro.hasPermission name="resource:add">-->
+                        <@shiro.hasPermission name="menu:add">
                         <button id="btn_add" type="button" class="btn btn-default" title="新增资源">
                             <i class="fa fa-plus"></i> 新增资源
                         </button>
-                        <#--</@shiro.hasPermission>-->
-                        <#--<@shiro.hasPermission name="resource:batchDelete">-->
+                        </@shiro.hasPermission>
+                        <@shiro.hasPermission name="menu:batchDelete">
                             <button id="btn_delete_ids" type="button" class="btn btn-default" title="删除选中">
                                 <i class="fa fa-trash-o"></i> 批量删除
                             </button>
-                        <#--</@shiro.hasPermission>-->
+                        </@shiro.hasPermission>
                     </div>
                     <table id="tablelist">
                     </table>
@@ -144,43 +144,47 @@
                 checkbox: true
             }, {
                 field: 'name',
-                title: '资源名',
-                editable: true
+                title: '资源名'
             }, {
                 field: 'type',
                 title: '资源类型',
                 editable: true,
                 formatter: function (code) {
-                    return code == 'menu' ? '菜单' : '按钮';
+                    if(code=="catalog"){
+                        return '<span class="label label-primary" style="font-size: 12px;">目录</span>';
+                    }else if (code == 'menu') {
+                        return '<span class="label label-success" style="font-size: 12px;">菜单</span>';
+                    } else {
+                        return '<span class="label label-warning" style="font-size: 12px;">按钮</span>';
+                    }
                 }
             }, {
                 field: 'url',
-                title: '资源地址',
-                editable: true
+                title: '资源地址'
             }, {
                 field: 'permission',
-                title: '资源权限',
-                editable: true
+                title: '资源权限'
             }, {
                 field: 'parent.name',
-                title: '父级资源',
-                editable: false
+                title: '父级资源'
             }, {
                 field: 'icon',
-                title: '资源图标',
-                editable: true
+                title: '资源图标'
             }, {
                 field: 'sort',
-                title: '排序',
-                editable: true
+                title: '排序'
             }, {
                 field: 'external',
                 title: '外部资源',
-                editable: false
+                formatter: function (code) {
+                    return code ? '<span class="label label-success" style="font-size: 12px;">是</span>' : '<span class="label label-warning" style="font-size: 12px;">不是</span>';
+                }
             }, {
                 field: 'available',
                 title: '可用',
-                editable: true
+                formatter: function (code) {
+                    return code == 1 ? '<span class="label label-success" style="font-size: 12px;">可用</span>' : '<span class="label label-warning" style="font-size: 12px;">不可用</span>';
+                }
             }, {
                 field: 'operate',
                 title: '操作',
@@ -204,10 +208,10 @@
     function operateFormatter(code, row, index) {
         var trId = row.id;
         var operateBtn = [
-            '<a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a>',
-            '<a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a>'
-            <#--'<@shiro.hasPermission name="resource:edit"><a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a></@shiro.hasPermission>',-->
-            <#--'<@shiro.hasPermission name="resource:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>'-->
+            // '<a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a>',
+            // '<a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a>'
+            '<@shiro.hasPermission name="menu:edit"><a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a></@shiro.hasPermission>',
+            '<@shiro.hasPermission name="menu:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>'
         ];
         return operateBtn.join('');
     }

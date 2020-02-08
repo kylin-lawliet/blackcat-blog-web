@@ -1,13 +1,14 @@
 package com.blackcat.shiro.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -33,7 +34,7 @@ public class SysMenu extends Model<SysMenu> {
     private String name;
 
     /**
-     * 权限类型（菜单，按钮）
+     * 权限类型（catalog:目录，menu:菜单，button:按钮）
      */
     private String type;
 
@@ -58,12 +59,12 @@ public class SysMenu extends Model<SysMenu> {
     private Integer sort;
 
     /**
-     * 是否外部链接
+     * 是否外部链接  0：不是 1：是
      */
     private Boolean external;
 
     /**
-     * 是否可用
+     * 是否可用  0：不可用 1：可用
      */
     private Boolean available;
 

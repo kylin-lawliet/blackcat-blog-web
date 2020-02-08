@@ -27,19 +27,20 @@
                     pageSize: 10,                       //每页的记录行数（*）
                     pageList: [10, 20, 30, 50, 100],        //可供选择的每页的行数（*）
                     search: true,                       //是否启用搜索框 根据sidePagination选择从前后台搜索
-                    strictSearch: true,                 //设置为 true启用 全匹配搜索，否则为模糊搜索
+                    //strictSearch: true,                 //设置为 true启用 全匹配搜索，否则为模糊搜索
                     searchOnEnterKey: true,            // 设置为 true时，按回车触发搜索方法，否则自动触发搜索方法
-                    minimumCountColumns: 1,             //最少允许的列数
-                    // showColumns: true,                  //是否显示 内容列下拉框
+                    showSearchButton: true,
                     showRefresh: true,                  //是否显示刷新按钮
-                    // showToggle: true,                   //是否显示详细视图和列表视图的切换按钮
-                    // detailView: true,                   //是否显示父子表
-                    // showExport: true,                   //是否显示导出
+                    showExport: true,                   //是否显示导出
+                    showToggle: true,                   //是否显示详细视图和列表视图的切换按钮
+                    showColumns: true,                  //是否显示 内容列下拉框
+                    //detailView: true,                   //是否显示父子表
                     // exportDataType: "basic",              //basic', 'all', 'selected'.
                     // clickToSelect: true,                //是否启用点击选中行
-                    // singleSelect: true,
+                    // singleSelect: true,                  //是否启单选
                     // height: 505,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-                    onEditableSave: function (field, row, oldValue, $el) {
+                    minimumCountColumns: 1,             //最少允许的列数
+                    /*onEditableSave: function (field, row, oldValue, $el) {
                         if (options.updateUrl) {
                             $.ajax({
                                 type: "post",
@@ -60,14 +61,23 @@
                             $.tool.alertError("无效的请求地址！");
                             return;
                         }
+                    },*/
+                    formatSearch: function () {
+                        return '请输入关键字'
                     },
                     rowStyle: options.rowStyle || function (row, index){return {};},
                     columns: options.columns
                 });
             },
             queryParams: function (params) {
-                params = $.extend({}, params);
-                return params;
+                var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                    pageSize: params.pageSize,   //页面大小
+                    pageNumber: params.pageNumber,  //页码
+                    keywords: params.searchText,
+                    sortName: params.sortName,
+                    sortOrder: params.sortOrder
+                };
+                return temp;
             },
             refresh: function () {
                 $("#tablelist").bootstrapTable('refresh', {url: $.tableUtil._option.url});
@@ -231,10 +241,3 @@ function getSelectedId() {
     return ids;
 }
 
-/**
- * 获取选中的记录
- */
-/*function getSelectedObj() {
-    var selectedJson = $("#tablelist").bootstrapTable('getAllSelections');
-    return selectedJson;
-}*/

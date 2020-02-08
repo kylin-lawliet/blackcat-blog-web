@@ -10,16 +10,16 @@
             <div class="x_content">
                 <div class="<#--table-responsive-->">
                     <div class="btn-group hidden-xs" id="toolbar">
-                        <#--<@shiro.hasPermission name="role:add">-->
+                        <@shiro.hasPermission name="role:add">
                         <button id="btn_add" type="button" class="btn btn-default" title="新增角色">
                             <i class="fa fa-plus"></i> 新增角色
                         </button>
-                        <#--</@shiro.hasPermission>-->
-                        <#--<@shiro.hasPermission name="role:batchDelete">-->
+                        </@shiro.hasPermission>
+                        <@shiro.hasPermission name="role:batchDelete">
                             <button id="btn_delete_ids" type="button" class="btn btn-default" title="删除选中">
                                 <i class="fa fa-trash-o"></i> 批量删除
                             </button>
-                        <#--</@shiro.hasPermission>-->
+                        </@shiro.hasPermission>
                     </div>
                     <table id="tablelist">
                     </table>
@@ -75,13 +75,12 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="available">是否可用: <span class="required">*</span></label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile">是否可用: <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select name="available" id="available" required="required" class="form-control col-md-7 col-xs-12">
-                                <option value="">请选择</option>
-                                <option value="0">不可用</option>
-                                <option value="1" selected="selected">可用</option>
-                            </select>
+                            <ul class="list-unstyled list-inline">
+                                <li><input type="radio" class="flat" checked name="available" value="0"> 不可用 </li>
+                                <li><input type="radio" class="flat" name="available" value="1"> 可用 </li>
+                            </ul>
                         </div>
                     </div>
                 </form>
@@ -105,12 +104,12 @@
     function operateFormatter(code, row, index) {
         var trId = row.id;
         var operateBtn = [
-            <#--'<@shiro.hasPermission name="role:edit"><a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a></@shiro.hasPermission>',-->
-            <#--'<@shiro.hasPermission name="role:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>',-->
-            <#--'<@shiro.hasPermission name="role:allotResource"><a class="btn btn-xs btn-info btn-allot" data-id="' + trId + '"><i class="fa fa-circle-thin"></i>分配资源</a></@shiro.hasPermission>'-->
-            '<a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a>',
-            '<a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a>',
-            '<a class="btn btn-xs btn-info btn-allot" data-id="' + trId + '"><i class="fa fa-cog"></i>分配资源</a>'
+            '<@shiro.hasPermission name="role:edit"><a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a></@shiro.hasPermission>',
+            '<@shiro.hasPermission name="role:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>',
+            '<@shiro.hasPermission name="role:allotMenu"><a class="btn btn-xs btn-info btn-allot" data-id="' + trId + '"><i class="fa fa-cog"></i>分配资源</a></@shiro.hasPermission>'
+            // '<a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a>',
+            // '<a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a>',
+            // '<a class="btn btn-xs btn-info btn-allot" data-id="' + trId + '"><i class="fa fa-cog"></i>分配资源</a>'
         ];
         return operateBtn.join('');
     }
@@ -127,18 +126,15 @@
                 checkbox: true
             }, {
                 field: 'name',
-                title: '角色名',
-                editable: false,
+                title: '角色名'
             }, {
                 field: 'description',
-                title: '角色描述',
-                editable: false,
+                title: '角色描述'
             }, {
                 field: 'available',
                 title: '是否可用',
-                editable: true,
                 formatter: function (code) {
-                    return code ? '可用' : '不可用';
+                    return code ? '<span class="label label-success" style="font-size: 12px;">可用</span>' : '<span class="label label-warning" style="font-size: 12px;">不可用</span>';
                 }
             }, {
                 field: 'operate',
