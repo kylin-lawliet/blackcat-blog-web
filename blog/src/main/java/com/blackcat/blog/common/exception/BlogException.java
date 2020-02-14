@@ -1,7 +1,7 @@
 package com.blackcat.blog.common.exception;
 
 /**
- * <p> 描述 ：
+ * <p> 描述 ：自定义异常
  * @author : blackcat
  * @date : 2020/1/25 17:10
  */

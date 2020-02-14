@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
-import java.util.Map;
+import java.util.List;
 
 
 /**
@@ -28,7 +28,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     }
 
     @Override
-    public SysUser getByUserName(Map<String, String> map) {
-        return null;
+    public List<SysUser> listByRoleId(Long roleId) {
+        return sysUserMapper.listByRoleId(roleId);
     }
+
 }

@@ -13,7 +13,7 @@ public enum ResponseStatusEnum {
      */
     SUCCESS(200, "操作成功！"),
     ERROR(500, "服务器未知错误！"),
-    SAVE_ERROR(500, "资源修改失败！"),
+    SAVE_ERROR(500, "数据操作失败！"),
     REMOVE_ERROR(500, "请至少选择一条记录！"),
     UNAUTHORIZED(500, "尚未登录！"),
     FORBIDDEN(500, "您没有操作权限！"),

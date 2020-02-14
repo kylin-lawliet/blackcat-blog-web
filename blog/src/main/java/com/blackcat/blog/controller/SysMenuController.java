@@ -4,6 +4,7 @@ package com.blackcat.blog.controller;
 import com.blackcat.blog.core.entity.SysMenu;
 import com.blackcat.blog.core.enums.ResponseStatusEnum;
 import com.blackcat.blog.core.object.PageResult;
+import com.blackcat.blog.core.service.ShiroService;
 import com.blackcat.blog.core.service.SysMenuService;
 import com.blackcat.blog.core.vo.BaseConditionVO;
 import com.blackcat.blog.util.ResultUtil;
@@ -28,6 +29,8 @@ public class SysMenuController {
 
     @Resource
     private SysMenuService iSysMenuService;
+    @Resource
+    protected ShiroService shiroService;
 
     /**
      * <p> 描述 : 角色分配资源查询
@@ -60,8 +63,14 @@ public class SysMenuController {
     @RequiresPermissions("menu:add")
     @PostMapping(value = "/add")
     public ResultUtil add(SysMenu menu) {
-        iSysMenuService.save(menu);
-        return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
+        if (iSysMenuService.save(menu)) {
+            //更新权限
+            shiroService.updatePermission();
+            return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
+        } else {
+            return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));
+        }
+
     }
 
     /**
@@ -76,6 +85,8 @@ public class SysMenuController {
            return ResultUtil.error(String.valueOf(ResponseStatusEnum.REMOVE_ERROR));
         }
         iSysMenuService.deleteBatchIds(ids);
+        //更新权限
+        shiroService.updatePermission();
         return ResultUtil.ok("成功删除 [" + ids.length + "] 个数据");
     }
 

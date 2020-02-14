@@ -4,6 +4,7 @@ package com.blackcat.blog.controller;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.blackcat.blog.core.entity.SysRoleMenu;
 import com.blackcat.blog.core.enums.ResponseStatusEnum;
+import com.blackcat.blog.core.service.ShiroService;
 import com.blackcat.blog.core.service.SysRoleMenuService;
 import com.blackcat.blog.util.ResultUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -27,6 +28,8 @@ public class SysRoleMenuController {
 
     @Resource
     private SysRoleMenuService iSysRoleMenuService;
+    @Resource
+    protected ShiroService shiroService;
 
     /**
      * <p> 描述 : 添加角色资源
@@ -57,6 +60,8 @@ public class SysRoleMenuController {
                     }
                 }
                 iSysRoleMenuService.saveBatch(roleMenus);
+                // 重新加载所有拥有roleId的用户的权限信息
+                shiroService.reloadAuthorizingByRoleId(roleId);
             }
         }
         return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));

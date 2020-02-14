@@ -36,7 +36,8 @@
         <spring-boot-test.version>1.4.2.RELEASE</spring-boot-test.version>
 
         <shiro-spring.version>1.4.0</shiro-spring.version>
-        <shiro-redis>3.1.0</shiro-redis>
+        <shiro-redis.version>3.1.0</shiro-redis.version>
+        <shiro-ehcache.version>1.4.0</shiro-ehcache.version>
         <shiro-freemarker-tags.version>0.1</shiro-freemarker-tags.version>
 
         <mybytis-plus.version>3.3.0</mybytis-plus.version>
@@ -121,7 +122,13 @@
             <dependency>
                 <groupId>org.crazycake</groupId>
                 <artifactId>shiro-redis</artifactId>
-                <version>${shiro-redis}</version>
+                <version>${shiro-redis.version}</version>
+            </dependency>
+            <!--shiro ehcache缓存-->
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-ehcache</artifactId>
+                <version>${shiro-ehcache.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
