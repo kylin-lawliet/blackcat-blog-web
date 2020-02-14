@@ -11,8 +11,6 @@ import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -23,13 +21,11 @@ import java.util.concurrent.TimeUnit;
 /**
  * <p> 描述 : Shiro-密码输入错误的状态下重试次数的匹配管理
  * @author : blackcat
- * @date  : 2020/2/2 11:26
+ * @date  : 2020/2/14 11:26
 */
 public class RetryLimitCredentialsMatcher extends CredentialsMatcher {
 
     public static final String USER_SESSION_KEY = "user";
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(RetryLimitCredentialsMatcher.class);
 
     /**
      * 用户登录次数计数  redisKey 前缀
