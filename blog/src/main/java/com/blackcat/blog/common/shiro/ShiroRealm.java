@@ -13,6 +13,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -70,13 +71,16 @@ public class ShiroRealm extends AuthorizingRealm {
         if (user == null) {
             throw new UnknownAccountException("账号不存在！");
         }
-        if (!userPwd.equals(user.getPassword())) {
-            throw new IncorrectCredentialsException("用户名或密码错误！");
-        }
         if (user.getStatus() != null && 0==user.getStatus()) {
             throw new LockedAccountException("帐号已被锁定，禁止登录！");
         }
-        return new SimpleAuthenticationInfo(user,user.getPassword(), getName());
+        // principal参数使用用户Id，方便动态刷新用户权限
+        return new SimpleAuthenticationInfo(
+                user,
+                user.getPassword(),
+                ByteSource.Util.bytes(username),
+                getName()
+        );
     }
 
 }

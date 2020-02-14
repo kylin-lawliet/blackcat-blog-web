@@ -7,9 +7,9 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 
 /**
- * <p> 描述 : Shiro-密码凭证匹配器（验证密码有效性）
+ * <p> 描述 : Shiro-密码凭证匹配器
  * @author : blackcat
- * @date  : 2020/2/2 11:20
+ * @date  : 2020/2/14 11:20
 */
 public class CredentialsMatcher extends SimpleCredentialsMatcher {
 

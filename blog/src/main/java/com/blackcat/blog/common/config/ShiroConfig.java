@@ -1,6 +1,8 @@
-package com.blackcat.blog.common.shiro;
+package com.blackcat.blog.common.config;
 
 import com.blackcat.blog.common.property.RedisProperties;
+import com.blackcat.blog.common.shiro.ShiroRealm;
+import com.blackcat.blog.common.shiro.credentials.RetryLimitCredentialsMatcher;
 import com.blackcat.blog.core.service.ShiroService;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
@@ -87,7 +89,7 @@ public class ShiroConfig {
         securityManager.setCacheManager(redisCacheManager());
 
         //配置自定义session管理，使用redis
-//        securityManager.setSessionManager(sessionManager());
+        securityManager.setSessionManager(sessionManager());
         return securityManager;
     }
 
@@ -99,7 +101,8 @@ public class ShiroConfig {
     @Bean
     public ShiroRealm shiroRealm(){
         ShiroRealm shiroRealm = new ShiroRealm();
-//        shiroRealm.setCredentialsMatcher(credentialsMatcher());
+        // 使用加密凭证
+        shiroRealm.setCredentialsMatcher(credentialsMatcher());
         return shiroRealm;
     }
 
@@ -158,29 +161,6 @@ public class ShiroConfig {
         simpleMappingExceptionResolver.setExceptionMappings(properties);
         return simpleMappingExceptionResolver;
     }
-
-
-    /**
-     * <p> 描述 : cookie对象;会话Cookie模板 ,默认为: JSESSIONID
-     * 问题: 与SERVLET容器名冲突,重新定义为sid或rememberMe，自定义
-     * @author : blackcat
-     * @date  : 2020/2/6 13:25
-    */
-//    @Bean
-//    public SimpleCookie rememberMeCookie(){
-//        //这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
-//        SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
-//        //setcookie的httponly属性如果设为true的话，会增加对xss防护的安全系数。它有以下特点：
-//
-//        //setcookie()的第七个参数
-//        //设为true后，只能通过http访问，javascript无法访问
-//        //防止xss读取cookie
-//        simpleCookie.setHttpOnly(true);
-//        simpleCookie.setPath("/");
-//        //<!-- 记住我cookie生效时间30天 ,单位秒;-->
-//        simpleCookie.setMaxAge(2592000);
-//        return simpleCookie;
-//    }
 
     /**
      * <p> 描述 : cookie管理对象;记住我功能,rememberMe管理器
@@ -265,5 +245,14 @@ public class ShiroConfig {
         return simpleCookie;
     }
 
+    /**
+     * <p> 描述 : 加密凭证匹配器
+     * @author : blackcat
+     * @date  : 2020/2/14 13:42
+    */
+    @Bean(name = "credentialsMatcher")
+    public RetryLimitCredentialsMatcher credentialsMatcher() {
+        return new RetryLimitCredentialsMatcher();
+    }
 
 }
