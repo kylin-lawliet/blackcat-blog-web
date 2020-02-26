@@ -12,6 +12,7 @@
                     title: '友情提示',
                     content: content,
                     confirmButton: '关闭',
+                    closeOnEscape: false,
                     autoClose: delayTime,
                     confirm: callback
                 });
@@ -24,6 +25,8 @@
                     confirmButton: '关闭',
                     autoClose: delayTime,
                     confirm: callback
+                    ,position: {    }
+
                 });
             },
             confirm: function (content, confirmCallback, cancelCallback, delayTime) {
@@ -36,6 +39,7 @@
                     autoClose: delayTime,
                     confirmButton: '确定',
                     cancelButton: '关闭',
+                    closeOnEscape: false,
                     confirm: confirmCallback,
                     cancel: cancelCallback
                 });
@@ -165,7 +169,7 @@
  */
 Date.prototype.format = function (format) {
     /*
-     * eg:format="YYYY-MM-dd hh:mm:ss";
+     * eg:format="yyyy-MM-dd HH:mm:ss";
      */
     var o = {
         "M+": this.getMonth() + 1, // month

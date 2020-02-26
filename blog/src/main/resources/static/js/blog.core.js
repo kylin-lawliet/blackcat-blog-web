@@ -1,34 +1,8 @@
 /**
- * MIT License
- *
- * Copyright (c) 2018 yadong.zhang
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- *
- * 项目核心Js类，负责项目前端模板方面的初始化等操作
- *
- * @author yadong.zhang (yadong.zhang0415(a)gmail.com)
- * @website https://www.zhyd.me
- * @version 1.0
- * @date 2018-04-25
- * @since 1.0
- */
+ * <p> 描述 : 项目核心Js类，负责项目前端模板方面的初始化等操作
+ * @author : blackcat
+ * @date  : 2020/2/24 12:53
+*/
 (function ($) {
     $.extend($.fn, {
         zydSelect: function (options) {
@@ -78,7 +52,8 @@
         }
     });
 })(jQuery);
-var zhyd = window.zhyd || {
+
+var blog = window.blog || {
     initSidebar: function () {
         var a = function () {
             $RIGHT_COL.css("min-height", $(window).height());
@@ -113,13 +88,18 @@ var zhyd = window.zhyd || {
     },
     initDaterangepicker: function () {
         $('.myDatepicker').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
+            format: 'yyyy-MM-dd HH:mm:ss',
             ignoreReadonly: true,
             allowInputToggle: true
         });
     },
     initValidator: function () {
-        "undefined" != typeof validator && (console.log("zhyd.initValidator"), validator.message.date = "not a real date", $("form").on("blur", "input[required], input.optional, select.required", validator.checkField).on("change", "select.required", validator.checkField).on("keypress", "input[required][pattern]", validator.keypress), $(".multi.required").on("keyup blur", "input", function () {
+        "undefined" != typeof validator && (console.log("blog.initValidator"),
+            validator.message.date = "not a real date",
+            $("form").on("blur", "input[required], input.optional, select.required", validator.checkField)
+                .on("change", "select.required", validator.checkField)
+                .on("keypress", "input[required][pattern]", validator.keypress),
+            $(".multi.required").on("keyup blur", "input", function () {
             validator.checkField.apply($(this).siblings().last()[0])
         }), $("form").submit(function (a) {
             a.preventDefault();
@@ -177,15 +157,19 @@ $(document).ready(function () {
         a.attr("style") ? c.slideToggle(200, function () {
             a.removeAttr("style")
         }) : (c.slideToggle(200), a.css("height", "auto")), b.toggleClass("fa-chevron-up fa-chevron-down")
-    }), $(".close-link").click(function () {
+    }),
+    $(".close-link").click(function () {
         var a = $(this).closest(".x_panel");
         a.remove()
     });
-}), $(document).ready(function () {
+}),
+    $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip({
         container: "body"
     })
-}), $(".progress .progress-bar")[0] && $(".progress .progress-bar").progressbar(), $(document).ready(function () {
+}),
+$(".progress .progress-bar")[0] && $(".progress .progress-bar").progressbar(),
+    $(document).ready(function () {
     if ($(".js-switch")[0]) {
         var a = Array.prototype.slice.call(document.querySelectorAll(".js-switch"));
         a.forEach(function (a) {
@@ -194,35 +178,45 @@ $(document).ready(function () {
             })
         })
     }
-}), $(document).ready(function () {
+}),
+$(document).ready(function () {
     $("input[type=checkbox], input[type=radio]").iCheck({
         checkboxClass: 'icheckbox_square-green',
         radioClass: 'iradio_square-green',
         increaseArea: '20%' // optional
     });
-}), $("table input").on("ifChecked", function () {
+}),
+$("table input").on("ifChecked", function () {
     checkState = "", $(this).parent().parent().parent().addClass("selected"), countChecked()
-}), $("table input").on("ifUnchecked", function () {
+}),
+$("table input").on("ifUnchecked", function () {
     checkState = "", $(this).parent().parent().parent().removeClass("selected"), countChecked()
 });
+
 var checkState = "";
 $(".bulk_action input").on("ifChecked", function () {
     checkState = "", $(this).parent().parent().parent().addClass("selected"), countChecked()
-}), $(".bulk_action input").on("ifUnchecked", function () {
+}),
+$(".bulk_action input").on("ifUnchecked", function () {
     checkState = "", $(this).parent().parent().parent().removeClass("selected"), countChecked()
-}), $(".bulk_action input#check-all").on("ifChecked", function () {
+}),
+$(".bulk_action input#check-all").on("ifChecked", function () {
     checkState = "all", countChecked()
-}), $(".bulk_action input#check-all").on("ifUnchecked", function () {
+}),
+$(".bulk_action input#check-all").on("ifUnchecked", function () {
     checkState = "none", countChecked()
-}), $(document).ready(function () {
+}),
+$(document).ready(function () {
     $(".expand").on("click", function () {
         $(this).next().slideToggle(200), $expand = $(this).find(">:first-child"), "+" == $expand.text() ? $expand.text("-") : $expand.text("+")
     })
 }), "undefined" != typeof NProgress && ($(document).ready(function () {
     NProgress.start()
-}), $(window).load(function () {
+}),
+$(window).load(function () {
     NProgress.done()
 }));
+
 var originalLeave = $.fn.popover.Constructor.prototype.leave;
 $.fn.popover.Constructor.prototype.leave = function (a) {
     var c, d,
@@ -232,18 +226,20 @@ $.fn.popover.Constructor.prototype.leave = function (a) {
             $.fn.popover.Constructor.prototype.leave.call(b, b)
         })
     }))
-}, $("body").popover({
+},
+$("body").popover({
     selector: "[data-popover]",
     trigger: "click hover",
     delay: {
         show: 50,
         hide: 400
     }
-}), $(document).ready(function () {
+}),
+$(document).ready(function () {
     // 图片预览
     $(".showImage").fancybox();
-    zhyd.initDaterangepicker();
-    zhyd.initValidator();
-    zhyd.initSidebar();
+    blog.initDaterangepicker();
+    blog.initValidator();
+    blog.initSidebar();
     $("select.zydSelect").zydSelect();
 });

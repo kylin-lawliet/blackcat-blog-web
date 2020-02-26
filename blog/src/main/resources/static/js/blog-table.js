@@ -1,19 +1,20 @@
+var tableId = "dataTable";//table元素id名称
 /**
  * <p> 描述 : bootstrap数据列表公共方法
  * @author : blackcat
  * @date  : 2020/1/28 10:40
-*/
+ */
 (function ($) {
     $.extend({
         tableUtil: {
             _option: {},
             init: function (options) {
                 $.tableUtil._option = options;
-                $('#tablelist').bootstrapTable({
+                $('#'+tableId).bootstrapTable({
                     url: options.url,
                     method: 'post',                      //请求方式（*）
                     toolbar: '#toolbar',                //工具按钮用哪个容器
-                    striped: true,                      //是否显示行间隔色
+                    striped: false,                      //是否显示行间隔色
                     cache: true,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
                     contentType: "application/x-www-form-urlencoded", // 发送到服务器的数据编码类型, application/x-www-form-urlencoded为了实现post方式提交
                     //sortable: false,                     //是否启用排序
@@ -30,42 +31,22 @@
                     //strictSearch: true,                 //设置为 true启用 全匹配搜索，否则为模糊搜索
                     searchOnEnterKey: true,            // 设置为 true时，按回车触发搜索方法，否则自动触发搜索方法
                     showSearchButton: true,
-                    showRefresh: true,                  //是否显示刷新按钮
-                    showExport: true,                   //是否显示导出
-                    showToggle: true,                   //是否显示详细视图和列表视图的切换按钮
-                    showColumns: true,                  //是否显示 内容列下拉框
+                    //showRefresh: true,                  //是否显示刷新按钮
+                    //showExport: true,                   //是否显示导出
+                    //showToggle: true,                   //是否显示详细视图和列表视图的切换按钮
+                    //showColumns: true,                  //是否显示 内容列下拉框
                     //detailView: true,                   //是否显示父子表
                     // exportDataType: "basic",              //basic', 'all', 'selected'.
                     // clickToSelect: true,                //是否启用点击选中行
                     // singleSelect: true,                  //是否启单选
                     // height: 505,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
                     minimumCountColumns: 1,             //最少允许的列数
-                    /*onEditableSave: function (field, row, oldValue, $el) {
-                        if (options.updateUrl) {
-                            $.ajax({
-                                type: "post",
-                                url: options.updateUrl,
-                                data: {strJson: JSON.stringify(row)},
-                                success: function (json) {
-                                    if (json.status == 200) {
-                                        $.tool.alert(json.message);
-                                    } else {
-                                        $.tool.alertError(json.message);
-                                    }
-                                },
-                                error: function () {
-                                    $.tool.alertError("网络超时！");
-                                }
-                            });
-                        } else {
-                            $.tool.alertError("无效的请求地址！");
-                            return;
-                        }
-                    },*/
                     formatSearch: function () {
                         return '请输入关键字'
                     },
-                    rowStyle: options.rowStyle || function (row, index){return {};},
+                    rowStyle: options.rowStyle || function (row, index) {
+                        return {};
+                    },
                     columns: options.columns
                 });
             },
@@ -80,7 +61,7 @@
                 return temp;
             },
             refresh: function () {
-                $("#tablelist").bootstrapTable('refresh', {url: $.tableUtil._option.url});
+                $("#"+tableId).bootstrapTable('refresh', {url: $.tableUtil._option.url});
             }
         },
         buttonUtil: {
@@ -101,7 +82,7 @@
                 });
 
                 /* 修改 */
-                $('#tablelist').on('click', '.btn-update', function () {
+                $('#'+tableId).on('click', '.btn-update', function () {
                     var $this = $(this);
                     var userId = $this.attr("data-id");
                     $.ajax({
@@ -157,7 +138,7 @@
                 });
 
                 /* 删除 */
-                $('#tablelist').on('click', '.btn-remove', function () {
+                $('#'+tableId).on('click', '.btn-remove', function () {
                     var $this = $(this);
                     var userId = $this.attr("data-id");
                     remove(userId);
@@ -233,7 +214,7 @@ function clearText($this, type, info){
  * 获取选中的记录ID
  */
 function getSelectedId() {
-    var selectedJson = $("#tablelist").bootstrapTable('getAllSelections');
+    var selectedJson = $("#"+tableId).bootstrapTable('getAllSelections');
     var ids = [];
     $.each(selectedJson, function (i) {
         ids.push(selectedJson[i].id);
@@ -241,3 +222,64 @@ function getSelectedId() {
     return ids;
 }
 
+function fenye(str,size,pageNumber,queryInfo) {
+    str += "<div class='dataTables_paginate paging_bootstrap pagination pagination-big'style='text-align:center'>";
+    if (pageNumber >= 1) {
+        str += "<ul><li class='prev disabled'><a >上一页</a></li>";
+    } else {
+        str += "<ul><li class='prev'><a onclick='doQuery(" + (-2) + ")'>上一页</a></li>";
+    }
+
+    var j = 1;
+    if (size < 5) {
+        for (j; j <= size; j++) {
+            if (j == pageNumber) {
+                str += "<li class='active'><a >" + j + "</a></li>";
+            } else {
+                str += "<li><a onclick='doQuery(" + j + ")'>" + j + "</a></li>";
+            }
+        }
+    } else {
+        console.log(pageNumber);
+        console.log(size);
+        if (pageNumber - 3 < 0) {
+            for (j; j < 5; j++) {
+                if (j == pageNumber) {
+                    str += "<li class='active'><a >" + j + "</a></li>";
+                } else {
+                    str += "<li><a onclick='" + queryInfo + "(" + j + ")'>" + j + "</a></li>";
+                }
+            }
+            str += "<li class='active'><a >...</a></li>";
+            str += "<li><a onclick='" + queryInfo + "(" + size + ")'>" + size + "</a></li>";
+        } else if (pageNumber + 3 > size) {
+            str += "<li><a onclick='" + queryInfo + "(" + 1 + ")'>" + 1 + "</a></li>";
+            str += "<li class='active'><a >...</a></li>";
+            var temp = size - 3;
+            for (var j = 1; j < 5; j++) {
+                if (temp == pageNumber) {
+                    str += "<li class='active'><a >" + temp + "</a></li>";
+                } else {
+                    str += "<li><a onclick='" + queryInfo + "(" + temp + ")'>" + temp + "</a></li>";
+                }
+                temp++;
+            }
+        } else {
+            var temp = pageNumber - 3;
+
+            for (var i = 0; i < 2; i++) {
+                temp++;
+                str += "<li><a onclick='" + queryInfo + "(" + temp + ")'>" + temp + "</a></li>";
+            }
+            str += "<li class='active'><a >" + pageNumber + "</a></li>";
+            temp = pageNumber;
+            for (var i = 0; i < 2; i++) {
+                temp++;
+                str += "<li><a onclick='" + queryInfo + "(" + temp + ")'>" + temp + "</a></li>";
+            }
+            str += "<li class='active'><a >...</a></li>";
+            str += "<li><a onclick='" + queryInfo + "(" + size + ")'>" + size + "</a></li>";
+        }
+
+    }
+}
