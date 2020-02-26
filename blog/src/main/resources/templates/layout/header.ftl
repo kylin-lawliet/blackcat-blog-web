@@ -1,55 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zxx">
 <head>
-    <#assign basePath=request.contextPath />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--自动适应移动屏幕-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>后台管理系统</title>
-    <link href="${basePath}/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
-    <link href="${basePath}/ztree/css/metroStyle/metroStyle.css" rel="stylesheet">
-    <link href="${basePath}/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="${basePath}/bootstrap/css/daterangepicker1.css" rel="stylesheet">
-    <link href="${basePath}/bootstrap/css/datetimepicker.css" rel="stylesheet">
-    <#--图标字体库-->
-    <link href="${basePath}/bootstrap/css/font-awesome.css" rel="stylesheet">
-    <link href="${basePath}/bootstrap/css/bootstrap-table.min.css" rel="stylesheet">
-    <link href="${basePath}/css/zhyd.core.css" rel="stylesheet">
-    <link href="${basePath}/css/toastr.min.css" rel="stylesheet">
-    <#--iCheck 插件样式-->
-    <link href="${basePath}/css/green.css" rel="stylesheet">
-    <#--左侧菜单图标-->
-    <link href="${basePath}/css/nprogress2.min.css" rel="stylesheet">
-    <#--弹窗插件-->
-    <link href="${basePath}/css/jquery-confirm.min.css" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Magala - Magazine and Blog Template</title>
+    <!--字体-->
+    <link rel="stylesheet" href="${basePath}/bootstrap/css/font-awesome.css">
+    <!-- 插件样式 -->
+    <link rel="stylesheet" href="${basePath}/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${basePath}/css/animate.min.css">
+    <link rel="stylesheet" href="${basePath}/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="${basePath}/css/breaking-news-ticker.css">
+    <link rel="stylesheet" href="${basePath}/css/trackpad-scroll-emulator.css">
+    <link rel="stylesheet" href="${basePath}/css/meanmenu.min.css">
+    <!-- 主题样式 -->
+    <link rel="stylesheet" href="${basePath}/css/style.css">
 </head>
-<body class="nav-md">
-<div class="container body">
-    <div class="main_container">
-        <div class="col-md-3 left_col">
-            <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="/" class="site_title">
-                        <i class="fa fa-coffee"></i>
-                        <span>后台管理</span>
-                    </a>
-                </div>
-                <div class="clearfix"></div>
-                <div class="profile clearfix">
-                    <div class="profile_pic">
-                        <img src="${basePath}/images/loading.gif" alt="..." class="img-circle profile_img">
+<body>
+<header class="site-header header-style-two">
+
+    <div class="site-navigation">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="navbar navbar-expand-lg navigation-area">
+
+                        <!--博客图标-->
+                        <div class="site-logo-block">
+                            <a class="navbar-brand site-logo" href="index.html">
+                                <img src="${basePath}/images/black-cat.png" alt="logo">
+                            </a>
+                        </div>
+
+                        <!--导航菜单-->
+                        <div class="mainmenu-area">
+                            <nav class="menu">
+                                <ul id="nav">
+                                    <li class="dropdown-trigger">
+                                        <a href="#">Home</a>
+                                        <ul class="dropdown-content">
+                                            <li class="dropdown-trigger">
+                                                <a href="#">Magazine</a>
+                                                <ul class="dropdown-content">
+                                                    <li><a href="index.html">Magazine one</a></li>
+                                                    <li><a href="index02.html">Magazine two</a></li>
+                                                    <li><a href="index03.html">Magazine Three</a></li>
+                                                    <li><a href="index04.html">Magazine four</a></li>
+                                                    <li><a href="index05.html">Magazine five</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-trigger">
+                                                <a href="#">Blog</a>
+                                                <ul class="dropdown-content">
+                                                    <li><a href="index06.html">Blog one</a></li>
+                                                    <li><a href="index07.html">Blog two</a></li>
+                                                    <li><a href="index08.html">Blog Three</a></li>
+                                                    <li><a href="index09.html">Blog four</a></li>
+                                                    <li><a href="index10.html">Blog five</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-trigger">
+                                        <a href="#">Post Styles</a>
+                                        <ul class="dropdown-content">
+                                            <li><a href="category-standard.html">Standard Post</a></li>
+                                            <li><a href="category-grid.html">Grid Post</a></li>
+                                            <li><a href="category-list.html">List Post</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-trigger">
+                                        <a href="#">Categories</a>
+                                        <span class="menu-label new">new</span>
+                                        <ul class="dropdown-content">
+                                            <li><a href="category-grid.html">Business</a></li>
+                                            <li><a href="category-list.html">Fashion</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Features</a></li>
+                                    <li class="dropdown-trigger">
+                                        <a href="#">Pages</a>
+                                        <span class="menu-label">Hot</span>
+                                        <ul class="dropdown-content">
+                                            <li><a href="category-standard.html">Post standard</a></li>
+                                            <li><a href="category-grid.html">Post Grid Two</a></li>
+                                            <li><a href="category-list.html">Post list Three</a></li>
+                                            <li><a href="post-details.html">Post details One</a></li>
+                                            <li><a href="post-details-two.html">Post details Two</a></li>
+                                            <li><a href="post-details-three.html">Post details Three</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <!--搜索框-->
+                        <div class="header-navigation-right">
+                            <div class="search-wrap">
+                                <div class="search-btn">
+                                    <img src="/images/search.png" alt="icon">
+                                    <span>Search</span>
+                                </div>
+                                <div class="search-form">
+                                    <form action="#">
+                                        <input type="search" placeholder="Search">
+                                        <button type="submit">
+                                            <i class='fa fa-search'></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="profile_info">
-                        <span>早上好,</span>
-                        <h2>尊敬的管理员</h2>
-                    </div>
                 </div>
-                <br />
-            <#include "/layout/sidebar.ftl"/>
             </div>
         </div>
-        <#include "/layout/setting.ftl"/>
-        <div class="right_col" role="main">
+    </div>
+
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~            Start Breaking News Area        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div class="breaking-news-area">
+        <div class="container">
+            <div class="row">
+                <div class="col -12">
+                    <div id="newsTicker" class="breaking-news-ticker">
+                        <div class="bn-label">Breaking News</div>
+                        <div class="bn-news">
+                            <ul>
+                                <li><a href="#">Taiwanese flag on artwork painted very pretty in australia & canada
+                                        <span>Politics</span></a></li>
+                                <li><a href="#">The five biggest fashion looks for next spring <span>Fashion</span></a>
+                                </li>
+                                <li><a href="#">Cold skateboard an annual booking release in brazil
+                                        <span>Food</span></a></li>
+                                <li><a href="#">Return of the bench seat Concept show space big for
+                                        sofas<span>Lifestyle</span></a></li>
+                            </ul>
+                        </div><!--./ bn-news -->
+                        <div class="bn-controls">
+                            <button><span class="bn-arrow bn-prev"></span></button>
+                            <button><span class="bn-arrow bn-next"></span></button>
+                        </div><!--./ bn-controls --></div>
+                </div>
+            </div>
+        </div>
+    </div><!--~./ end breaking news area ~-->
+</header>

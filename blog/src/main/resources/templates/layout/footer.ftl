@@ -1,29 +1,45 @@
-<#assign basePath=request.contextPath />
-<footer>
-    <div class="pull-right">
-        Copyright © 2019 <a href="https://www.kylin-blackcat.com" target="_blank">blackcat</a>
-    </div>
-    <div class="clearfix"></div>
-</footer>
-</div>
-</div>
-<script src="${basePath}/jquery/jquery-2.1.4.min.js" type="text/javascript"></script>
-<script src="${basePath}/js/icheck2.js" type="text/javascript"></script>
-<script src="${basePath}/js/jquery.fancybox.js" type="text/javascript"></script>
-<script src="${basePath}/js/jquery-confirm.min.js" type="text/javascript"></script>
-<script src="${basePath}/bootstrap/js/moment.min.js" type="text/javascript"></script>
-<script src="${basePath}/bootstrap/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-<script src="${basePath}/bootstrap/js/bootstrap.js" type="text/javascript"></script>
-<script src="${basePath}/bootstrap/js/bootstrap-table.min.js" type="text/javascript"></script>
-<script src="${basePath}/bootstrap/js/bootstrap-table-zh-CN.js" type="text/javascript"></script>
-<script src="${basePath}/ztree/js/jquery.ztree.core.js" type="text/javascript"></script>
-<script src="${basePath}/ztree/js/jquery.ztree.excheck.js" type="text/javascript"></script>
-<script src="${basePath}/js/validator.js"></script>
-<script src="${basePath}/js/jquery-form.js"></script>
-<script src="${basePath}/js/zhyd.core.js"></script>
-<script src="${basePath}/js/blog-table.js"></script>
-<script src="${basePath}/js/blog-table-tool.js"></script>
+<footer class="site-footer footer-default-style bg-black pt-10">
 
-<#--<script src="${basePath}/js/wangEditor.min.js" type="text/javascript"></script>-->
+
+
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~            页脚内容        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div class="footer-bottom-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="copyright-text">
+                        <p>© Copyright 2019 Magala. All Rights
+                            <a href="http://www.bootstrapmb.com/">reserved</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="footer-menu">
+                        <ul class="list">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Private Policy</a></li>
+                            <li><a href="#">Support</a></li>
+                            <li><a href="#">Use Of Terms</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery js -->
+<script src="jquery/jquery-2.1.4.min.js"></script>
+<script src="jquery/jquery.trackpad-scroll-emulator.js"></script><!-- 前端样式插件 -->
+<script src="bootstrap/js/bootstrap.js"></script>
+<script src="/js/popper.js"></script><!-- 前端样式插件 -->
+<script src="/js/owl.carousel.js"></script><!-- 前端样式插件 -->
+<script src="/js/masonary.min.js"></script><!-- 前端样式插件 -->
+<script src="/js/breaking-news-ticker.js"></script><!-- 新消息提醒 -->
+<script src="/js/resizesensor.js"></script><!-- 前端样式插件 -->
+<script src="/js/theia-sticky-sidebar.js"></script><!-- 前端样式插件 -->
+<script src="/js/plugins.js"></script><!-- 前端样式插件 -->
+<script src="/js/main.js"></script>
+
 </body>
 </html>
