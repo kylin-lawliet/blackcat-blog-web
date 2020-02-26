@@ -8,22 +8,21 @@
     <!--自动适应移动屏幕-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>后台管理系统</title>
-    <link href="${basePath}/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="${basePath}/ztree/css/metroStyle/metroStyle.css" rel="stylesheet">
     <link href="${basePath}/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="${basePath}/bootstrap/css/daterangepicker.css" rel="stylesheet">
     <link href="${basePath}/bootstrap/css/datetimepicker.css" rel="stylesheet">
+    <link href="${basePath}/bootstrap/css/bootstrap-table.min.css" rel="stylesheet">
     <#--图标字体库-->
     <link href="${basePath}/bootstrap/css/font-awesome.css" rel="stylesheet">
-    <link href="${basePath}/bootstrap/css/bootstrap-table.min.css" rel="stylesheet">
-    <link href="${basePath}/css/blog.core.css" rel="stylesheet">
-    <link href="${basePath}/css/toastr.min.css" rel="stylesheet">
     <#--iCheck 插件样式-->
     <link href="${basePath}/css/green.css" rel="stylesheet">
     <#--左侧菜单图标-->
     <link href="${basePath}/css/nprogress.min.css" rel="stylesheet">
     <#--弹窗插件-->
     <link href="${basePath}/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="${basePath}/css/toastr.min.css" rel="stylesheet">
+    <link href="${basePath}/css/blog.core.css" rel="stylesheet">
 
 </head>
 <body class="nav-md">

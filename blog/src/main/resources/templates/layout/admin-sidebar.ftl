@@ -1,12 +1,12 @@
+<#assign basePath=request.contextPath />
 <!-- sidebar menu -->
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <div class="menu_section">
         <ul class="nav side-menu">
             <@shiro.user>
-            <li><a href="/index"><i class="fa fa-home"></i>首页</a></li>
+            <li><a href="${basePath}/admin"><i class="fa fa-home"></i>首页</a></li>
             </@shiro.user>
-            <#--userId="${user.id}"-->
-            <@blog method="menus" userId="1">
+            <@blog method="menus" userId="${user.id}">
                 <#if menus?? && menus?size gt 0>
                     <#list menus as item>
                         <#if item.nodes?? && item.nodes?size gt 0>
@@ -33,7 +33,7 @@
     <a >&nbsp;</a>
     <a >&nbsp;</a>
     <a >&nbsp;</a>
-    <a href="/logout" data-toggle="tooltip" data-placement="top" title="" data-original-title="退出系统">
+    <a href="${basePath}/logout" data-toggle="tooltip" data-placement="top" title="" data-original-title="退出系统">
         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
     </a>
 </div>
