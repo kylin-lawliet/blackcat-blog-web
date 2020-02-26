@@ -107,9 +107,6 @@
             '<@shiro.hasPermission name="role:edit"><a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a></@shiro.hasPermission>',
             '<@shiro.hasPermission name="role:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>',
             '<@shiro.hasPermission name="role:allotMenu"><a class="btn btn-xs btn-info btn-allot" data-id="' + trId + '"><i class="fa fa-cog"></i>分配资源</a></@shiro.hasPermission>'
-            // '<a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a>',
-            // '<a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a>',
-            // '<a class="btn btn-xs btn-info btn-allot" data-id="' + trId + '"><i class="fa fa-cog"></i>分配资源</a>'
         ];
         return operateBtn.join('');
     }
@@ -149,7 +146,7 @@
         $.buttonUtil.init(options);
 
         /* 分配资源权限 */
-        $('#tablelist').on('click', '.btn-allot', function () {
+        $('#dataTable').on('click', '.btn-allot', function () {
             console.log("分配资源权限");
             var $this = $(this);
             var rolesId = $this.attr("data-id");
