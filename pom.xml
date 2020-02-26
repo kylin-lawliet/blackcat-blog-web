@@ -12,13 +12,7 @@
     <!-- 模块说明：这里声明多个子模块 -->
     <modules>
         <module>blog</module>
-        <module>dome-mybatis-plus-generator</module>
-        <module>demo-shiro</module>
-        <module>demo-mybatis-plus</module>
         <module>demo-java</module>
-        <module>demo-mybatis-plus-level2</module>
-        <module>demo-bootstrap</module>
-        <module>demo-shiro2</module>
     </modules>
     <!-- 继承说明：这里继承SpringBoot提供的父工程 -->
     <parent>

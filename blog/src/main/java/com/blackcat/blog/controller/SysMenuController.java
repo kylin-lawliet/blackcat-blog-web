@@ -1,6 +1,7 @@
 package com.blackcat.blog.controller;
 
 
+import com.alibaba.fastjson.JSON;
 import com.blackcat.blog.core.entity.SysMenu;
 import com.blackcat.blog.core.enums.ResponseStatusEnum;
 import com.blackcat.blog.core.object.PageResult;
@@ -52,6 +53,7 @@ public class SysMenuController {
     @RequestMapping("/list")
     public PageResult list(BaseConditionVO vo){
         PageInfo<SysMenu> pageInfo = iSysMenuService.findPageBreakByCondition(vo);
+        System.out.println(JSON.toJSON(ResultUtil.tablePage(pageInfo)));
         return ResultUtil.tablePage(pageInfo);
     }
 

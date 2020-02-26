@@ -66,9 +66,11 @@ public class ShiroServiceImpl implements ShiroService {
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/images/**", "anon");
-        filterChainDefinitionMap.put("/favicon.ico", "anon");
+        //filterChainDefinitionMap.put("/favicon.ico", "anon");
         // logout是shiro提供的过滤器
         filterChainDefinitionMap.put("/logout", "logout");
+        //前台首页
+        filterChainDefinitionMap.put("/", "anon");
         // 此时访问/userInfo/del需要del权限,在自定义Realm中为用户授权。
         // filterChainDefinitionMap.put("/userInfo/del", "perms["userInfo:del"]");
 

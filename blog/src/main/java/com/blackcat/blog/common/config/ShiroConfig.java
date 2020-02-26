@@ -59,7 +59,7 @@ public class ShiroConfig {
         // 这里的/login是后台的接口名,非页面，如果不设置默认会自动寻找Web工程根目录下的"/login.ftl"页面
         shiroFilterFactoryBean.setLoginUrl("/login");
         // 这里的/index是后台的接口名,非页面,登录成功后要跳转的链接
-        shiroFilterFactoryBean.setSuccessUrl("/index");
+        shiroFilterFactoryBean.setSuccessUrl("/admin");
         // 未授权界面
         shiroFilterFactoryBean.setUnauthorizedUrl("/error/403");
 
@@ -241,7 +241,7 @@ public class ShiroConfig {
         //设为true后，只能通过http访问，javascript无法访问
         //防止xss读取cookie
         simpleCookie.setHttpOnly(true);
-        simpleCookie.setPath("/");
+        simpleCookie.setPath("/admin");
         return simpleCookie;
     }
 

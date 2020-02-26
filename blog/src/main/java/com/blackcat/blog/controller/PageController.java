@@ -6,6 +6,7 @@ import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * <p> ：页面跳转类
@@ -16,20 +17,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PageController {
 
     /**
-     * <p> 描述 : 访问项目根路径
+     * <p> 描述 : 访问项后台管理首页
      * @author : blackcat
      * @date  : 2020/2/3 17:02
      */
     @RequiresUser
-    @GetMapping(value = {"", "/index"})
+    @GetMapping("/admin")
     public String home() {
         Subject subject = SecurityUtils.getSubject();
         SysUser user=(SysUser) subject.getPrincipal();
         if (user == null){
             return "login";
         }else{
-            return "index";
+            return "admin";
         }
+    }
+
+    /**
+     * <p> : 跳转前台首页
+     * @author : blackcat
+     * @date : 2020/1/19 13:44
+     */
+    @RequestMapping("/")
+    public String web() {
+        return "index";
     }
 
     /**
@@ -37,7 +48,6 @@ public class PageController {
      * @author : blackcat
      * @date : 2020/1/19 13:44
      */
-    //@RequiresPermissions("resources")
     @GetMapping("/menu/index")
     public String resources() {
         return "menu/list";
@@ -48,7 +58,6 @@ public class PageController {
      * @author : blackcat
      * @date : 2020/1/19 13:46
      */
-    //@RequiresPermissions("users")
     @GetMapping("/user/index")
     public String user() {
         return "user/list";
@@ -62,5 +71,15 @@ public class PageController {
     @GetMapping("/role/index")
     public String role() {
         return "role/list";
+    }
+
+    /**
+     * <p> : 跳转bootstrap示例页面
+     * @author : blackcat
+     * @date : 2020/1/19 13:46
+     */
+    @GetMapping("/demo/bootstrap")
+    public String bootstrap() {
+        return "demo/bootstrap";
     }
 }

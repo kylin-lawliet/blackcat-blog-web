@@ -44,13 +44,12 @@ public class SysUserController {
         Page<SysUser> page = new Page<>(vo.getPageNumber(), vo.getPageSize());
         QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
         if(StringUtils.isNotBlank(vo.getKeywords())){
-            queryWrapper.lambda()
-                    .like(SysUser::getNickname,vo.getKeywords())
-                    .like(SysUser::getMobile,vo.getKeywords())
-                    .like(SysUser::getUsername,vo.getKeywords())
-                    .like(SysUser::getPassword,vo.getKeywords())
-                    .like(SysUser::getEmail,vo.getKeywords())
-                    .like(SysUser::getRemark,vo.getKeywords())
+            queryWrapper.lambda().like(SysUser::getNickname,vo.getKeywords())
+                    .or().like(SysUser::getMobile,vo.getKeywords())
+                    .or().like(SysUser::getUsername,vo.getKeywords())
+                    .or().like(SysUser::getPassword,vo.getKeywords())
+                    .or().like(SysUser::getEmail,vo.getKeywords())
+                    .or().like(SysUser::getRemark,vo.getKeywords())
                     .orderByDesc(SysUser::getCreateTime);
         }
         iSysUserService.page(page, queryWrapper);
