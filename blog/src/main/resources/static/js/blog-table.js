@@ -9,6 +9,7 @@ var tableId = "dataTable";//table元素id名称
         tableUtil: {
             _option: {},
             init: function (options) {
+                alert(123);
                 $.tableUtil._option = options;
                 $('#'+tableId).bootstrapTable({
                     url: options.url,

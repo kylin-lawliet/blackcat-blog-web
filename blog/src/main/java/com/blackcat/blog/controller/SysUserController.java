@@ -40,6 +40,7 @@ public class SysUserController {
     @RequiresPermissions("users")
     @RequestMapping("/list")
     public PageResult list(BaseConditionVO vo){
+        System.out.println("****");
         Page<SysUser> page = new Page<>(vo.getPageNumber(), vo.getPageSize());
         QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
         if(StringUtils.isNotBlank(vo.getKeywords())){
