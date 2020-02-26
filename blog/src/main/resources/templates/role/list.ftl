@@ -1,4 +1,4 @@
-<#include "/layout/header.ftl"/>
+<#include "/layout/admin-header.ftl"/>
 <div class="clearfix"></div>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -21,14 +21,14 @@
                             </button>
                         </@shiro.hasPermission>
                     </div>
-                    <table id="tablelist">
+                    <table id="dataTable">
                     </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<#include "/layout/footer.ftl"/>
+<#include "/layout/admin-footer.ftl"/>
 <!--弹框-->
 <div class="modal fade bs-example-modal-sm" id="selectRole" tabindex="-1" role="dialog" aria-labelledby="selectRoleLabel">
     <div class="modal-dialog modal-sm" role="document">

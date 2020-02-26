@@ -1,39 +1,115 @@
-<!-- sidebar menu -->
-<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-    <div class="menu_section">
-        <ul class="nav side-menu">
-            <#--<@shiro.user>-->
-                <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
-            <#--</@shiro.user>-->
-            <#--userId="${user.id}"-->
-            <@blog method="menus" userId="1">
-                <#if menus?? && menus?size gt 0>
-                    <#list menus as item>
-                        <#if item.nodes?? && item.nodes?size gt 0>
-                            <li>
-                                <a><i class="${item.icon?if_exists}"></i> ${item.name?if_exists}<span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <#list item.nodes as node>
-                                        <#--<@shiro.hasPermission name="${node.permission?if_exists}">-->
-                                        <li><a href="${node.url?if_exists}" ${(node.external?exists && node.external)?string('target="_blank"','')}><i class="${node.icon?if_exists}"></i>${node.name?if_exists}</a></li>
-                                        <#--</@shiro.hasPermission>-->
-                                    </#list>
-                                </ul>
-                            </li>
-                        <#else>
-                            <li><a href="${item.url?if_exists}" ${(item.external?exists && item.external)?string('target="_blank"','')}><i class="${item.icon?if_exists}"></i>${item.name?if_exists}</a></li>
-                        </#if>
-                    </#list>
-                </#if>
-            </@blog>
-        </ul>
+<div class="col-lg-3">
+    <div class="sidebar">
+        <div class="sidebar-inner">
+            <aside class="widget widget-categories">
+                <h4 class="widget-title"><span>分类</span> </h4>
+                <div class="widget-content">
+                    <ul>
+                        <li class="cat-item">
+                            <a href="category-grid.html">
+                                Sport
+                                <span class="count">14</span>
+                            </a>
+                        </li>
+                        <li class="cat-item">
+                            <a href="category-grid.html">
+                                Health
+                                <span class="count">25</span>
+                            </a>
+                        </li>
+                        <li class="cat-item">
+                            <a href="category-grid.html">
+                                Food
+                                <span class="count">10</span>
+                            </a>
+                        </li>
+                        <li class="cat-item">
+                            <a href="category-grid.html">
+                                Fashion
+                                <span class="count">12</span>
+                            </a>
+                        </li>
+                        <li class="cat-item">
+                            <a href="category-grid.html">
+                                Lifestyle
+                                <span class="count">2</span>
+                            </a>
+                        </li>
+                        <li class="cat-item">
+                            <a href="category-grid.html">
+                                Business
+                                <span class="count">34</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+            <aside class="widget popular-posts-widget">
+                <h4 class="widget-title"> <span>标签</span></h4>
+                <div class="widget-content">
+                    <aside class="widget bt-widget-categories">
+                        <div class="entry-footer mt-10">
+                            <div class="entry-tag">
+                                <a href="#" rel="tag">World</a>
+                                <a href="#" rel="tag">Technology</a>
+                                <a href="#" rel="tag">fun</a>
+                                <a href="#" rel="tag">fashion</a>
+                                <a href="#" href="#" rel="tag">entrepreneurship</a>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </aside>
+
+            <!--~~~~~ Start Popular Posts Widget~~~~~-->
+            <aside class="widget popular-posts-widget">
+                <h4 class="widget-title"> <span>热门文章</span></h4>
+                <div class="widget-content">
+                    <article class="post side-post">
+                        <!--./ thumb-wrap -->
+                        <div class="content-entry-wrap">
+                            <h3 class="entry-title">
+                                <a href="../black/post-details.html">The rumored iPhone could come in hot pink</a>
+                            </h3><!--./ entry-title -->
+                            <div class="entry-meta-content">
+                                <div class="entry-date"><span>July 24, 2019</span></div>
+                                <!--./ entry-date -->
+                            </div>
+                            <!--./ entry-meta-content -->
+                        </div>
+                    </article>
+
+                    <article class="post side-post">
+                        <!--./ thumb-wrap -->
+                        <div class="content-entry-wrap">
+                            <h3 class="entry-title">
+                                <a href="../black/post-details.html">How to live with some vegeterian when you eat</a>
+                            </h3><!--./ entry-title -->
+                            <div class="entry-meta-content">
+                                <div class="entry-date"><span>July 24, 2019</span></div>
+                                <!--./ entry-date -->
+                            </div>
+                            <!--./ entry-meta-content -->
+                        </div>
+                    </article>
+
+
+                    <article class="post side-post">
+                        <!--./ thumb-wrap -->
+                        <div class="content-entry-wrap">
+                            <h3 class="entry-title">
+                                <a href="../black/post-details.html">This gun is advertise as the most popular gun</a>
+                            </h3><!--./ entry-title -->
+                            <div class="entry-meta-content">
+                                <div class="entry-date"><span>July 24, 2019</span></div>
+                                <!--./ entry-date -->
+                            </div>
+                            <!--./ entry-meta-content -->
+                        </div>
+                    </article>
+
+            </aside>
+            <!--~./ end popular posts widget ~-->
+        </div>
     </div>
-</div>
-<div class="sidebar-footer hidden-small">
-    <a >&nbsp;</a>
-    <a >&nbsp;</a>
-    <a >&nbsp;</a>
-    <a href="/logout" data-toggle="tooltip" data-placement="top" title="" data-original-title="退出系统">
-        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-    </a>
 </div>

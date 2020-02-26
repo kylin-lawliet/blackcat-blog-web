@@ -7,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>后台管理</title>
-    <link href="${basePath}/images/favicon.ico" rel="icon">
-    <link href="${basePath}/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <#--<link href="${basePath}/images/favicon.ico" rel="icon">-->
+    <link href="${basePath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/bootstrap/css/font-awesome.css" rel="stylesheet">
     <link href="${basePath}/css/jquery-confirm.min.css" rel="stylesheet">
-    <link href="${basePath}/css/nprogress2.min.css" rel="stylesheet">
-    <link href="${basePath}/css/zhyd.core.css" rel="stylesheet">
+    <link href="${basePath}/css/nprogress.min.css" rel="stylesheet">
+    <link href="${basePath}/css/blog.core.css" rel="stylesheet">
 </head>
 
 <body class="login">
@@ -58,9 +58,9 @@
 </div>
 </body>
 
-<script src="${basePath}/jquery/jquery-2.1.4.min.js" type="text/javascript"></script>
-<script src="${basePath}/js/jquery-confirm.min.js" type="text/javascript"></script>
-<script src="${basePath}/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+<script src="${basePath}/jquery/jquery-3.2.0.min.js" type="text/javascript"></script>
+<script src="${basePath}/jquery/jquery-confirm.min.js" type="text/javascript"></script>
+<script src="${basePath}/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/blog-table-tool.js"></script>
 
 <script>
@@ -73,7 +73,7 @@
             dataType: "json",
             success: function () {
                 // if (json.status === 200) {
-                    window.location.href = "/";
+                    window.location.href = "/admin";
                 /*}else{
                     $.tool.ajaxSuccess(json);
                     $("#img-kaptcha").attr("src", '/getKaptcha?time=' + new Date().getTime());

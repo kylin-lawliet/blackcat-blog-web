@@ -1,5 +1,5 @@
 <#assign basePath=request.contextPath />
-<#include "/layout/header.ftl"/>
+<#include "/layout/admin-header.ftl"/>
 <div class="clearfix"></div>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -22,14 +22,14 @@
                             </button>
                         </@shiro.hasPermission>
                     </div>
-                    <table id="tablelist">
+                    <table id="dataTable">
                     </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<#include "/layout/footer.ftl"/>
+<#include "/layout/admin-footer.ftl"/>
 <!--添加资源弹框-->
 <div class="modal fade" id="addOrUpdateModal" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
     <div class="modal-dialog" role="document">
@@ -208,8 +208,6 @@
     function operateFormatter(code, row, index) {
         var trId = row.id;
         var operateBtn = [
-            // '<a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a>',
-            // '<a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a>'
             '<@shiro.hasPermission name="menu:edit"><a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a></@shiro.hasPermission>',
             '<@shiro.hasPermission name="menu:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>'
         ];

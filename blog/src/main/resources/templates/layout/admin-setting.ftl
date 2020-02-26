@@ -8,12 +8,15 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <img src="${basePath}/images/loading.gif" alt=""><#if user?exists>${user.username?if_exists}<#else>管理员</#if>
+                        <img src="${basePath}/images/author.png" alt=""><#if user?exists>${user.username?if_exists}<#else>管理员</#if>
                         <span class=" fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                        <li><a href="、/logout"><i class="fa fa-sign-out pull-right"></i> 退出系统</a></li>
+                        <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> 退出系统</a></li>
                     </ul>
+                </li>
+                <li class="">
+                    <i class="fa fa-sign-out pull-right"></i><a href="${basePath}/logout"> 退出系统</a>
                 </li>
             </ul>
         </nav>
