@@ -29,9 +29,30 @@ public class PageController {
      * @author : blackcat
      * @date : 2020/1/19 13:44
      */
+    @GetMapping("/article/index")
+    public String article() {
+        return "blog/article";
+    }
+
+    /**
+     * <p> : 跳转总码表管理页面
+     * @author : blackcat
+     * @date : 2020/1/19 13:44
+     */
+    @GetMapping("/article/detail")
+    public String newArticle() {
+        return "blog/article_detail";
+    }
+
+
+    /**
+     * <p> : 跳转总码表管理页面
+     * @author : blackcat
+     * @date : 2020/1/19 13:44
+     */
     @GetMapping("/code/listIndex")
     public String codeList() {
-        return "code/code_list";
+        return "blog/code_list";
     }
 
     /**
@@ -42,7 +63,7 @@ public class PageController {
     @GetMapping("/code/index/{id}")
     public String code(@PathVariable Long id, ModelMap map) {
         map.addAttribute("codeParent", iBlogListCodeService.getById(id));
-        return "code/code";
+        return "blog/code";
     }
 
 
@@ -80,7 +101,7 @@ public class PageController {
      */
     @GetMapping("/menu/index")
     public String resources() {
-        return "menu/list";
+        return "system/menu";
     }
 
     /**
@@ -90,7 +111,7 @@ public class PageController {
      */
     @GetMapping("/user/index")
     public String user() {
-        return "user/list";
+        return "system/user";
     }
 
     /**
@@ -100,7 +121,7 @@ public class PageController {
      */
     @GetMapping("/role/index")
     public String role() {
-        return "role/list";
+        return "system/role";
     }
 
 }

@@ -18,6 +18,8 @@
 <script src="${basePath}/bootstrap/js/bootstrap.js" type="text/javascript"></script>
 <script src="${basePath}/bootstrap/js/bootstrap-table.min.js" type="text/javascript"></script>
 <script src="${basePath}/bootstrap/js/bootstrap-table-zh-CN.js" type="text/javascript"></script>
+<script src="${basePath}/bootstrap/js/bootstrap-markdown.js" type="text/javascript"></script>
+<script src="${basePath}/bootstrap/js/bootstrap-markdown.zh.js" type="text/javascript"></script>
 <script src="${basePath}/ztree/js/jquery.ztree.core.js" type="text/javascript"></script>
 <script src="${basePath}/ztree/js/jquery.ztree.excheck.js" type="text/javascript"></script>
 <script src="${basePath}/js/validator.js"></script>

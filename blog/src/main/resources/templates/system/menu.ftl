@@ -107,7 +107,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile">是否可用 <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <ul class="list-unstyled list-inline">
-                                <li><input type="radio" class="flat" checked="checked" name="available" value="1"> 可用</li>
+                                <li><input type="radio" class="flat" name="available" value="1"> 可用</li>
                                 <li><input type="radio" class="flat" name="available" value="0"> 禁用</li>
                             </ul>
                         </div>
@@ -116,7 +116,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile">外部链接 <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <ul class="list-unstyled list-inline">
-                                <li><input type="radio" class="flat" checked name="external" value="0"> 否</li>
+                                <li><input type="radio" class="flat" name="external" value="0"> 否</li>
                                 <li><input type="radio" class="flat" name="external" value="1"> 是</li>
                             </ul>
                         </div>
