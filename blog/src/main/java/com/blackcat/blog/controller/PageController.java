@@ -1,12 +1,17 @@
 package com.blackcat.blog.controller;
 
 import com.blackcat.blog.core.entity.SysUser;
+import com.blackcat.blog.core.service.BlogCodeListService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.annotation.Resource;
 
 /**
  * <p> ：页面跳转类
@@ -15,6 +20,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class PageController {
+
+    @Resource
+    private BlogCodeListService iBlogListCodeService;
+
+    /**
+     * <p> : 跳转总码表管理页面
+     * @author : blackcat
+     * @date : 2020/1/19 13:44
+     */
+    @GetMapping("/code/listIndex")
+    public String codeList() {
+        return "code/code_list";
+    }
+
+    /**
+     * <p> : 跳转子码表管理页面
+     * @author : blackcat
+     * @date : 2020/1/19 13:44
+     */
+    @GetMapping("/code/index/{id}")
+    public String code(@PathVariable Long id, ModelMap map) {
+        map.addAttribute("codeParent", iBlogListCodeService.getById(id));
+        return "code/code";
+    }
+
 
     /**
      * <p> 描述 : 访问项后台管理首页
@@ -73,13 +103,4 @@ public class PageController {
         return "role/list";
     }
 
-    /**
-     * <p> : 跳转bootstrap示例页面
-     * @author : blackcat
-     * @date : 2020/1/19 13:46
-     */
-    @GetMapping("/demo/bootstrap")
-    public String bootstrap() {
-        return "demo/bootstrap";
-    }
 }

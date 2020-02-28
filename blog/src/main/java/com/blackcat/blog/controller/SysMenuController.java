@@ -1,7 +1,6 @@
 package com.blackcat.blog.controller;
 
 
-import com.alibaba.fastjson.JSON;
 import com.blackcat.blog.core.entity.SysMenu;
 import com.blackcat.blog.core.enums.ResponseStatusEnum;
 import com.blackcat.blog.core.object.PageResult;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 
 /**
  * <p> 权限表 前端控制器
@@ -53,7 +53,6 @@ public class SysMenuController {
     @RequestMapping("/list")
     public PageResult list(BaseConditionVO vo){
         PageInfo<SysMenu> pageInfo = iSysMenuService.findPageBreakByCondition(vo);
-        System.out.println(JSON.toJSON(ResultUtil.tablePage(pageInfo)));
         return ResultUtil.tablePage(pageInfo);
     }
 
@@ -110,6 +109,7 @@ public class SysMenuController {
     @PostMapping("/edit")
     public ResultUtil edit(SysMenu menu) {
         try {
+            menu.setUpdateTime(LocalDateTime.now());
             iSysMenuService.updateById(menu);
         } catch (Exception e) {
             e.printStackTrace();

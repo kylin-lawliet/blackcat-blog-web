@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blackcat.blog.core.mapper.BlogCodeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.blackcat.blog.core.entity.BlogCode">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="parent_id" property="parentId" />
+        <result column="code_id" property="codeId" />
+        <result column="sort" property="sort" />
+        <result column="remarks" property="remarks" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <association property="parent" javaType="com.blackcat.blog.core.entity.BlogCode">
+            <id column="id" property="id" />
+            <result column="name" property="name" />
+            <result column="parent_id" property="parentId" />
+            <result column="code_id" property="codeId" />
+            <result column="sort" property="sort" />
+            <result column="remarks" property="remarks" />
+            <result column="create_time" property="createTime" />
+            <result column="update_time" property="updateTime" />
+        </association>
+        <collection property="nodes" column="node_id" javaType="ArrayList" ofType="com.blackcat.blog.core.entity.BlogCode">
+            <id column="id" property="id" />
+            <result column="name" property="name" />
+            <result column="parent_id" property="parentId" />
+            <result column="code_id" property="codeId" />
+            <result column="sort" property="sort" />
+            <result column="remarks" property="remarks" />
+            <result column="create_time" property="createTime" />
+            <result column="update_time" property="updateTime" />
+        </collection>
+    </resultMap>
+
+</mapper>

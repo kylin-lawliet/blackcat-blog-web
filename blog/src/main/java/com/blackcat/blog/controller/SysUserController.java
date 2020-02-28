@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 
 /**
  * <p> 系统用户表 前端控制器
@@ -40,7 +41,6 @@ public class SysUserController {
     @RequiresPermissions("users")
     @RequestMapping("/list")
     public PageResult list(BaseConditionVO vo){
-        System.out.println("****");
         Page<SysUser> page = new Page<>(vo.getPageNumber(), vo.getPageSize());
         QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
         if(StringUtils.isNotBlank(vo.getKeywords())){
@@ -49,9 +49,9 @@ public class SysUserController {
                     .or().like(SysUser::getUsername,vo.getKeywords())
                     .or().like(SysUser::getPassword,vo.getKeywords())
                     .or().like(SysUser::getEmail,vo.getKeywords())
-                    .or().like(SysUser::getRemark,vo.getKeywords())
-                    .orderByDesc(SysUser::getCreateTime);
+                    .or().like(SysUser::getRemark,vo.getKeywords());
         }
+        queryWrapper.lambda().orderByDesc(SysUser::getCreateTime);
         iSysUserService.page(page, queryWrapper);
         return ResultUtil.tablePage(page);
     }
@@ -107,6 +107,7 @@ public class SysUserController {
     @PostMapping("/edit")
     public ResultUtil edit(SysUser entity) {
         try {
+         entity.setUpdateTime(LocalDateTime.now());
          iSysUserService.updateById(entity);
         } catch (Exception e) {
             e.printStackTrace();

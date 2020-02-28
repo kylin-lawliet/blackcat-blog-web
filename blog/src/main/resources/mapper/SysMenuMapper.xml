@@ -62,6 +62,7 @@
         </if>
         ORDER by
         com.parent_id ASC,
+        com.sort ASC,
         com.name DESC
     </select>
 

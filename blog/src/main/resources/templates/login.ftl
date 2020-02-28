@@ -61,7 +61,7 @@
 <script src="${basePath}/jquery/jquery-3.2.0.min.js" type="text/javascript"></script>
 <script src="${basePath}/jquery/jquery-confirm.min.js" type="text/javascript"></script>
 <script src="${basePath}/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${basePath}/js/blog-table-tool.js"></script>
+<script src="${basePath}/js/blog-tool.js"></script>
 
 <script>
     $("#modal").modal('show');

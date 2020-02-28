@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <ol class="breadcrumb">
-            <li><a href="/">首页</a></li>
+            <li><a href="${basePath}/admin">首页</a></li>
             <li class="active">用户管理</li>
         </ol>
         <div class="x_panel">
@@ -223,12 +223,9 @@
         var currentUserId = '${user.id}';
         var trUserId = row.id;
         var operateBtn = [
-            // '<a class="btn btn-xs btn-primary btn-update" data-id="' + trUserId + '"><i class="fa fa-edit"></i>编辑</a>'
             '<@shiro.hasPermission name="user:edit"><a class="btn btn-xs btn-primary btn-update" data-id="' + trUserId + '"><i class="fa fa-edit"></i>编辑</a></@shiro.hasPermission>',
         ];
         if (currentUserId != trUserId) {
-            // operateBtn.push('<a class="btn btn-xs btn-danger btn-remove" data-id="' + trUserId + '"><i class="fa fa-trash-o"></i>删除</a>');
-            // operateBtn.push('<a class="btn btn-xs btn-info btn-allot" data-id="' + trUserId + '"><i class="fa fa-cog"></i>分配角色</a>');
             operateBtn.push('<@shiro.hasPermission name="user:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trUserId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>');
             operateBtn.push('<@shiro.hasPermission name="user:allotRole"><a class="btn btn-xs btn-info btn-allot" data-id="' + trUserId + '"><i class="fa fa-cog"></i>分配角色</a></@shiro.hasPermission>')
         }

@@ -9,6 +9,7 @@
 </div>
 <script src="${basePath}/jquery/jquery-2.1.4.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/icheck.js" type="text/javascript"></script>
+<script src="${basePath}/js/popper.js"></script>
 <script src="${basePath}/jquery/jquery.fancybox.js" type="text/javascript"></script>
 <script src="${basePath}/jquery/jquery-confirm.min.js" type="text/javascript"></script>
 <script src="${basePath}/jquery/jquery-form.js"></script>

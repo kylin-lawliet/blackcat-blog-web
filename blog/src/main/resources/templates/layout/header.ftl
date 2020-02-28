@@ -28,7 +28,7 @@
 
                         <!--博客图标-->
                         <div class="site-logo-block">
-                            <a class="navbar-brand site-logo" href="index.html">
+                            <a class="navbar-brand site-logo" href="${basePath}/admin">
                                 <img src="${basePath}/images/black-cat.png" alt="logo">
                             </a>
                         </div>

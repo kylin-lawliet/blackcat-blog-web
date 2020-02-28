@@ -21,6 +21,7 @@
     <link href="${basePath}/css/nprogress.min.css" rel="stylesheet">
     <#--弹窗插件-->
     <link href="${basePath}/css/jquery-confirm.min.css" rel="stylesheet">
+    <link href="${basePath}/css/jquery.treegrid.min.css" rel="stylesheet">
     <link href="${basePath}/css/toastr.min.css" rel="stylesheet">
     <link href="${basePath}/css/blog.core.css" rel="stylesheet">
 
