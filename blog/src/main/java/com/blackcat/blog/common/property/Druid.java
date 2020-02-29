@@ -20,7 +20,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Order(-1)
-public class DruidProperties {
+public class Druid {
     private String username;
     private String password;
     private String servletPath = "/druid/*";

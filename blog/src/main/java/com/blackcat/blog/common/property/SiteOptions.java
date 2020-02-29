@@ -1,4 +1,4 @@
-package com.blackcat.blog.common.config;
+package com.blackcat.blog.common.property;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;

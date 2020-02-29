@@ -1,6 +1,6 @@
 package com.blackcat.blog.common.config;
 
-import com.blackcat.blog.common.property.RedisProperties;
+import com.blackcat.blog.common.property.Redis;
 import com.blackcat.blog.common.shiro.ShiroRealm;
 import com.blackcat.blog.common.shiro.credentials.RetryLimitCredentialsMatcher;
 import com.blackcat.blog.core.service.ShiroService;
@@ -35,7 +35,7 @@ import java.util.Properties;
 public class ShiroConfig {
 
     @Resource
-    private RedisProperties redisProperties;
+    private Redis redis;
     @Resource
     private ShiroService shiroService;
 
@@ -197,11 +197,11 @@ public class ShiroConfig {
      */
     public RedisManager redisManager() {
         RedisManager redisManager = new RedisManager();
-        redisManager.setHost(redisProperties.getHost());
-        redisManager.setPort(redisProperties.getPort());
-        redisManager.setDatabase(redisProperties.getDatabase());
-        redisManager.setTimeout(redisProperties.getTimeout());
-        redisManager.setPassword(redisProperties.getPassword());
+        redisManager.setHost(redis.getHost());
+        redisManager.setPort(redis.getPort());
+        redisManager.setDatabase(redis.getDatabase());
+        redisManager.setTimeout(redis.getTimeout());
+        redisManager.setPassword(redis.getPassword());
         return redisManager;
     }
 
@@ -222,7 +222,7 @@ public class ShiroConfig {
     @Bean
     public DefaultWebSessionManager sessionManager() {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-        sessionManager.setGlobalSessionTimeout(redisProperties.getExpire() * 1000L);
+        sessionManager.setGlobalSessionTimeout(redis.getExpire() * 1000L);
         sessionManager.setSessionDAO(redisSessionDAO());
         return sessionManager;
     }
@@ -236,7 +236,7 @@ public class ShiroConfig {
         // 这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
         SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
         // 记住我cookie生效时间30天 ,单位秒。 注释掉，默认永久不过期
-        simpleCookie.setMaxAge(redisProperties.getExpire());
+        simpleCookie.setMaxAge(redis.getExpire());
         //setcookie的httponly属性如果设为true的话，会增加对xss防护的安全系数。它有以下特点：
         //设为true后，只能通过http访问，javascript无法访问
         //防止xss读取cookie

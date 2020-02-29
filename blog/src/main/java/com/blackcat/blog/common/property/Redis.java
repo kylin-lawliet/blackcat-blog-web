@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Order(-1)
-public class RedisProperties {
+public class Redis {
     private Integer database;
     private String host;
     private Integer port;

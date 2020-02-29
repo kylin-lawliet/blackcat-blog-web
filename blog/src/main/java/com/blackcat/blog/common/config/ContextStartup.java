@@ -1,5 +1,6 @@
 package com.blackcat.blog.common.config;
 
+import com.blackcat.blog.common.property.SiteOptions;
 import com.blackcat.blog.core.entity.SysOptions;
 import com.blackcat.blog.core.service.SysOptionsService;
 import lombok.extern.slf4j.Slf4j;
