@@ -67,7 +67,7 @@ public class SysMenuController {
         if (iSysMenuService.save(menu)) {
             //更新权限
             shiroService.updatePermission();
-            return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
+            return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
         } else {
             return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));
         }
@@ -115,6 +115,6 @@ public class SysMenuController {
             e.printStackTrace();
             return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));
         }
-        return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
+        return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
     }
 }

@@ -71,7 +71,7 @@ public class SysUserController {
         entity.setPassword(PasswordUtil.encrypt(entity.getPassword(), entity.getUsername()));
         entity.setUserType("USER");
         iSysUserService.save(entity);
-        return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
+        return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
     }
 
     /**
@@ -113,6 +113,6 @@ public class SysUserController {
             e.printStackTrace();
             return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));
         }
-        return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
+        return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
     }
 }

@@ -1,3 +1,4 @@
+import com.blackcat.java.common.User;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -94,6 +95,25 @@ public class ForEach {
             if("E".equals(k)){
                 System.out.println("Hello E");
             }
+        });
+    }
+
+    /**
+     * <p> 描述 : 对象遍历
+     * @author : blackcat
+     * @date  : 2020/2/29 16:39
+    */
+    @Test
+    public void Object(){
+        List<User> list = new ArrayList<>();
+        User user1 = new User("a","1");
+        list.add(user1);
+        User user2 = new User("b","2");
+        list.add(user2);
+        User user3 = new User("c","3");
+        list.add(user3);
+        list.forEach(obj -> {
+            System.out.println(obj.getUsername()+"-"+obj.getUserpassword());
         });
     }
 

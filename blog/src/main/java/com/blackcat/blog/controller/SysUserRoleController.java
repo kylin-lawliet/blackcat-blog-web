@@ -81,7 +81,7 @@ public class SysUserRoleController {
             iSysUserRoleService.saveBatch(roles);
         }*/
 
-        return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
+        return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
     }
 
 }

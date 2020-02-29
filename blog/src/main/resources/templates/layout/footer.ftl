@@ -8,9 +8,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="copyright-text">
-                        <p>© Copyright 2019 Magala. All Rights
-                            <a href="http://www.bootstrapmb.com/">reserved</a>
-                        </p>
+                        <p>${options['site_copyright']} </p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">

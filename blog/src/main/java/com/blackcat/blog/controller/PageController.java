@@ -25,6 +25,16 @@ public class PageController {
     private BlogCodeListService iBlogListCodeService;
 
     /**
+     * <p> : 跳转系统配置页面
+     * @author : blackcat
+     * @date : 2020/1/19 13:44
+     */
+    @GetMapping("/system/options")
+    public String options() {
+        return "options/index";
+    }
+
+    /**
      * <p> : 跳转总码表管理页面
      * @author : blackcat
      * @date : 2020/1/19 13:44

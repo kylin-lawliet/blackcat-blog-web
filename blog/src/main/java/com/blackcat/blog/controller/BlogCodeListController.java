@@ -62,7 +62,7 @@ public class BlogCodeListController {
     @PostMapping(value = "/add")
     public ResultUtil add(BlogCodeList entity) {
         iBlogCodeListService.save(entity);
-        return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
+        return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
     }
 
     /**
@@ -104,6 +104,6 @@ public class BlogCodeListController {
             e.printStackTrace();
             return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));
         }
-        return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
+        return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
     }
 }

@@ -148,3 +148,29 @@ blog:
         allowIps[0]:
         # 黑名单(非必填)， list
         denyIps[0]:
+    # 系统参数
+    site:
+        # 系统版本号
+        version: 1.0.0
+        # 运行文件存储路径
+        location: ${user.dir}
+        # 控制器配置
+        controls:
+            # 注册开关
+            register: true
+            # 注册开启邮箱验证
+            register_email_validate: false
+            # 发布文章开关
+            post: true
+            # 评论开关
+            comment: true
+        # 属性配置
+        options:
+            theme: classic
+            site_logo: /images/black-cat.png
+            site_favicon: /images/author.png
+            storage_max_width: 800
+            storage_limit_size: 2
+            editor: markdown
+            thumbnail_channel_size: 200x112
+            thumbnail_post_size: 360x200

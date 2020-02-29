@@ -1,6 +1,7 @@
 package com.blackcat.blog.util;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.blackcat.blog.core.enums.ResponseStatusEnum;
 import com.blackcat.blog.core.object.PageResult;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,6 +54,13 @@ public class ResultUtil extends HashMap<String, Object> {
     public static ResultUtil ok(Map<String, Object> map) {
         ResultUtil result = new ResultUtil();
         result.putAll(map);
+        return result;
+    }
+
+    public static ResultUtil ok(ResponseStatusEnum success) {
+        ResultUtil result = new ResultUtil();
+        result.put("code", success.getCode());
+        result.put("msg", success.getMessage());
         return result;
     }
 

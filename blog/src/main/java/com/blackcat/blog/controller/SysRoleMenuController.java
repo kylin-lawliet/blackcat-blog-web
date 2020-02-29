@@ -64,6 +64,6 @@ public class SysRoleMenuController {
                 shiroService.reloadAuthorizingByRoleId(roleId);
             }
         }
-        return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
+        return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
     }
 }

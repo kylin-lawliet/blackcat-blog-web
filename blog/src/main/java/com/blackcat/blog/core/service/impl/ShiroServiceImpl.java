@@ -66,7 +66,6 @@ public class ShiroServiceImpl implements ShiroService {
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/images/**", "anon");
-        //filterChainDefinitionMap.put("/favicon.ico", "anon");
         // logout是shiro提供的过滤器
         filterChainDefinitionMap.put("/logout", "logout");
         //前台首页

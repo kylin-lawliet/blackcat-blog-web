@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Magala - Magazine and Blog Template</title>
+    <title>${options['site_name']}</title>
     <!--字体-->
     <link rel="stylesheet" href="${basePath}/bootstrap/css/font-awesome.css">
     <!-- 插件样式 -->
@@ -29,7 +29,7 @@
                         <!--博客图标-->
                         <div class="site-logo-block">
                             <a class="navbar-brand site-logo" href="${basePath}/admin">
-                                <img src="${basePath}/images/black-cat.png" alt="logo">
+                                <img src="${basePath}${options['site_logo']}" alt="logo">
                             </a>
                         </div>
 

@@ -6,8 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>后台管理</title>
-    <#--<link href="${basePath}/images/favicon.ico" rel="icon">-->
+    <title>后台登陆</title>
     <link href="${basePath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/bootstrap/css/font-awesome.css" rel="stylesheet">
     <link href="${basePath}/css/jquery-confirm.min.css" rel="stylesheet">
@@ -45,7 +44,7 @@
                                     <div class="clearfix"></div>
                                     <div>
                                         <h1><i class="fa fa-coffee"></i> BlackCat 博客系统</h1>
-                                        <p>Copyright © 2019 <a href="https://www.kylin-blackcat.com">blackcat</a>. All Rights Reserved. </p>
+                                        <p>${options['site_copyright']}</p>
                                     </div>
                                 </div>
                             </form>
@@ -72,18 +71,10 @@
             data: $("#login-form").serialize(),
             dataType: "json",
             success: function () {
-                // if (json.status === 200) {
-                    window.location.href = "/admin";
-                /*}else{
-                    $.tool.ajaxSuccess(json);
-                    $("#img-kaptcha").attr("src", '/getKaptcha?time=' + new Date().getTime());
-                }*/
+                window.location.href = "/admin";
             }
         });
     });
-    // $("#img-kaptcha").click(function () {
-    //     $(this).attr("src", '/getKaptcha?time=' + new Date().getTime());
-    // });
     document.onkeydown = function (event) {
         var e = event || window.event || arguments.callee.caller.arguments[0];
         if (e && e.keyCode === 13) {

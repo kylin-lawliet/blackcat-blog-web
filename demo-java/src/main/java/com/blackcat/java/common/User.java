@@ -2,7 +2,9 @@ package com.blackcat.java.common;
 
 import com.blackcat.java.bean.FatherReflectUtils;
 import com.blackcat.java.bean.SonReflectUtils;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * <p> ：测试类
@@ -10,6 +12,8 @@ import lombok.Data;
  * @date : 2020/1/21 10:45
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User extends FatherReflectUtils<User> {
 
     private String username;

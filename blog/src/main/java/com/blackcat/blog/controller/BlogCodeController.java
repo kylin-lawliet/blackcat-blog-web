@@ -58,7 +58,7 @@ public class BlogCodeController {
     public ResultUtil add(@PathVariable Long id,BlogCode entity) {
         entity.setCodeId(id);
         iBlogCodeService.save(entity);
-        return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
+        return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
     }
 
     /**
@@ -98,6 +98,6 @@ public class BlogCodeController {
             e.printStackTrace();
             return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));
         }
-        return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
+        return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
     }
 }
