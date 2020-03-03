@@ -102,7 +102,6 @@ public class BlogArticle extends Model<BlogArticle> {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")//数据库导出页面时json格式化
     private LocalDateTime updateTime;
 
-
     @Override
     protected Serializable pkVal() {
         return this.id;

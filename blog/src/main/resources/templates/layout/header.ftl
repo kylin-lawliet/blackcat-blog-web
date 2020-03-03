@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="${basePath}/css/breaking-news-ticker.css">
     <link rel="stylesheet" href="${basePath}/css/trackpad-scroll-emulator.css">
     <link rel="stylesheet" href="${basePath}/css/meanmenu.min.css">
+    <link rel="stylesheet" href="${basePath}/css/editor.css">
     <!-- 主题样式 -->
     <link rel="stylesheet" href="${basePath}/css/style.css">
 </head>

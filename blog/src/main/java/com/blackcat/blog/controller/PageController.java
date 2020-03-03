@@ -2,11 +2,9 @@ package com.blackcat.blog.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.blackcat.blog.core.entity.BlogArticle;
-import com.blackcat.blog.core.entity.BlogCode;
 import com.blackcat.blog.core.entity.SysUser;
 import com.blackcat.blog.core.service.BlogArticleService;
 import com.blackcat.blog.core.service.BlogCodeListService;
-import com.blackcat.blog.core.service.BlogCodeService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.subject.Subject;
@@ -28,24 +26,15 @@ import java.util.List;
 public class PageController {
 
     @Resource
-    private BlogCodeService iBlogCodeService;
-    @Resource
     private BlogCodeListService iBlogListCodeService;
     @Resource
     private BlogArticleService iBlogArticleService;
 
-    /**
-     * <p> : 跳转系统配置页面
-     * @author : blackcat
-     * @date : 2020/1/19 13:44
-     */
-    @GetMapping("/system/options")
-    public String options() {
-        return "options/index";
-    }
 
+
+    //******************************博客文章 start**************************************
     /**
-     * <p> : 跳转总码表管理页面
+     * <p> : 跳转文章管理页面
      * @author : blackcat
      * @date : 2020/1/19 13:44
      */
@@ -55,26 +44,33 @@ public class PageController {
     }
 
     /**
-     * <p> : 跳转总码表管理页面
+     * <p> : 跳转文章编辑页面页面
      * @author : blackcat
      * @date : 2020/1/19 13:44
      */
     @GetMapping("/article/detail/{id}")
     public String newArticle(@PathVariable Long id,ModelMap map) {
         if(id!=0){
-            BlogArticle article = iBlogArticleService.getById(id);
-            map.put("article", article);
-            if(article!=null){
-                List<BlogCode> tags=iBlogCodeService.list(
-                        new QueryWrapper<BlogCode>().lambda().in(BlogCode::getId,article.getTags().split(",")));
-                map.put("tags", tags);
-            }
+            map.put("articleVo", iBlogArticleService.getArticleById(id,false,false));
         }
-//        map.put("tagId", CodeKey.ARTICLE_TAG);
         return "blog/article_detail";
     }
 
+    /**
+     * <p> 描述 : 博客文章前台信息
+     * @author : blackcat
+     * @date  : 2020/3/3 15:46
+    */
+    @GetMapping("/article/view/{id}")
+    public String view(@PathVariable Long id,ModelMap map) {
+        if(id!=0){
+            map.put("articleVo", iBlogArticleService.getArticleById(id,true,true));
+        }
+        return "blog/article_view";
+    }
+    //******************************博客文章 end**************************************
 
+    //******************************码表 start**************************************
     /**
      * <p> : 跳转总码表管理页面
      * @author : blackcat
@@ -95,7 +91,21 @@ public class PageController {
         map.addAttribute("codeParent", iBlogListCodeService.getById(id));
         return "blog/code";
     }
+    //******************************码表 start**************************************
 
+
+
+    //********************************系统管理相关****************************************
+
+    /**
+     * <p> : 跳转系统配置页面
+     * @author : blackcat
+     * @date : 2020/1/19 13:44
+     */
+    @GetMapping("/system/options")
+    public String options() {
+        return "options/index";
+    }
 
     /**
      * <p> 描述 : 访问项后台管理首页
@@ -120,7 +130,9 @@ public class PageController {
      * @date : 2020/1/19 13:44
      */
     @RequestMapping("/")
-    public String web() {
+    public String web(ModelMap map) {
+        List<BlogArticle> articles = iBlogArticleService.list(new QueryWrapper<BlogArticle>().lambda().eq(BlogArticle::getPublish,1));
+        map.put("articles", articles);
         return "index";
     }
 

@@ -57,7 +57,7 @@
     </div>
     <div class="editor-container editMode">
         <div class="editor-body">
-            <textarea id="content" name="content" rows="5" class="form-control" required>${article.content?html}</textarea>
+            <textarea id="content" name="content" rows="5" class="form-control" required>${articleVo.article.content?html}</textarea>
         </div>
         <div class="editor-preview markdown-body">
         </div>

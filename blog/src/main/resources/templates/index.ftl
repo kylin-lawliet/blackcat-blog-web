@@ -20,46 +20,54 @@
                             </div>
 
                             <!--~~~~~ 单篇文章内容 ~~~~~-->
-                            <div class="col-12 load-post">
-                                <article class="post hentry post-list">
-                                    <div class="content-entry-wrap">
-                                        <!-- 标题 -->
-                                        <div class="entry-content">
-                                            <h3 class="entry-title">
-                                                <a href="${basePath}/detail">
-                                                    This gun is advertised as the most popular gun in American crime
-                                                </a>
-                                            </h3>
-                                        </div>
+                            <#list articles as article>
+                                <div class="col-12 load-post">
+                                    <article class="post hentry post-list">
+                                        <div class="content-entry-wrap">
+                                            <!-- 标题 -->
+                                            <div class="entry-content">
+                                                <h3 class="entry-title">
+                                                    <a href="/article/view/${article.id}">
+                                                        ${article.title}
+                                                    </a>
+                                                </h3>
+                                            </div>
 
-                                        <div class="entry-meta-content">
-                                            <!--作者-->
-                                            <div class="entry-meta-author">
-                                                <div class="entry-author-thumb">
-                                                    <img class="avatar photo" src="${basePath}/images/author.png" alt="author">
+                                            <div class="entry-meta-content">
+                                                <!--作者-->
+                                                <div class="entry-meta-author">
+                                                    <div class="entry-author-thumb">
+                                                        <img class="avatar photo" src="${basePath}/images/author.png" alt="author">
+                                                    </div>
+                                                    <div class="entry-author-name">
+                                                        <a href="#">Ahmed Arafa</a>
+                                                    </div>
                                                 </div>
-                                                <div class="entry-author-name">
-                                                    <a href="#">Ahmed Arafa</a>
+                                                <!--日期-->
+                                                <div class="entry-date"><span>${article.updateTime}</span></div>
+                                                <!--阅读数量-->
+                                                <div class="entry-views"><i class="fa fa-eye"></i>&nbsp;<span>${article.viewCount}</span></div>
+                                                <!--评论数量-->
+                                                <div class="entry-views"><i class="fa fa-comment-o"></i>&nbsp;<span>${article.commentCount}</span></div>
+                                                <!--评论数量-->
+                                                <div class="entry-views"><i class="fa fa-thumbs-o-up"></i>&nbsp;<span>${article.starCount}</span></div>
+                                                <!--分类-->
+                                                <div class="entry-category">
+                                                    <#list articleVo.tags as tag>
+                                                        <a class="cat" href="#">${tag.name}</a>&nbsp;
+                                                    </#list>
                                                 </div>
                                             </div>
-                                            <!--日期-->
-                                            <div class="entry-date"><span>October 24, 2019</span></div>
-                                            <!--阅读数量-->
-                                            <div class="entry-views"><span>3 Min Read</span></div>
-                                            <!--分类-->
-                                            <div class="entry-category"><a class="cat" href="#">LifeStyle</a></div>
+                                            <!--描述-->
+                                            <div class="entry-summary">
+                                                <p>
+                                                    ${article.introduction}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <!--描述-->
-                                        <div class="entry-summary">
-                                            <p>
-                                                Sitting on a working-class comme dows of an easy
-                                                above-ground rail line, a group cal led Make the Road New York's busy
-                                                street-level offices are easy to miss. But its mission to support
-                                            </p>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
+                                    </article>
+                                </div>
+                            </#list>
                             <!-- 单篇文章内容结束 ~-->
 
                             <!--~~~~~ 单篇文章内容 ~~~~~-->
@@ -69,7 +77,7 @@
                                         <!-- 标题 -->
                                         <div class="entry-content">
                                             <h3 class="entry-title">
-                                                <a href="${basePath}/detail">
+                                                <a href="${basePath}/article/view/">
                                                     Sitting on a working-class comme dows of an easy
                                                     above-ground rail line, a group cal led Make the Road New York's busy
                                                 </a>

@@ -13,20 +13,20 @@
             <div class="form-group">
                 <label for="title" class="col-sm-1 control-label">标题</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="title" value="${article.title}" id="title" placeholder="标题">
-                    <input type="hidden" name="id" value="${article.id}">
+                    <input type="text" class="form-control" name="title" value="${articleVo.article.title}" id="title" placeholder="标题">
+                    <input type="hidden" name="id" value="${articleVo.article.id}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="introduction" class="col-sm-1 control-label">简介</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" rows="3" name="introduction">${article.introduction}</textarea>
+                    <textarea class="form-control" rows="3" name="introduction">${articleVo.article.introduction}</textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label for="categoryId" class="col-sm-1 control-label">分类</label>
                 <div class="col-sm-5">
-                    <select class="form-control" id="categoryId" name="categoryId" data-select="${article.categoryId}">
+                    <select class="form-control" id="categoryId" name="categoryId" data-select="${articleVo.article.categoryId}">
                         <option value="0">请选择</option>
                         <@blog method="articleTypes">
                             <#if codes?? && codes?size gt 0>
@@ -51,8 +51,8 @@
                     <div class="label-selected">
                         <a href="javascript:;" class="layui-btn layui-btn-sm show-labelitem" style="float: right; margin: 4px; display: block;line-height: 30px;">展开标签库 </a>
                         <a href="javascript:;" class="layui-btn layui-btn-sm hide-labelitem" style="float: right; margin: 4px; display: none;line-height: 30px;">收起标签库 </a>
-                        <input type="hidden" name="tags" id="tags" value="${article.tags}">
-                        <#list tags as tag>
+                        <input type="hidden" name="tags" id="tags" value="${articleVo.article.tags}">
+                        <#list articleVo.tags as tag>
                             <li data='${tag.id}'>x ${tag.name}</li>
                         </#list>
                     </div>
@@ -65,7 +65,7 @@
 
             <div class="form-group">
                 <div class="col-sm-12">
-                    <#include "/editor/${article.contentType}.ftl"/>
+                    <#include "/editor/${articleVo.article.contentType}.ftl"/>
                 </div>
             </div>
             <div class="btn-group-crop"  style="float:right;">
@@ -89,7 +89,7 @@
                 data: $("#articleForm").serialize(),
                 success: function (json) {
                     $.tool.ajaxSuccess(json.msg);
-                    location.href='${basePath}/article/index';
+                    location.href='/article/index';
                 },
                 error: $.tool.ajaxError
             });

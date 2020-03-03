@@ -27,17 +27,17 @@
 </footer>
 
 <!-- jQuery js -->
-<script src="jquery/jquery-2.1.4.min.js"></script>
-<script src="jquery/jquery.trackpad-scroll-emulator.js"></script><!-- 前端样式插件 -->
-<script src="bootstrap/js/bootstrap.js"></script>
-<script src="/js/popper.js"></script><!-- 前端样式插件 -->
-<script src="/js/owl.carousel.js"></script><!-- 前端样式插件 -->
-<script src="/js/masonary.min.js"></script><!-- 前端样式插件 -->
-<script src="/js/breaking-news-ticker.js"></script><!-- 新消息提醒 -->
-<script src="/js/resizesensor.js"></script><!-- 前端样式插件 -->
-<script src="/js/theia-sticky-sidebar.js"></script><!-- 前端样式插件 -->
-<script src="/js/plugins.js"></script><!-- 前端样式插件 -->
-<script src="/js/main.js"></script>
+<script src="${basePath}/jquery/jquery-2.1.4.min.js"></script>
+<script src="${basePath}/jquery/jquery.trackpad-scroll-emulator.js"></script><!-- 前端样式插件 -->
+<script src="${basePath}/bootstrap/js/bootstrap.js"></script>
+<script src="${basePath}/js/popper.js"></script><!-- 前端样式插件 -->
+<script src="${basePath}/js/owl.carousel.js"></script><!-- 前端样式插件 -->
+<script src="${basePath}/js/masonary.min.js"></script><!-- 前端样式插件 -->
+<script src="${basePath}/js/breaking-news-ticker.js"></script><!-- 新消息提醒 -->
+<script src="${basePath}/js/resizesensor.js"></script><!-- 前端样式插件 -->
+<script src="${basePath}/js/theia-sticky-sidebar.js"></script><!-- 前端样式插件 -->
+<script src="${basePath}/js/plugins.js"></script><!-- 前端样式插件 -->
+<script src="${basePath}/js/main.js"></script>
 
 </body>
 </html>

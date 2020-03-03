@@ -1,6 +1,6 @@
 <script type="text/javascript" charset="utf-8" src="${basePath}/tinymce/tinymce.min.js"></script>
 
-<textarea id="content" name="content" rows="5" required>${article.content?html}</textarea>
+<textarea id="content" name="content" rows="5" required>${articleVo.article.content?html}</textarea>
 
 <script type="text/javascript">
 $(function () {
