@@ -3,6 +3,7 @@ package com.blackcat.blog.common.config;
 import com.blackcat.blog.common.property.SiteOptions;
 import com.blackcat.blog.core.entity.SysOptions;
 import com.blackcat.blog.core.service.SysOptionsService;
+import com.blackcat.blog.core.vo.CodeKey;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.ApplicationArguments;
@@ -54,7 +55,7 @@ public class ContextStartup implements ApplicationRunner, ServletContextAware {
     public void reloadOptions(boolean startup) {
         List<SysOptions> options = sysOptionsService.findAll();
 
-        log.info("find options ({})...", options.size());
+        log.info("查询数据库系统系统参数 ({})...", options.size());
 
         Map<String, String> map = siteOptions.getOptions();
         options.forEach(opt -> {
@@ -62,6 +63,8 @@ public class ContextStartup implements ApplicationRunner, ServletContextAware {
                 map.put(opt.getKeyName(), opt.getValue());
             }
         });
+        map.put("articleTypeCodeId", CodeKey.ARTICLE_TYPE);
+        map.put("articleTagCodeId", CodeKey.ARTICLE_TAG);
         servletContext.setAttribute("options", map);
         servletContext.setAttribute("site", siteOptions);
 

@@ -6,12 +6,10 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
- * @author zjjlive)
- * @version 1.0
- * @website https://www.foreknow.me
- * @date 2018/4/16 16:26
- * @since 1.0
- */
+ * <p> 描述 : Bean
+ * @author : blackcat
+ * @date  : 2020/2/10
+*/
 @Component
 public class SpringContextHolder implements ApplicationContextAware {
 
@@ -19,9 +17,6 @@ public class SpringContextHolder implements ApplicationContextAware {
 
     /**
      * 通过name获取 Bean.
-     *
-     * @param name
-     * @return
      */
     public static Object getBean(String name) {
         return appContext.getBean(name);
@@ -30,10 +25,6 @@ public class SpringContextHolder implements ApplicationContextAware {
 
     /**
      * 通过class获取Bean.
-     *
-     * @param clazz
-     * @param <T>
-     * @return
      */
     public static <T> T getBean(Class<T> clazz) {
         return appContext.getBean(clazz);
@@ -41,11 +32,6 @@ public class SpringContextHolder implements ApplicationContextAware {
 
     /**
      * 通过name,以及Clazz返回指定的Bean
-     *
-     * @param name
-     * @param clazz
-     * @param <T>
-     * @return
      */
     public static <T> T getBean(String name, Class<T> clazz) {
         return appContext.getBean(name, clazz);
