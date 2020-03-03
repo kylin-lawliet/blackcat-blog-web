@@ -1,6 +1,5 @@
 package com.blackcat.blog.core.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.blackcat.blog.core.entity.BlogCode;
 import com.blackcat.blog.core.mapper.BlogCodeMapper;
@@ -29,9 +28,10 @@ public class BlogCodeServiceImpl extends ServiceImpl<BlogCodeMapper, BlogCode> i
     }
 
     @Override
-    public List<BlogCode> getParents(Long id) {
-        QueryWrapper<BlogCode> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().eq(BlogCode::getCodeId, id);
-        return blogCodeMapper.selectList(queryWrapper);
+    public List<BlogCode> getParents(String id) {
+//        QueryWrapper<BlogCode> queryWrapper = new QueryWrapper<>();
+//        queryWrapper.lambda().eq(BlogCode::getCodeId, id);
+//        return blogCodeMapper.selectList(queryWrapper);
+        return blogCodeMapper.listCodeByType(id);
     }
 }

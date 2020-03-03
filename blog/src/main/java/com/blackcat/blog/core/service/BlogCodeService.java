@@ -25,5 +25,5 @@ public interface BlogCodeService extends IService<BlogCode> {
    * @author : blackcat
    * @date  : 2020/2/27 16:04
   */
-  List<BlogCode> getParents(Long id);
+  List<BlogCode> getParents(String id);
 }

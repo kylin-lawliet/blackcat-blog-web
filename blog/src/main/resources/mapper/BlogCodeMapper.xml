@@ -16,22 +16,38 @@
             <id column="id" property="id" />
             <result column="name" property="name" />
             <result column="parent_id" property="parentId" />
-            <result column="code_id" property="codeId" />
-            <result column="sort" property="sort" />
             <result column="remarks" property="remarks" />
-            <result column="create_time" property="createTime" />
-            <result column="update_time" property="updateTime" />
         </association>
         <collection property="nodes" column="node_id" javaType="ArrayList" ofType="com.blackcat.blog.core.entity.BlogCode">
-            <id column="id" property="id" />
-            <result column="name" property="name" />
-            <result column="parent_id" property="parentId" />
-            <result column="code_id" property="codeId" />
-            <result column="sort" property="sort" />
-            <result column="remarks" property="remarks" />
-            <result column="create_time" property="createTime" />
-            <result column="update_time" property="updateTime" />
+            <id column="node_id" property="id" />
+            <result column="node_name" property="name" />
+            <result column="node_parent_id" property="parentId" />
+            <result column="node_remarks" property="remarks" />
         </collection>
     </resultMap>
+
+    <select id="listCodeByType" resultMap="BaseResultMap" parameterType="java.lang.String">
+		SELECT
+            bc.id,
+            bc.`name`,
+            bc.parent_id,
+            bc.remarks,
+            node.id AS node_id,
+            node.`name` AS node_name,
+            node.parent_id AS node_parent_id,
+            node.remarks AS node_remarks
+        FROM
+            blog_code bc
+        LEFT JOIN blog_code node ON (
+            node.parent_id = bc.id
+        )
+        WHERE
+           bc.parent_id is null
+           and
+           bc.code_id=#{codeId}
+        ORDER BY
+            bc.sort ASC,
+            node.sort ASC
+	</select>
 
 </mapper>

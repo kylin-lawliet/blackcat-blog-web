@@ -42,12 +42,12 @@ public class CustomTag implements TemplateDirectiveModel {
                 case "codes":
                     // 获取所有可用的总码表分类
                     if(mapContainsKey(map,MethodAttribute.CODES_CODE_ID)){
-                        environment.setVariable("codes", builder.build().wrap(iBlogCodeService.getParents(Long.parseLong(map.get(MethodAttribute.CODES_CODE_ID).toString()))));
+                        environment.setVariable("codes", builder.build().wrap(iBlogCodeService.getParents(map.get(MethodAttribute.CODES_CODE_ID).toString())));
                     }
                     break;
                 case "articleTypes":
                     // 获取所有可用的博客分类分类
-                    environment.setVariable("codes", builder.build().wrap(iBlogCodeService.getParents(Long.parseLong(CodeKey.ARTICLE_TYPE))));
+                    environment.setVariable("codes", builder.build().wrap(iBlogCodeService.getParents(CodeKey.ARTICLE_TYPE)));
                     break;
                 case "menus":
                     // 用户菜单
