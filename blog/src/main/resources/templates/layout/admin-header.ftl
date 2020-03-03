@@ -13,7 +13,6 @@
     <link href="${basePath}/bootstrap/css/daterangepicker.css" rel="stylesheet">
     <link href="${basePath}/bootstrap/css/datetimepicker.css" rel="stylesheet">
     <link href="${basePath}/bootstrap/css/bootstrap-table.min.css" rel="stylesheet">
-    <link href="${basePath}/bootstrap/css/bootstrap-markdown.min.css" rel="stylesheet">
     <link href="${basePath}/bootstrap/css/bootstrap-tagsinput.css" rel="stylesheet">
     <#--图标字体库-->
     <link href="${basePath}/bootstrap/css/font-awesome.css" rel="stylesheet">

@@ -79,6 +79,8 @@
                         <li><a class="dropdown-item all-notifications text-center" href="#" rel="nofollow"> <strong>Read all messages   </strong></a></li>
                     </ul>
                 </li>
+
+                <li><a href="${basePath}/" title="跳转到前台"><i class="fa fa-desktop"></i></a></li>
             </ul>
         </nav>
     </div>

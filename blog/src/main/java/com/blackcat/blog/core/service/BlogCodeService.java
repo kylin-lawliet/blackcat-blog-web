@@ -21,7 +21,7 @@ public interface BlogCodeService extends IService<BlogCode> {
   void deleteBatchIds(Long[] ids);
 
   /**
-   * <p> 描述 : 码表父级资源选择
+   * <p> 描述 : 码表分类选择
    * @author : blackcat
    * @date  : 2020/2/27 16:04
   */

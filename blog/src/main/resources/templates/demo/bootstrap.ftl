@@ -1,9 +1,8 @@
 <!-- 页头 -->
-<#include "layout/header-admin.ftl"/>
+<#include "/layout/admin-header.ftl"/>
 <#assign basePath=request.contextPath />
 <div class="page-content d-flex align-items-stretch" xmlns="http://www.w3.org/1999/html">
     <!-- 左菜单 -->
-    <#include "layout/sidebar-admin.ftl"/>
     <div class="content-inner">
         <!-- 位置-->
         <header class="page-header">
@@ -47,7 +46,7 @@
 
         <div class="container">
             <h2>文字背景</h2>
-            <span class="badge badge-success" style="font-size: 12px;">成功</span>
+            <span class="badge badge-success">成功</span>
             <span class="badge badge-primary">主要</span>
             <span class="badge badge-secondary">次要</span>
             <span class="badge badge-success">成功</span>
@@ -62,4 +61,4 @@
 
 
 <!-- 页脚 -->
-<#include "layout/footer-admin.ftl"/>
+<#include "/layout/admin-footer.ftl"/>

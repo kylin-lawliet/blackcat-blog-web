@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p> 博客分类码表 前端控制器
@@ -28,6 +29,19 @@ public class BlogCodeController {
 
     @Resource
     private BlogCodeService iBlogCodeService;
+
+    /**
+     * <p> 描述 : 获取所有分类json字符串
+     * @author : blackcat
+     * @date  : 2020/3/2 16:43
+    */
+    @RequestMapping("/allJson/{id}")
+    public ResultUtil allJson(@PathVariable Long id) {
+        QueryWrapper<BlogCode> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(BlogCode::getCodeId, id);
+        List<BlogCode> list =iBlogCodeService.list(queryWrapper);
+        return ResultUtil.ok().put("data",list);
+    }
 
     /**
     * <p> 描述 : 获取列表数据

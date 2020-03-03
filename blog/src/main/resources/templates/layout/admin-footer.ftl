@@ -18,13 +18,16 @@
 <script src="${basePath}/bootstrap/js/bootstrap.js" type="text/javascript"></script>
 <script src="${basePath}/bootstrap/js/bootstrap-table.min.js" type="text/javascript"></script>
 <script src="${basePath}/bootstrap/js/bootstrap-table-zh-CN.js" type="text/javascript"></script>
-<script src="${basePath}/bootstrap/js/bootstrap-markdown.js" type="text/javascript"></script>
-<script src="${basePath}/bootstrap/js/bootstrap-markdown.zh.js" type="text/javascript"></script>
-<script src="${basePath}/bootstrap/js/bootstrap-tagsinput.js" type="text/javascript"></script>
+
+<script type="text/javascript" charset="utf-8" src="${basePath}/codemirror/lib/codemirror.js"></script>
+<script type="text/javascript" charset="utf-8" src="${basePath}/codemirror/mode/markdown/markdown.js"></script>
+<script type="text/javascript" charset="utf-8" src="${basePath}/codemirror/keymap/sublime.js"></script>
+<script type="text/javascript" charset="utf-8" src="${basePath}/marked/marked.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${basePath}/js/app.markdown.js"></script>
+
 <script src="${basePath}/ztree/js/jquery.ztree.core.js" type="text/javascript"></script>
 <script src="${basePath}/ztree/js/jquery.ztree.excheck.js" type="text/javascript"></script>
 <script src="${basePath}/js/validator.js"></script>
-<#--<script src="${basePath}/js/wangEditor.min.js" type="text/javascript"></script>-->
 <script src="${basePath}/js/blog.core.js"></script>
 <script src="${basePath}/js/blog-table.js"></script>
 <script src="${basePath}/js/blog-tool.js"></script>

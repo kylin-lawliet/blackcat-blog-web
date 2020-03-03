@@ -84,13 +84,12 @@ var tableId = "dataTable";//table元素id名称
                 /* 修改 */
                 $('#'+tableId).on('click', '.btn-update', function () {
                     var $this = $(this);
-                    var userId = $this.attr("data-id");
+                    var dataId = $this.attr("data-id");
                     $.ajax({
                         type: "post",
-                        url: options.getInfoUrl.replace("{id}", userId),
+                        url: options.getInfoUrl.replace("{id}", dataId),
                         success: function (json) {
                             var info = json.data;
-                            // console.log(info);
                             resetForm(info);
                             $("#addOrUpdateModal").modal('show');
                             $("#addOrUpdateModal").find(".modal-dialog .modal-content .modal-header h4.modal-title").html("修改" + options.modalName);
@@ -140,8 +139,8 @@ var tableId = "dataTable";//table元素id名称
                 /* 删除 */
                 $('#'+tableId).on('click', '.btn-remove', function () {
                     var $this = $(this);
-                    var userId = $this.attr("data-id");
-                    remove(userId);
+                    var dataId = $this.attr("data-id");
+                    remove(dataId);
                 });
             }
         }

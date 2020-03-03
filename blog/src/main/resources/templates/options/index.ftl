@@ -55,8 +55,7 @@
                     url: "/admin/options/update",
                     data: $("#siteForm").serialize(),
                     success: function (json) {
-                        alert(json.msg);//msg
-                        $.tool.ajaxSuccess(json);
+                        $.tool.ajaxSuccess(json.msg);
                     },
                     error: $.tool.ajaxError
                 });

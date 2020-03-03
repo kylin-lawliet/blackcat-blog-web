@@ -1,7 +1,12 @@
 package com.blackcat.blog.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.blackcat.blog.core.entity.BlogArticle;
+import com.blackcat.blog.core.entity.BlogCode;
 import com.blackcat.blog.core.entity.SysUser;
+import com.blackcat.blog.core.service.BlogArticleService;
 import com.blackcat.blog.core.service.BlogCodeListService;
+import com.blackcat.blog.core.service.BlogCodeService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.subject.Subject;
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p> ：页面跳转类
@@ -22,7 +28,11 @@ import javax.annotation.Resource;
 public class PageController {
 
     @Resource
+    private BlogCodeService iBlogCodeService;
+    @Resource
     private BlogCodeListService iBlogListCodeService;
+    @Resource
+    private BlogArticleService iBlogArticleService;
 
     /**
      * <p> : 跳转系统配置页面
@@ -49,8 +59,18 @@ public class PageController {
      * @author : blackcat
      * @date : 2020/1/19 13:44
      */
-    @GetMapping("/article/detail")
-    public String newArticle() {
+    @GetMapping("/article/detail/{id}")
+    public String newArticle(@PathVariable Long id,ModelMap map) {
+        if(id!=0){
+            BlogArticle article = iBlogArticleService.getById(id);
+            map.put("article", article);
+            if(article!=null){
+                List<BlogCode> tags=iBlogCodeService.list(
+                        new QueryWrapper<BlogCode>().lambda().in(BlogCode::getId,article.getTags().split(",")));
+                map.put("tags", tags);
+            }
+        }
+//        map.put("tagId", CodeKey.ARTICLE_TAG);
         return "blog/article_detail";
     }
 

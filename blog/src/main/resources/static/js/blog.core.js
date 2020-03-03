@@ -51,6 +51,23 @@
             });
         }
     });
+
+    // 下拉框选中
+    $('select[data-select]').each(function () {
+        var id = $(this).attr('data-select');
+        if (typeof(id) != 'undefined' && id.length > 0) {
+            $(this).val(id);
+        }
+    });
+
+    // 单选框选中
+    $("radio[data-check]").each(function () {
+        var id = $(this).attr('data-check');
+        if (typeof(id) != 'undefined' && id.length > 0 && $(this).val()==id ) {
+            $this.iCheck('check');
+        }
+    });
+
 })(jQuery);
 
 var blog = window.blog || {
