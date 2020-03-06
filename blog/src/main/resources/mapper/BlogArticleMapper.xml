@@ -21,4 +21,13 @@
         <result column="update_time" property="updateTime" />
     </resultMap>
 
+    <!--查询所有分类及文章个数-->
+    <select id="getCategory" resultType="com.blackcat.blog.core.vo.CategoryVo">
+        SELECT bc.id,bc.`name` as name,COUNT(ba.id) as number
+        FROM blog_article ba
+        LEFT JOIN blog_code bc ON ba.category_id=bc.id AND bc.parent_id is NULL
+        GROUP BY ba.category_id
+        ORDER BY name is NULL,bc.sort
+    </select>
+
 </mapper>

@@ -3,6 +3,9 @@ package com.blackcat.blog.core.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.blackcat.blog.core.entity.BlogArticle;
 import com.blackcat.blog.core.vo.ArticleVo;
+import com.blackcat.blog.core.vo.CategoryVo;
+
+import java.util.List;
 
 /**
  * <p> 博客文章 服务类
@@ -21,4 +24,11 @@ public interface BlogArticleService extends IService<BlogArticle> {
      * @return com.blackcat.blog.core.vo.ArticleVo
     */
     ArticleVo getArticleById(Long id,boolean comment,boolean markdown);
+
+    /**
+     * <p> 描述 : 查询首页分类结果集
+     * @author : blackcat
+     * @date  : 2020/3/6 12:33
+     */
+    List<CategoryVo> getCategory();
 }

@@ -31,6 +31,19 @@ public class BlogCodeController {
     private BlogCodeService iBlogCodeService;
 
     /**
+     * <p> 描述 : 码表数据
+     * - - - 递归获取所有子节点
+     * @author : blackcat
+     * @date  : 2020/3/4 15:56
+     * @param id
+     * @return com.blackcat.blog.util.ResultUtil
+    */
+    @RequestMapping("/getCodesByCodeListId/{id}")
+    public ResultUtil getCodesByCodeListId(@PathVariable Long id) {
+        return ResultUtil.ok().put("data",iBlogCodeService.getCodesByCodeListId(id.toString()));
+    }
+
+    /**
      * <p> 描述 : 获取所有分类json字符串
      * @author : blackcat
      * @date  : 2020/3/2 16:43
@@ -58,7 +71,7 @@ public class BlogCodeController {
                     like(BlogCode::getName, vo.getKeywords())
                     .or().like(BlogCode::getRemarks, vo.getKeywords());
         }
-        queryWrapper.lambda().orderByAsc(BlogCode::getSort);
+        queryWrapper.lambda().orderByAsc(BlogCode::getParentId).orderByAsc(BlogCode::getSort);
         iBlogCodeService.page(page, queryWrapper);
         return ResultUtil.tablePage(page);
     }

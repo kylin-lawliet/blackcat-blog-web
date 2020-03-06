@@ -51,15 +51,6 @@
                     title: '分类编号',
                     formatter:function (code) {
                         return code;
-                        <#--<@blog method="articleTypes">
-                            <#if codes?? && codes?size gt 0>
-                                <#list codes as item>
-                                    <#if item.id == code>
-                                        return item.name;
-                                    </#if>
-                                </#list>
-                            </#if>
-                        </@blog>-->
                     }
                 }, {
                     field: 'starCount',

@@ -38,6 +38,7 @@
 <script src="${basePath}/js/theia-sticky-sidebar.js"></script><!-- 前端样式插件 -->
 <script src="${basePath}/js/plugins.js"></script><!-- 前端样式插件 -->
 <script src="${basePath}/js/main.js"></script>
+<script src="${basePath}/js/blog-code.js"></script><!-- 加载一些码表相关数据 -->
 
 </body>
 </html>

@@ -2,7 +2,6 @@ package com.blackcat.blog.common.tag;
 
 import com.blackcat.blog.core.service.BlogCodeService;
 import com.blackcat.blog.core.service.SysMenuService;
-import com.blackcat.blog.core.vo.CodeKey;
 import freemarker.core.Environment;
 import freemarker.template.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +43,6 @@ public class CustomTag implements TemplateDirectiveModel {
                     if(mapContainsKey(map,MethodAttribute.CODES_CODE_ID)){
                         environment.setVariable("codes", builder.build().wrap(iBlogCodeService.getParents(map.get(MethodAttribute.CODES_CODE_ID).toString())));
                     }
-                    break;
-                case "articleTypes":
-                    // 获取所有可用的博客分类分类
-                    environment.setVariable("codes", builder.build().wrap(iBlogCodeService.getParents(CodeKey.ARTICLE_TYPE)));
                     break;
                 case "menus":
                     // 用户菜单

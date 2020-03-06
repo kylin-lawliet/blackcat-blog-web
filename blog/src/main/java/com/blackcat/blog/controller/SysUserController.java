@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.blackcat.blog.core.entity.SysUser;
 import com.blackcat.blog.core.enums.ResponseStatusEnum;
+import com.blackcat.blog.core.enums.UserTypeEnum;
 import com.blackcat.blog.core.object.PageResult;
 import com.blackcat.blog.core.service.SysUserService;
 import com.blackcat.blog.core.vo.BaseConditionVO;
@@ -69,7 +70,7 @@ public class SysUserController {
              return ResultUtil.error("该用户名[" + user.getUsername() + "]已存在！请更改用户名");
         }
         entity.setPassword(PasswordUtil.encrypt(entity.getPassword(), entity.getUsername()));
-        entity.setUserType("USER");
+        entity.setUserType(UserTypeEnum.USER);
         iSysUserService.save(entity);
         return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
     }

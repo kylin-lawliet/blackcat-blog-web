@@ -52,9 +52,11 @@
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">父级节点: </label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
+                            <input type="hidden" id="codeType" value="2">
+                            <input type="hidden" id="codeId" value="${codeParent.id}">
                             <select id="parentId" name="parentId" class="form-control col-md-5 col-xs-5">
                                 <option value="">请选择</option>
-                                <@blog method="codes" codeId="${codeParent.id}">
+                                <#--<@blog method="codes" codeId="${codeParent.id}">
                                     <#if codes?? && codes?size gt 0>
                                         <#list codes as item>
                                             <option value="${item.id?c}">${item.name}</option>
@@ -67,7 +69,7 @@
                                     <#else>
                                         <option value="">无</option>
                                     </#if>
-                                </@blog>
+                                </@blog>-->
                             </select>
                         </div>
                     </div>

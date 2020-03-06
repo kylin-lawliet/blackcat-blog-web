@@ -8,6 +8,7 @@ import com.blackcat.blog.core.mapper.BlogArticleMapper;
 import com.blackcat.blog.core.service.BlogArticleService;
 import com.blackcat.blog.core.service.BlogCodeService;
 import com.blackcat.blog.core.vo.ArticleVo;
+import com.blackcat.blog.core.vo.CategoryVo;
 import com.blackcat.blog.util.MarkdownUtils;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +45,10 @@ public class BlogArticleServiceImpl extends ServiceImpl<BlogArticleMapper, BlogA
         articleVo.setArticle(blogArticle);
         articleVo.setTags(tags);
         return articleVo;
+    }
+
+    @Override
+    public List<CategoryVo> getCategory() {
+        return blogArticleMapper.getCategory();
     }
 }

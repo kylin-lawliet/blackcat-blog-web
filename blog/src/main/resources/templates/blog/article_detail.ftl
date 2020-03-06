@@ -28,7 +28,7 @@
                 <div class="col-sm-5">
                     <select class="form-control" id="categoryId" name="categoryId" data-select="${articleVo.article.categoryId}">
                         <option value="0">请选择</option>
-                        <@blog method="articleTypes">
+                        <@blog method="codes" codeId="${options['articleTypeCodeId']}">
                             <#if codes?? && codes?size gt 0>
                                 <#list codes as item>
                                     <option value="${item.id?c}">${item.name}</option>

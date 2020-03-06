@@ -35,64 +35,11 @@
                         </div>
 
                         <!--导航菜单-->
+                        <input type="hidden" id="codeType" value="1">
+                        <input type="hidden" id="codeId" value="${options['navigation']}">
                         <div class="mainmenu-area">
                             <nav class="menu">
-                                <ul id="nav">
-                                    <li class="dropdown-trigger">
-                                        <a href="#">Home</a>
-                                        <ul class="dropdown-content">
-                                            <li class="dropdown-trigger">
-                                                <a href="#">Magazine</a>
-                                                <ul class="dropdown-content">
-                                                    <li><a href="index.html">Magazine one</a></li>
-                                                    <li><a href="index02.html">Magazine two</a></li>
-                                                    <li><a href="index03.html">Magazine Three</a></li>
-                                                    <li><a href="index04.html">Magazine four</a></li>
-                                                    <li><a href="index05.html">Magazine five</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="dropdown-trigger">
-                                                <a href="#">Blog</a>
-                                                <ul class="dropdown-content">
-                                                    <li><a href="index06.html">Blog one</a></li>
-                                                    <li><a href="index07.html">Blog two</a></li>
-                                                    <li><a href="index08.html">Blog Three</a></li>
-                                                    <li><a href="index09.html">Blog four</a></li>
-                                                    <li><a href="index10.html">Blog five</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-trigger">
-                                        <a href="#">Post Styles</a>
-                                        <ul class="dropdown-content">
-                                            <li><a href="category-standard.html">Standard Post</a></li>
-                                            <li><a href="category-grid.html">Grid Post</a></li>
-                                            <li><a href="category-list.html">List Post</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-trigger">
-                                        <a href="#">Categories</a>
-                                        <span class="menu-label new">new</span>
-                                        <ul class="dropdown-content">
-                                            <li><a href="category-grid.html">Business</a></li>
-                                            <li><a href="category-list.html">Fashion</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Features</a></li>
-                                    <li class="dropdown-trigger">
-                                        <a href="#">Pages</a>
-                                        <span class="menu-label">Hot</span>
-                                        <ul class="dropdown-content">
-                                            <li><a href="category-standard.html">Post standard</a></li>
-                                            <li><a href="category-grid.html">Post Grid Two</a></li>
-                                            <li><a href="category-list.html">Post list Three</a></li>
-                                            <li><a href="post-details.html">Post details One</a></li>
-                                            <li><a href="post-details-two.html">Post details Two</a></li>
-                                            <li><a href="post-details-three.html">Post details Three</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                <ul id="nav"></ul>
                             </nav>
                         </div>
 
@@ -126,7 +73,7 @@
             <div class="row">
                 <div class="col -12">
                     <div id="newsTicker" class="breaking-news-ticker">
-                        <div class="bn-label">Breaking News</div>
+                        <div class="bn-label">最新消息</div>
                         <div class="bn-news">
                             <ul>
                                 <li><a href="#">Taiwanese flag on artwork painted very pretty in australia & canada
@@ -138,11 +85,14 @@
                                 <li><a href="#">Return of the bench seat Concept show space big for
                                         sofas<span>Lifestyle</span></a></li>
                             </ul>
-                        </div><!--./ bn-news -->
+                        </div>
+                        <!--./ bn-news -->
                         <div class="bn-controls">
                             <button><span class="bn-arrow bn-prev"></span></button>
                             <button><span class="bn-arrow bn-next"></span></button>
-                        </div><!--./ bn-controls --></div>
+                        </div>
+                        <!--./ bn-controls -->
+                    </div>
                 </div>
             </div>
         </div>

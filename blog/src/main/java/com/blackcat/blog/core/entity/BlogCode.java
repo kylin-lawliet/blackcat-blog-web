@@ -25,7 +25,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class BlogCode extends Model<BlogCode> {
+public class BlogCode extends Model<BlogCode> implements Comparable<BlogCode>{
 
     private static final long serialVersionUID = 1L;
 
@@ -82,4 +82,11 @@ public class BlogCode extends Model<BlogCode> {
         return this.id;
     }
 
+    @Override
+    public int compareTo(BlogCode o) {
+        if (!this.getSort().equals(o.getSort())) {
+            return this.getSort()-o.getSort();
+        }
+        return 0;
+    }
 }

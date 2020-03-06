@@ -56,7 +56,12 @@ public class ShiroServiceImpl implements ShiroService {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // 配置不登录可以访问的资源，anon 表示资源都可以匿名访问
         filterChainDefinitionMap.put("/login", "anon");
+        // druid
         filterChainDefinitionMap.put("/druid/**", "anon");
+        // 码表信息
+        filterChainDefinitionMap.put("/code/getCodesByCodeListId/**", "anon");
+        // 首页分类
+        filterChainDefinitionMap.put("/article/getCategory", "anon");
         // 错误页面
         filterChainDefinitionMap.put("/error", "anon");
         // 静态资源

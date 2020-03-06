@@ -63,8 +63,9 @@ public class ContextStartup implements ApplicationRunner, ServletContextAware {
                 map.put(opt.getKeyName(), opt.getValue());
             }
         });
-        map.put("articleTypeCodeId", CodeKey.ARTICLE_TYPE);
-        map.put("articleTagCodeId", CodeKey.ARTICLE_TAG);
+        map.put(CodeKey.ARTICLE_TYPE_KEY, CodeKey.ARTICLE_TYPE);
+        map.put(CodeKey.ARTICLE_TAG_KEY, CodeKey.ARTICLE_TAG);
+        map.put(CodeKey.NAVIGATION_KEY, CodeKey.NAVIGATION);
         servletContext.setAttribute("options", map);
         servletContext.setAttribute("site", siteOptions);
 

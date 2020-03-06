@@ -31,6 +31,7 @@
 <script src="${basePath}/js/blog.core.js"></script>
 <script src="${basePath}/js/blog-table.js"></script>
 <script src="${basePath}/js/blog-tool.js"></script>
+<script src="${basePath}/js/blog-code.js"></script><!-- 加载一些码表相关数据 -->
 
 </body>
 </html>

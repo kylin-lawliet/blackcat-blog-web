@@ -7,6 +7,7 @@ import com.blackcat.blog.core.entity.SysRole;
 import com.blackcat.blog.core.entity.SysUser;
 import com.blackcat.blog.core.entity.SysUserRole;
 import com.blackcat.blog.core.enums.ResponseStatusEnum;
+import com.blackcat.blog.core.enums.UserTypeEnum;
 import com.blackcat.blog.core.service.SysRoleService;
 import com.blackcat.blog.core.service.SysUserRoleService;
 import com.blackcat.blog.core.service.SysUserService;
@@ -54,14 +55,13 @@ public class SysUserRoleController {
 
             SysRole role = iSysRoleService.getById(roleIds);
             SysUser sysUser = new SysUser();
-            String rolename = "USER";
+            sysUser.setUserType(UserTypeEnum.USER);
             if(role.getName().indexOf("root")!=-1){
-                rolename = "TOOR";
+                sysUser.setUserType(UserTypeEnum.ROOT);
             }
             if(role.getName().indexOf("admin")!=-1){
-                rolename = "ADMIN";
+                sysUser.setUserType(UserTypeEnum.ADMIN);
             }
-            sysUser.setUserType(rolename);
             iSysUserService.update(sysUser,new QueryWrapper<SysUser>().eq("id",userId));
         }
 

@@ -3,6 +3,7 @@ package com.blackcat.blog.core.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.blackcat.blog.core.enums.UserTypeEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -73,7 +74,7 @@ public class SysUser extends Model<SysUser> {
     /**
      * ROOT超级管理员、ADMIN管理员、USER普通用户
      */
-    private String userType;
+    private UserTypeEnum userType;
 
     /**
      * 注册IP

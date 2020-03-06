@@ -15,4 +15,9 @@ public class RedisKey {
      *  博客标签
      */
     public static String ARTICLE_TAG= "article_tag";
+
+    /**
+     *  博客标签
+     */
+    public static String NAVIGATION= "navigation";
 }

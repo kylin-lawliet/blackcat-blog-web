@@ -4,44 +4,7 @@
             <aside class="widget widget-categories">
                 <h4 class="widget-title"><span>分类</span> </h4>
                 <div class="widget-content">
-                    <ul>
-                        <li class="cat-item">
-                            <a href="category-grid.html">
-                                Sport
-                                <span class="count">14</span>
-                            </a>
-                        </li>
-                        <li class="cat-item">
-                            <a href="category-grid.html">
-                                Health
-                                <span class="count">25</span>
-                            </a>
-                        </li>
-                        <li class="cat-item">
-                            <a href="category-grid.html">
-                                Food
-                                <span class="count">10</span>
-                            </a>
-                        </li>
-                        <li class="cat-item">
-                            <a href="category-grid.html">
-                                Fashion
-                                <span class="count">12</span>
-                            </a>
-                        </li>
-                        <li class="cat-item">
-                            <a href="category-grid.html">
-                                Lifestyle
-                                <span class="count">2</span>
-                            </a>
-                        </li>
-                        <li class="cat-item">
-                            <a href="category-grid.html">
-                                Business
-                                <span class="count">34</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <ul id="category"></ul>
                 </div>
             </aside>
             <aside class="widget popular-posts-widget">
@@ -50,11 +13,11 @@
                     <aside class="widget bt-widget-categories">
                         <div class="entry-footer mt-10">
                             <div class="entry-tag">
-                                <a href="#" rel="tag">World</a>
-                                <a href="#" rel="tag">Technology</a>
-                                <a href="#" rel="tag">fun</a>
-                                <a href="#" rel="tag">fashion</a>
-                                <a href="#" href="#" rel="tag">entrepreneurship</a>
+                                <@blog method="codes" codeId="${options['articleTagCodeId']}">
+                                    <#list codes as code>
+                                        <a href="#" rel="tag">${code.name}</a>
+                                    </#list>
+                                </@blog>
                             </div>
                         </div>
                     </aside>
