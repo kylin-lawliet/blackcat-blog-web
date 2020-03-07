@@ -58,6 +58,8 @@ public class ShiroServiceImpl implements ShiroService {
         filterChainDefinitionMap.put("/login", "anon");
         // druid
         filterChainDefinitionMap.put("/druid/**", "anon");
+        // 查看文章
+        filterChainDefinitionMap.put("/article/view/**", "anon");
         // 码表信息
         filterChainDefinitionMap.put("/code/getCodesByCodeListId/**", "anon");
         // 首页分类

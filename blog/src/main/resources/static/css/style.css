@@ -8262,3 +8262,129 @@ ul.dropdown-content > .dropdown-trigger:hover > ul.dropdown-content > li:hover >
 .cloud ul a:first-child { background: #036564 }
 .cloud ul a:last-child { background: #3299BB }
 .cloud ul a:hover { border-radius: 0; text-shadow: #000 1px 1px 1px }
+
+/*评论*/
+.comment *{
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #3c484e;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    margin: initial;
+    padding: initial;
+}
+
+.comment .comment_area{
+    overflow: hidden;
+    position: relative;
+}
+
+.comment .editor-area{
+
+}
+
+.cancel{
+    margin: 5px;
+    font-size: 18px;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+.comment .c_editor{
+    width: 100%;
+    height: 145px;
+}
+
+.comment ::-webkit-scrollbar{
+    width: 2px;
+}
+.comment .w-e-text-container{
+    height: 115px!important;
+}
+.comment .w-e-toolbar{
+    background: #fff!important;
+}
+.comment pre{
+    background: #f8fffa;
+    padding: 6px;
+}
+.comment img{
+    margin: 10px;
+}
+.c_list{
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.c_card{
+    list-style: none;
+    word-break: break-all;
+}
+.c_body{
+    padding: .1em .5em .2em;
+    border-top: 1px solid rgba(150, 150, 150, 0.08);
+}
+.c_head{
+    line-height: 1;
+    display: block;
+    margin-bottom: .3em;
+    position: relative;
+}
+.c_head .vavatar{
+    margin-right: 1em;
+    margin-top: 0.1em;
+    display: inline-block;
+    height: 38px;
+    width: 38px;
+    border: 1px solid #e7ac64;
+    position: absolute;
+    top: 0;
+    border-radius: 50%;
+}
+
+.c_body:hover .c_del,
+.c_body:hover .c_at{
+    background: #000;
+    color: #ffffff;
+}
+
+.c_del,
+.c_at{
+    float: right;
+    background: transparent;
+    color: #ffffff;
+    padding: .2em 1em;
+    line-height: 1.2;
+    cursor: pointer;
+    margin: 3px;
+    word-break: keep-all;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+.c_info{
+    margin: 0 0 0 55px;
+}
+.c_name{
+    font-weight: bolder;
+    font-size: 1em;
+    margin-right: 10px;
+    color: rgba(0, 0, 0, 0.7);
+}
+.c_time{
+    color: #a9a4a4;
+    display: inline-block;
+    font-weight: normal;
+    font-size: 90%;
+}
+.c_content{
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-left: 48px;
+    padding-top: 5px;
+    margin-top: 10px;
+}
