@@ -4,8 +4,8 @@
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <ol class="breadcrumb">
-            <li><a href="${basePath}/admin">首页</a></li>
-            <li><a href="${basePath}/code/listIndex">码表管理</a></li>
+            <li><a href="/admin">首页</a></li>
+            <li><a href="/code/listIndex">码表管理</a></li>
             <li class="active">${codeParent.name}</li>
         </ol>
         <div class="x_panel">

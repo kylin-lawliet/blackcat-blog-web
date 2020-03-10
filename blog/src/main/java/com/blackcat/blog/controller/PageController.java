@@ -33,7 +33,10 @@ public class PageController {
     @Resource
     private BlogArticleService iBlogArticleService;
 
-
+    @GetMapping("/comment/index")
+    public String comment() {
+        return "blog/comment";
+    }
 
     //******************************博客文章 start**************************************
     /**

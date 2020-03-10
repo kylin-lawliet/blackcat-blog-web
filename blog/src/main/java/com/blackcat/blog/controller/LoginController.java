@@ -54,6 +54,9 @@ public class LoginController {
             // 每个Realm都能在必要时对提交的AuthenticationTokens作出反应
             // 所以这一步在调用login(token)方法时,它会走到xxRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法
             currentUser.login(token);
+            Subject subject = SecurityUtils.getSubject();
+            SysUser user=(SysUser) subject.getPrincipal();
+            SecurityUtils.getSubject().getSession(true).setAttribute("userInfo", user);
             return ResultUtil.ok("登录成功！");
         } catch (Exception e) {
             log.error("登录失败，用户名[{}]", username, e);

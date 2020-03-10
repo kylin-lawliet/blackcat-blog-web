@@ -17,4 +17,6 @@ public class ArticleVo {
     private BlogArticle article;
     // 博客标签
     private List<BlogCode> tags;
+    // 评论
+    private List<CommentVo> comments;
 }

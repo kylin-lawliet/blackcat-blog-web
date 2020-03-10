@@ -1,6 +1,5 @@
 package com.blackcat.blog.core.vo;
 
-import com.blackcat.blog.core.entity.SysUser;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -24,7 +23,7 @@ public class BaseConditionVO {
 //    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 //    private Date endDate;
 
-    private SysUser user;
+//    private SysUser user;
 
     public int getPageNumber() {
         return pageNumber;

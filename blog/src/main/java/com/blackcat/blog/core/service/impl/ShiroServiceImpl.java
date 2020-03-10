@@ -62,6 +62,8 @@ public class ShiroServiceImpl implements ShiroService {
         filterChainDefinitionMap.put("/article/view/**", "anon");
         // 码表信息
         filterChainDefinitionMap.put("/code/getCodesByCodeListId/**", "anon");
+        // 获取评论
+        filterChainDefinitionMap.put("/comment/getAllByArticleId/**", "anon");
         // 首页分类
         filterChainDefinitionMap.put("/article/getCategory", "anon");
         // 错误页面

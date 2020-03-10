@@ -7,8 +7,10 @@ import com.blackcat.blog.core.entity.BlogCode;
 import com.blackcat.blog.core.mapper.BlogArticleMapper;
 import com.blackcat.blog.core.service.BlogArticleService;
 import com.blackcat.blog.core.service.BlogCodeService;
+import com.blackcat.blog.core.service.BlogCommentService;
 import com.blackcat.blog.core.vo.ArticleVo;
 import com.blackcat.blog.core.vo.CategoryVo;
+import com.blackcat.blog.core.vo.CommentConditionVO;
 import com.blackcat.blog.util.MarkdownUtils;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,8 @@ public class BlogArticleServiceImpl extends ServiceImpl<BlogArticleMapper, BlogA
     private BlogArticleMapper blogArticleMapper;
     @Resource
     private BlogCodeService iBlogCodeService;
+    @Resource
+    private BlogCommentService iBlogCommentService;
 
     @Override
     public ArticleVo getArticleById(Long id,boolean comment,boolean markdown) {
@@ -40,7 +44,9 @@ public class BlogArticleServiceImpl extends ServiceImpl<BlogArticleMapper, BlogA
             blogArticle.setContent(MarkdownUtils.renderMarkdown(blogArticle.getContent()));
         }
         if(comment){
-
+            CommentConditionVO vo = new CommentConditionVO();
+            vo.setArticleId(String.valueOf(id));
+            articleVo.setComments(iBlogCommentService.findAll(vo));
         }
         articleVo.setArticle(blogArticle);
         articleVo.setTags(tags);

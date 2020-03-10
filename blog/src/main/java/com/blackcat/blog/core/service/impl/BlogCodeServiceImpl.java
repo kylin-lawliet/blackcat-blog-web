@@ -39,7 +39,7 @@ public class BlogCodeServiceImpl extends ServiceImpl<BlogCodeMapper, BlogCode> i
         queryWrapper.lambda().eq(BlogCode::getCodeId, id);
         List<BlogCode> allCode=blogCodeMapper.selectList(queryWrapper);
         // 根节点
-        List<BlogCode> rootCode = new ArrayList<BlogCode>();
+        List<BlogCode> rootCode = new ArrayList<>();
         // 找到根节点
         allCode.forEach(code->{
             if(code.getParentId()==null){
