@@ -1,6 +1,7 @@
 package com.blackcat.blog.common.config;
 
 import com.blackcat.blog.common.tag.CustomTag;
+import com.blackcat.blog.util.FormatTimeFTLHelper;
 import com.jagregory.shiro.freemarker.ShiroTags;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -31,5 +32,9 @@ public class FreeMarkerConfig {
         configuration.setSharedVariable("blog", customTag);
         // shiro标签
         configuration.setSharedVariable("shiro", new ShiroTags());
+        // 设定在页面使用的标签的类型 (([]、<>),[]这种标记解析要快些)
+        configuration.setTagSyntax(freemarker.template.Configuration.AUTO_DETECT_TAG_SYNTAX);
+        // 日期格式化标签
+        configuration.setSharedVariable("formatTime", new FormatTimeFTLHelper());
     }
 }
