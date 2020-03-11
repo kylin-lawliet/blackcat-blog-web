@@ -30,4 +30,16 @@
         ORDER BY name is NULL,bc.sort
     </select>
 
+    <!--根据评论id-->
+    <select id="getCommentCount" resultType="com.blackcat.blog.core.vo.CommentCountVo">
+        SELECT ba.id as articleId,count(bc.id) as commentCount FROM blog_article ba
+        LEFT JOIN blog_comment bc ON bc.article_id=ba.id
+        AND bc.id in(
+            <foreach collection="array"  item="id" index="index" separator=",">
+                #{id}
+            </foreach>
+        )
+        GROUP BY ba.id
+    </select>
+
 </mapper>

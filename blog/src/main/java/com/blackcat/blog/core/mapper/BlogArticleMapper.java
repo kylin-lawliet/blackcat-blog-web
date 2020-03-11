@@ -3,6 +3,7 @@ package com.blackcat.blog.core.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.blackcat.blog.core.entity.BlogArticle;
 import com.blackcat.blog.core.vo.CategoryVo;
+import com.blackcat.blog.core.vo.CommentCountVo;
 
 import java.util.List;
 
@@ -12,6 +13,8 @@ import java.util.List;
  * @date 2020-02-28
  */
 public interface BlogArticleMapper extends BaseMapper<BlogArticle> {
+
+    List<CommentCountVo> getCommentCount(Long[] ids);
 
     /**
      * <p> 描述 : 查询首页分类结果集

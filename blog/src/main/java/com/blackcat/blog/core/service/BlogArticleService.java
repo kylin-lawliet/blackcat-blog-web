@@ -14,6 +14,32 @@ import java.util.List;
  */
 public interface BlogArticleService extends IService<BlogArticle> {
 
+
+    /**
+     * <p> 描述 : 获取热门文章 前五篇
+     * @author : blackcat
+     * @date  : 2020/3/11 13:11
+    */
+    List<BlogArticle> getTop();
+
+    /**
+     * <p> 描述 : 修改文章评论条数 添加
+     * @author : blackcat
+     * @date  : 2020/3/11 13:19
+     * @param id 文章id
+     * @return void
+    */
+    void updateArticleCommentCount(Long id);
+
+    /**
+     * <p> 描述 : 修改文章评论条数 删除
+     * @author : blackcat
+     * @date  : 2020/3/11 13:32
+     * @param ids
+     * @return void
+    */
+    void updateArticleCommentCount(Long[] ids);
+
     /**
      * <p> 描述 : 查询博客相关信息
      * @author : blackcat

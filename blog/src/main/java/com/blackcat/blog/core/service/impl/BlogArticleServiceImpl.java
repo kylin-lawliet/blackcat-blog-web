@@ -11,10 +11,12 @@ import com.blackcat.blog.core.service.BlogCommentService;
 import com.blackcat.blog.core.vo.ArticleVo;
 import com.blackcat.blog.core.vo.CategoryVo;
 import com.blackcat.blog.core.vo.CommentConditionVO;
+import com.blackcat.blog.core.vo.CommentCountVo;
 import com.blackcat.blog.util.MarkdownUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -32,6 +34,49 @@ public class BlogArticleServiceImpl extends ServiceImpl<BlogArticleMapper, BlogA
     private BlogCodeService iBlogCodeService;
     @Resource
     private BlogCommentService iBlogCommentService;
+
+    @Override
+    public List<BlogArticle> getTop() {
+        QueryWrapper<BlogArticle> queryWrapper = new QueryWrapper();
+        queryWrapper.lambda()
+        .orderByDesc(
+                BlogArticle::getViewCount,
+                BlogArticle::getStarCount,
+                BlogArticle::getCommentCount,
+                BlogArticle::getCreateTime).last("limit 5");
+        return blogArticleMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public void updateArticleCommentCount(Long id) {
+        BlogArticle blogArticle = blogArticleMapper.selectById(id);
+        blogArticle.setCommentCount(blogArticle.getCommentCount().add(BigDecimal.ONE));
+        blogArticleMapper.updateById(blogArticle);
+    }
+
+    /**
+     * <p> 描述 : 修改文章评论格式 减去
+     * @author : blackcat
+     * @date  : 2020/3/11 15:00
+     * @param id
+     * @param count
+     * @return void
+    */
+    private void updateArticleCommentCount(Long id,Integer count){
+        BlogArticle blogArticle = blogArticleMapper.selectById(id);
+        blogArticle.setCommentCount(blogArticle.getCommentCount().subtract(new BigDecimal(count)));
+        blogArticleMapper.updateById(blogArticle);
+    }
+
+    @Override
+    public void updateArticleCommentCount(Long[] ids) {
+        List<CommentCountVo> getCommentCount = blogArticleMapper.getCommentCount(ids);
+        if(getCommentCount!=null){
+            getCommentCount.forEach(obj->{
+                updateArticleCommentCount(obj.getArticleId(),obj.getCommentCount());
+            });
+        }
+    }
 
     @Override
     public ArticleVo getArticleById(Long id,boolean comment,boolean markdown) {

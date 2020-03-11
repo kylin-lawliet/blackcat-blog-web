@@ -6,6 +6,7 @@ import com.blackcat.blog.core.entity.BlogComment;
 import com.blackcat.blog.core.entity.SysUser;
 import com.blackcat.blog.core.enums.ResponseStatusEnum;
 import com.blackcat.blog.core.object.PageResult;
+import com.blackcat.blog.core.service.BlogArticleService;
 import com.blackcat.blog.core.service.BlogCommentService;
 import com.blackcat.blog.core.vo.CommentConditionVO;
 import com.blackcat.blog.core.vo.CommentVo;
@@ -30,6 +31,8 @@ public class BlogCommentController {
 
     @Resource
     private BlogCommentService iBlogCommentService;
+    @Resource
+    private BlogArticleService iBlogArticleService;
 
     /**
      * <p> 描述 : 获取文章评论
@@ -66,6 +69,7 @@ public class BlogCommentController {
         SysUser sysUser= (SysUser) subject.getPrincipal();
         entity.setUserId(sysUser.getId());
         iBlogCommentService.save(entity);
+        iBlogArticleService.updateArticleCommentCount(entity.getArticleId());
         return ResultUtil.ok().put("data",entity);
     }
 
@@ -81,6 +85,7 @@ public class BlogCommentController {
            return ResultUtil.error(String.valueOf(ResponseStatusEnum.REMOVE_ERROR));
         }
         iBlogCommentService.remove(new UpdateWrapper<BlogComment>().in("id", ids));
+        iBlogArticleService.updateArticleCommentCount(ids);
         return ResultUtil.ok("成功删除 [" + ids.length + "] 个数据");
     }
 

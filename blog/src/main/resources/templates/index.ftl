@@ -2,7 +2,8 @@
 <!--********************* 页头 **********************-->
 <!--********************************************************-->
 <#include "layout/header.ftl"/>
-
+<#setting date_format="yyyy-MM-dd HH:mm:ss">
+<#setting datetime_format="yyyy-MM-dd HH:mm:ss"/>
 <#assign basePath=request.contextPath />
 <!--********************************************************-->
 <!--********************* 页面内容 *********************-->
@@ -44,7 +45,13 @@
                                                     </div>
                                                 </div>
                                                 <!--日期-->
-                                                <div class="entry-date"><span>${article.updateTime}</span></div>
+                                                <div class="entry-date">
+                                                    <span>
+                                                        <#--${article.updateTime}-->
+                                                        <#--<@formatTime unix="${article.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"></@formatTime>-->
+                                                        <@formatTime unix="${article.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"> </@formatTime>
+                                                    </span>
+                                                </div>
                                                 <!--阅读数量-->
                                                 <div class="entry-views"><i class="fa fa-eye"></i>&nbsp;<span>${article.viewCount}</span></div>
                                                 <!--评论数量-->

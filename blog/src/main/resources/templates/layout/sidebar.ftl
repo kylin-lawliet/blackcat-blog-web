@@ -28,48 +28,50 @@
             <aside class="widget popular-posts-widget">
                 <h4 class="widget-title"> <span>热门文章</span></h4>
                 <div class="widget-content">
-                    <article class="post side-post">
-                        <!--./ thumb-wrap -->
-                        <div class="content-entry-wrap">
-                            <h3 class="entry-title">
-                                <a href="../black/post-details.html">The rumored iPhone could come in hot pink</a>
-                            </h3><!--./ entry-title -->
-                            <div class="entry-meta-content">
-                                <div class="entry-date"><span>July 24, 2019</span></div>
-                                <!--./ entry-date -->
+                    <#list articlesTop as article>
+                        <article class="post side-post">
+                            <div class="content-entry-wrap">
+                                <h3 class="entry-title">
+                                    <a href="/article/view/${article.id}">${article.title}</a>
+                                </h3>
+                                <div class="entry-meta-content">
+                                    <div class="entry-date">
+                                        <span>
+                                            <@formatTime unix="${article.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"> </@formatTime>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                            <!--./ entry-meta-content -->
-                        </div>
-                    </article>
+                        </article>
+                    </#list>
 
-                    <article class="post side-post">
-                        <!--./ thumb-wrap -->
+
+                   <#-- <article class="post side-post">
+                        <!--./ thumb-wrap &ndash;&gt;
                         <div class="content-entry-wrap">
                             <h3 class="entry-title">
                                 <a href="../black/post-details.html">How to live with some vegeterian when you eat</a>
-                            </h3><!--./ entry-title -->
+                            </h3><!--./ entry-title &ndash;&gt;
                             <div class="entry-meta-content">
                                 <div class="entry-date"><span>July 24, 2019</span></div>
-                                <!--./ entry-date -->
+                                <!--./ entry-date &ndash;&gt;
                             </div>
-                            <!--./ entry-meta-content -->
+                            <!--./ entry-meta-content &ndash;&gt;
                         </div>
                     </article>
-
-
                     <article class="post side-post">
-                        <!--./ thumb-wrap -->
+                        <!--./ thumb-wrap &ndash;&gt;
                         <div class="content-entry-wrap">
                             <h3 class="entry-title">
                                 <a href="../black/post-details.html">This gun is advertise as the most popular gun</a>
-                            </h3><!--./ entry-title -->
+                            </h3><!--./ entry-title &ndash;&gt;
                             <div class="entry-meta-content">
                                 <div class="entry-date"><span>July 24, 2019</span></div>
-                                <!--./ entry-date -->
+                                <!--./ entry-date &ndash;&gt;
                             </div>
-                            <!--./ entry-meta-content -->
+                            <!--./ entry-meta-content &ndash;&gt;
                         </div>
-                    </article>
+                    </article>-->
 
             </aside>
             <!--~./ end popular posts widget ~-->
