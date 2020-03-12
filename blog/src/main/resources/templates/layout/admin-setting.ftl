@@ -5,20 +5,6 @@
             <div class="nav toggle">
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
             </div>
-            <#--<ul class="nav navbar-nav navbar-right">-->
-                <#--<li class="">-->
-                    <#--<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">-->
-                        <#--<img src="${basePath}/images/author.png" alt=""><#if user?exists>${user.username?if_exists}<#else>管理员</#if>-->
-                        <#--<span class=" fa fa-angle-down"></span>-->
-                    <#--</a>-->
-                    <#--<ul class="dropdown-menu dropdown-usermenu pull-right">-->
-                        <#--<li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> 退出系统</a></li>-->
-                    <#--</ul>-->
-                <#--</li>-->
-                <#--<li class="">-->
-                    <#--<i class="fa fa-sign-out pull-right"></i><a href="${basePath}/logout"> 退出系统</a>-->
-                <#--</li>-->
-            <#--</ul>-->
             <ul class="nav navbar-nav navbar-right list-unstyled d-flex flex-md-row align-items-md-center">
 
                 <!-- Logout    -->

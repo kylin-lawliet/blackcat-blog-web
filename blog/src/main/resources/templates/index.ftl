@@ -47,8 +47,6 @@
                                                 <!--日期-->
                                                 <div class="entry-date">
                                                     <span>
-                                                        <#--${article.updateTime}-->
-                                                        <#--<@formatTime unix="${article.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"></@formatTime>-->
                                                         <@formatTime unix="${article.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"> </@formatTime>
                                                     </span>
                                                 </div>
@@ -56,8 +54,8 @@
                                                 <div class="entry-views"><i class="fa fa-eye"></i>&nbsp;<span>${article.viewCount}</span></div>
                                                 <!--评论数量-->
                                                 <div class="entry-views"><i class="fa fa-comment-o"></i>&nbsp;<span>${article.commentCount}</span></div>
-                                                <!--评论数量-->
-                                                <div class="entry-views"><i class="fa fa-thumbs-o-up"></i>&nbsp;<span>${article.starCount}</span></div>
+                                                <!--点赞数量-->
+                                                <#--<div class="entry-views"><i class="fa fa-thumbs-o-up"></i>&nbsp;<span>${article.starCount}</span></div>-->
                                                 <!--分类-->
                                                 <div class="entry-category">
                                                     <#list articleVo.tags as tag>

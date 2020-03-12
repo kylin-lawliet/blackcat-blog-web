@@ -45,7 +45,10 @@
                     checkbox: true
                 }, {
                     field: 'title',
-                    title: '文章标题'
+                    title: '文章标题',
+                    formatter:function (code,row) {
+                        return '<a href="/article/view/'+row.id+'" target="_blank">'+code+'</a>';
+                    }
                 }, {
                     field: 'categoryId',
                     title: '分类编号',

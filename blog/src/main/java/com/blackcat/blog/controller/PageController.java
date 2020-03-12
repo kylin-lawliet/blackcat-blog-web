@@ -145,8 +145,6 @@ public class PageController {
     public String web(ModelMap map) {
         List<BlogArticle> articles = iBlogArticleService.list(new QueryWrapper<BlogArticle>().lambda().eq(BlogArticle::getPublish,1));
         map.put("articles", articles);
-        List<BlogArticle> articlesTop = iBlogArticleService.getTop();
-        map.put("articlesTop", articlesTop);
         return "index";
     }
 

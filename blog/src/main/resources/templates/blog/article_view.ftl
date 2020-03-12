@@ -30,15 +30,15 @@
                                         </div>
                                         <!--日期-->
                                         <div class="entry-date">
-                                            <span>2020-03-03 16:23</span>
+                                            <span><@formatTime unix="${articleVo.article.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"> </@formatTime></span>
                                         </div>
                                         <!--阅读数量-->
                                         <div class="entry-views">
-                                            <span><i class="fa fa-eye"></i>&nbsp;0</span>
+                                            <span><i class="fa fa-eye"></i>&nbsp;${articleVo.article.viewCount}</span>
                                         </div>
                                         <!--评论数量-->
                                         <div class="entry-comment">
-                                            <span><i class="fa fa-comment-o"></i>&nbsp;0</span>
+                                            <span><i class="fa fa-comment-o"></i>&nbsp;${articleVo.article.commentCount}</span>
                                         </div>
                                         <!--标签-->
                                         <div class="entry-category">

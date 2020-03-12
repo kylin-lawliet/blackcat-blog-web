@@ -49,7 +49,10 @@
                     title: '评论用户'
                 }, {
                     field: 'articleTitle',
-                    title: '评论文章'
+                    title: '评论文章',
+                    formatter:function (code,row) {
+                        return '<a href="/article/view/'+row.articleId+'" target="_blank">'+code+'</a>';
+                    }
                 }, {
                     field: 'createTime',
                     title: '评论时间'

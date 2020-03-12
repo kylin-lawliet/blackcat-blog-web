@@ -1,5 +1,6 @@
 package com.blackcat.blog.common.tag;
 
+import com.blackcat.blog.core.service.BlogArticleService;
 import com.blackcat.blog.core.service.BlogCodeService;
 import com.blackcat.blog.core.service.SysMenuService;
 import freemarker.core.Environment;
@@ -26,6 +27,8 @@ public class CustomTag implements TemplateDirectiveModel {
     private SysMenuService sysMenuService;
     @Resource
     private BlogCodeService iBlogCodeService;
+    @Resource
+    private BlogArticleService iBlogArticleService;
 
     @Override
     public void execute(Environment environment, Map map, TemplateModel[] templateModels, TemplateDirectiveBody templateDirectiveBody) throws TemplateException, IOException {
@@ -43,6 +46,9 @@ public class CustomTag implements TemplateDirectiveModel {
                     if(mapContainsKey(map,MethodAttribute.CODES_CODE_ID)){
                         environment.setVariable("codes", builder.build().wrap(iBlogCodeService.getParents(map.get(MethodAttribute.CODES_CODE_ID).toString())));
                     }
+                    break;
+                case "articleTop":
+                    environment.setVariable("articleTop", builder.build().wrap(iBlogArticleService.getTop()));
                     break;
                 case "menus":
                     // 用户菜单

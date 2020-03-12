@@ -16,7 +16,6 @@ import com.blackcat.blog.util.ResultUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,17 +38,6 @@ public class BlogArticleController {
     private BlogArticleService iBlogArticleService;
     @Resource
     private BlogArticleTagService iBlogArticleTagService;
-
-
-
-    @RequestMapping("/getArticleByCondition/{id}")
-    public ResultUtil getArticleByCondition(@PathVariable Long id) {
-        QueryWrapper<BlogArticle> queryWrapper =new QueryWrapper<BlogArticle>();
-//        queryWrapper.lambda().eq(BlogArticle::getPublish,1)
-//        .and();
-        List<BlogArticle> articles = iBlogArticleService.list();
-        return ResultUtil.ok().put("data",articles);
-    }
 
 @   RequestMapping("/getCategory")
     public ResultUtil getCategory() {
