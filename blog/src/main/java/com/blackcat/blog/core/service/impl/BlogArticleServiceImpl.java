@@ -10,7 +10,6 @@ import com.blackcat.blog.core.service.BlogCodeService;
 import com.blackcat.blog.core.service.BlogCommentService;
 import com.blackcat.blog.core.vo.ArticleVo;
 import com.blackcat.blog.core.vo.CategoryVo;
-import com.blackcat.blog.core.vo.CommentConditionVO;
 import com.blackcat.blog.core.vo.CommentCountVo;
 import com.blackcat.blog.util.MarkdownUtils;
 import org.springframework.stereotype.Service;
@@ -79,7 +78,7 @@ public class BlogArticleServiceImpl extends ServiceImpl<BlogArticleMapper, BlogA
     }
 
     @Override
-    public ArticleVo getArticleById(Long id,boolean comment,boolean markdown) {
+    public ArticleVo getArticleById(Long id,boolean markdown) {
         ArticleVo articleVo = new ArticleVo();
         BlogArticle blogArticle = blogArticleMapper.selectById(id);
         List<BlogCode> tags=iBlogCodeService.list(
@@ -87,11 +86,6 @@ public class BlogArticleServiceImpl extends ServiceImpl<BlogArticleMapper, BlogA
                         .in(BlogCode::getId,blogArticle.getTags().split(",")));
         if(markdown){
             blogArticle.setContent(MarkdownUtils.renderMarkdown(blogArticle.getContent()));
-        }
-        if(comment){
-            CommentConditionVO vo = new CommentConditionVO();
-            vo.setArticleId(String.valueOf(id));
-            articleVo.setComments(iBlogCommentService.findAll(vo));
         }
         articleVo.setArticle(blogArticle);
         articleVo.setTags(tags);

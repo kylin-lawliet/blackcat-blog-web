@@ -49,7 +49,7 @@ public interface BlogArticleService extends IService<BlogArticle> {
      * @param markdown 是否渲染markdown
      * @return com.blackcat.blog.core.vo.ArticleVo
     */
-    ArticleVo getArticleById(Long id,boolean comment,boolean markdown);
+    ArticleVo getArticleById(Long id,boolean markdown);
 
     /**
      * <p> 描述 : 查询首页分类结果集

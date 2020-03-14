@@ -57,7 +57,7 @@ public class PageController {
     @GetMapping("/article/detail/{id}")
     public String newArticle(@PathVariable Long id,ModelMap map) {
         if(id!=0){
-            map.put("articleVo", iBlogArticleService.getArticleById(id,false,false));
+            map.put("articleVo", iBlogArticleService.getArticleById(id,false));
         }
         return "blog/article_detail";
     }
@@ -70,7 +70,7 @@ public class PageController {
     @GetMapping("/article/view/{id}")
     public String view(@PathVariable Long id,ModelMap map) {
         if(id!=0){
-            ArticleVo articleVo = iBlogArticleService.getArticleById(id, true, true);
+            ArticleVo articleVo = iBlogArticleService.getArticleById(id, true);
             BlogArticle article = articleVo.getArticle();
             UpdateWrapper<BlogArticle> updateWrapper=new UpdateWrapper<>();
             updateWrapper.lambda().eq(BlogArticle::getId, article.getId());
