@@ -8,6 +8,7 @@ import com.blackcat.blog.core.enums.ResponseStatusEnum;
 import com.blackcat.blog.core.object.PageResult;
 import com.blackcat.blog.core.service.BlogArticleService;
 import com.blackcat.blog.core.service.BlogCommentService;
+import com.blackcat.blog.core.service.BlogMessageService;
 import com.blackcat.blog.core.vo.CommentConditionVO;
 import com.blackcat.blog.core.vo.CommentVo;
 import com.blackcat.blog.util.ResultUtil;
@@ -33,6 +34,8 @@ public class BlogCommentController {
     private BlogCommentService iBlogCommentService;
     @Resource
     private BlogArticleService iBlogArticleService;
+    @Resource
+    private BlogMessageService iBlogMessageService;
 
     /**
      * <p> 描述 : 获取文章评论
@@ -70,6 +73,12 @@ public class BlogCommentController {
         entity.setUserId(sysUser.getId());
         iBlogCommentService.save(entity);
         iBlogArticleService.updateArticleCommentCount(entity.getArticleId());
+        if(entity.getParentId()!=null){
+            Integer toUserId=iBlogCommentService.getById(entity.getParentId()).getUserId();
+            iBlogMessageService.add(sysUser.getId(),toUserId,entity.getArticleId(),1);
+        }else {
+            iBlogMessageService.add(sysUser.getId(),null,entity.getArticleId(),1);
+        }
         return ResultUtil.ok().put("data",entity);
     }
 

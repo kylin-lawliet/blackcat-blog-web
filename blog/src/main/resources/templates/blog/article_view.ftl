@@ -66,7 +66,7 @@
 
                             <!--~~~~~ 评论模块 ~~~~~-->
                             <div class="entry-footer">
-                                <h3 class="comment-reply-title"><span>全部评论：</span><span id="commentCount">${articleVo.comments?size}</span>&nbsp;条</h3>
+                                <h3 class="comment-reply-title"><span>全部评论：</span><span id="commentCount">${articleVo.article.commentCount}</span>&nbsp;条</h3>
                             </div>
                             <!--~~~~~ 评论内容加载 ~~~~~-->
                             <div class="pt-30">

@@ -29,7 +29,7 @@
 
                         <!--博客图标-->
                         <div class="site-logo-block">
-                            <a class="navbar-brand site-logo" href="${basePath}/admin">
+                            <a class="navbar-brand site-logo" href="/admin">
                                 <img src="${basePath}${options['site_logo']}" alt="logo">
                             </a>
                         </div>
@@ -58,6 +58,11 @@
                                         </button>
                                     </form>
                                 </div>
+                            </div>
+                            <div>
+                                <a href="/admin" id="bt-admin" title="后台管理">
+                                    <i class="fa fa-laptop"></i>
+                                </a>
                             </div>
                         </div>
 

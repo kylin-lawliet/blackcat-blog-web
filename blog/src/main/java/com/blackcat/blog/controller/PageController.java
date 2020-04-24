@@ -38,6 +38,16 @@ public class PageController {
         return "blog/comment";
     }
 
+    /**
+     * <p> 描述 : 跳转消息通知管理
+     * @author : blackcat
+     * @date  : 2020/3/14 15:11
+    */
+    @GetMapping("/message/index")
+    public String message() {
+        return "blog/message";
+    }
+
     //******************************博客文章 start**************************************
     /**
      * <p> : 跳转文章管理页面
