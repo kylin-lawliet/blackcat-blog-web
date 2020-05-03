@@ -113,23 +113,17 @@
                 {
                     checkbox: true
                 }, {
-                    field: 'id',
-                    title: ''
-                }, {
                     field: 'message',
                     title: '消息内容内容'
                 }, {
-                    field: 'event',
-                    title: '事件类型'
+                    field: 'userName',
+                    title: '发送用户'
                 }, {
-                    field: 'userId',
-                    title: '创建用户id'
-                }, {
-                    field: 'toUserId',
-                    title: '发送用户id'
-                }, {
-                    field: 'articleId',
-                    title: '文章id'
+                    field: 'articleTitle',
+                    title: '文章'
+                    ,formatter:function (code,row) {
+                        return '<a href="/article/view/'+row.articleId+'" target="_blank">'+code+'</a>';
+                    }
                 }, {
                     field: 'createTime',
                     title: '创建时间'

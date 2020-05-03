@@ -1,11 +1,11 @@
 package com.blackcat.blog.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.blackcat.blog.core.entity.BlogArticle;
 import com.blackcat.blog.core.entity.SysUser;
 import com.blackcat.blog.core.service.BlogArticleService;
 import com.blackcat.blog.core.service.BlogCodeListService;
+import com.blackcat.blog.core.service.BlogMessageService;
 import com.blackcat.blog.core.vo.ArticleVo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresUser;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -32,6 +31,8 @@ public class PageController {
     private BlogCodeListService iBlogListCodeService;
     @Resource
     private BlogArticleService iBlogArticleService;
+    @Resource
+    private BlogMessageService blogMessageService;
 
     @GetMapping("/comment/index")
     public String comment() {
@@ -81,12 +82,9 @@ public class PageController {
     public String view(@PathVariable Long id,ModelMap map) {
         if(id!=0){
             ArticleVo articleVo = iBlogArticleService.getArticleById(id, true);
-            BlogArticle article = articleVo.getArticle();
-            UpdateWrapper<BlogArticle> updateWrapper=new UpdateWrapper<>();
-            updateWrapper.lambda().eq(BlogArticle::getId, article.getId());
-            updateWrapper.set("view_count",article.getViewCount().add(BigDecimal.ONE));
-            iBlogArticleService.update(updateWrapper);
             map.put("articleVo", articleVo);
+            iBlogArticleService.updateArticleViewCount(id);
+            blogMessageService.updateStatus(id);
         }
         return "blog/article_view";
     }

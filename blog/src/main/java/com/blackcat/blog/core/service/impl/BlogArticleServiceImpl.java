@@ -1,13 +1,13 @@
 package com.blackcat.blog.core.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.blackcat.blog.core.entity.BlogArticle;
 import com.blackcat.blog.core.entity.BlogCode;
 import com.blackcat.blog.core.mapper.BlogArticleMapper;
 import com.blackcat.blog.core.service.BlogArticleService;
 import com.blackcat.blog.core.service.BlogCodeService;
-import com.blackcat.blog.core.service.BlogCommentService;
 import com.blackcat.blog.core.vo.ArticleVo;
 import com.blackcat.blog.core.vo.CategoryVo;
 import com.blackcat.blog.core.vo.CommentCountVo;
@@ -15,7 +15,6 @@ import com.blackcat.blog.util.MarkdownUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -31,8 +30,14 @@ public class BlogArticleServiceImpl extends ServiceImpl<BlogArticleMapper, BlogA
     private BlogArticleMapper blogArticleMapper;
     @Resource
     private BlogCodeService iBlogCodeService;
-    @Resource
-    private BlogCommentService iBlogCommentService;
+
+    @Override
+    public void updateArticleViewCount(Long id) {
+        UpdateWrapper<BlogArticle> updateWrapper=new UpdateWrapper<>();
+        updateWrapper.lambda().eq(BlogArticle::getId, id);
+        updateWrapper.setSql("view_count = view_count+1");
+        blogArticleMapper.update(null,updateWrapper);
+    }
 
     @Override
     public List<BlogArticle> getTop() {
@@ -48,9 +53,13 @@ public class BlogArticleServiceImpl extends ServiceImpl<BlogArticleMapper, BlogA
 
     @Override
     public void updateArticleCommentCount(Long id) {
-        BlogArticle blogArticle = blogArticleMapper.selectById(id);
-        blogArticle.setCommentCount(blogArticle.getCommentCount().add(BigDecimal.ONE));
-        blogArticleMapper.updateById(blogArticle);
+//        BlogArticle blogArticle = blogArticleMapper.selectById(id);
+//        blogArticle.setCommentCount(blogArticle.getCommentCount().add(BigDecimal.ONE));
+//        blogArticleMapper.updateById(blogArticle);
+        UpdateWrapper<BlogArticle> updateWrapper=new UpdateWrapper<>();
+        updateWrapper.lambda().eq(BlogArticle::getId, id);
+        updateWrapper.setSql("comment_count = comment_count+1");
+        blogArticleMapper.update(null,updateWrapper);
     }
 
     /**
@@ -62,9 +71,13 @@ public class BlogArticleServiceImpl extends ServiceImpl<BlogArticleMapper, BlogA
      * @return void
     */
     private void updateArticleCommentCount(Long id,Integer count){
-        BlogArticle blogArticle = blogArticleMapper.selectById(id);
-        blogArticle.setCommentCount(blogArticle.getCommentCount().subtract(new BigDecimal(count)));
-        blogArticleMapper.updateById(blogArticle);
+//        BlogArticle blogArticle = blogArticleMapper.selectById(id);
+//        blogArticle.setCommentCount(blogArticle.getCommentCount().subtract(new BigDecimal(count)));
+//        blogArticleMapper.updateById(blogArticle);
+        UpdateWrapper<BlogArticle> updateWrapper=new UpdateWrapper<>();
+        updateWrapper.lambda().eq(BlogArticle::getId, id);
+        updateWrapper.setSql("commentCount = commentCount-"+count+"");
+        blogArticleMapper.update(null,updateWrapper);
     }
 
     @Override

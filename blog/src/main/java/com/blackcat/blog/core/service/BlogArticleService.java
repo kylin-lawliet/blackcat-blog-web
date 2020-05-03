@@ -15,6 +15,8 @@ import java.util.List;
 public interface BlogArticleService extends IService<BlogArticle> {
 
 
+    void updateArticleViewCount(Long id);
+
     /**
      * <p> 描述 : 获取热门文章 前五篇
      * @author : blackcat
@@ -45,7 +47,6 @@ public interface BlogArticleService extends IService<BlogArticle> {
      * @author : blackcat
      * @date  : 2020/3/3 15:42
      * @param id 主键
-     * @param comment 是否查询评论信息
      * @param markdown 是否渲染markdown
      * @return com.blackcat.blog.core.vo.ArticleVo
     */

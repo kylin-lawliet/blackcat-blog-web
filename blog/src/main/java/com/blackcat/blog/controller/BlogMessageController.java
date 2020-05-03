@@ -1,16 +1,15 @@
 package com.blackcat.blog.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.blackcat.blog.core.entity.BlogMessage;
 import com.blackcat.blog.core.enums.ResponseStatusEnum;
 import com.blackcat.blog.core.object.PageResult;
 import com.blackcat.blog.core.service.BlogMessageService;
 import com.blackcat.blog.core.vo.BaseConditionVO;
+import com.blackcat.blog.core.vo.MessageVo;
 import com.blackcat.blog.util.ResultUtil;
-import org.apache.commons.lang3.StringUtils;
+import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,24 +36,20 @@ public class BlogMessageController {
     */
     @RequestMapping("/list")
     public PageResult list(BaseConditionVO vo){
-        Page<BlogMessage> page = new Page<>(vo.getPageNumber(), vo.getPageSize());
-        QueryWrapper<BlogMessage> queryWrapper = new QueryWrapper<>();
-        if(StringUtils.isNotBlank(vo.getKeywords())){
-        }
-        iBlogMessageService.page(page, queryWrapper);
-        return ResultUtil.tablePage(page);
+        PageInfo<MessageVo> pageInfo = iBlogMessageService.findPageBreakByCondition(vo);
+        return ResultUtil.tablePage(pageInfo);
     }
 
-    /**
+   /**
     * <p> 描述 : 添加
     * @author : blackcat
     * @date  : 2020-03-14
-    */
+    *//*
     @PostMapping(value = "/add")
     public ResultUtil add(BlogMessage entity) {
         iBlogMessageService.save(entity);
         return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
-    }
+    }*/
 
     /**
     * <p> 描述 : 删除
@@ -85,7 +80,7 @@ public class BlogMessageController {
     * @author : blackcat
     * @date  : 2020-03-14
     */
-    @PostMapping("/edit")
+    /*@PostMapping("/edit")
     public ResultUtil edit(BlogMessage entity) {
         try {
             iBlogMessageService.updateById(entity);
@@ -94,5 +89,5 @@ public class BlogMessageController {
             return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));
         }
         return ResultUtil.ok(String.valueOf(ResponseStatusEnum.SUCCESS));
-    }
+    }*/
 }

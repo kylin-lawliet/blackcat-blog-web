@@ -39,9 +39,6 @@
                 {
                     checkbox: true
                 }, {
-                    field: 'id',
-                    title: ''
-                }, {
                     field: 'comment',
                     title: '评论内容'
                 }, {

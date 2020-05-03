@@ -3,15 +3,55 @@
 <mapper namespace="com.blackcat.blog.core.mapper.BlogMessageMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.blackcat.blog.core.entity.BlogMessage">
+    <!--<resultMap id="BaseResultMap" type="com.blackcat.blog.core.entity.BlogMessage">-->
+        <!--<id column="id" property="id" />-->
+        <!--<result column="message" property="message" />-->
+        <!--<result column="event" property="event" />-->
+        <!--<result column="user_id" property="userId" />-->
+        <!--<result column="to_user_id" property="toUserId" />-->
+        <!--<result column="article_id" property="articleId" />-->
+        <!--<result column="create_time" property="createTime" />-->
+        <!--<result column="status" property="status" />-->
+    <!--</resultMap> -->
+    <resultMap id="BaseResultMap" type="com.blackcat.blog.core.vo.MessageVo">
         <id column="id" property="id" />
         <result column="message" property="message" />
         <result column="event" property="event" />
-        <result column="user_id" property="userId" />
-        <result column="to_user_id" property="toUserId" />
+        <result column="user_name" property="userName" />
+        <result column="to_user_name" property="toUserName" />
         <result column="article_id" property="articleId" />
+        <result column="article_title" property="articleTitle" />
         <result column="create_time" property="createTime" />
         <result column="status" property="status" />
     </resultMap>
+
+    <select id="findAllByCondition" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+        SELECT bm.id,`event`,message,su.nickname user_name,su2.nickname to_user_name,
+        article_id,ba.title article_title,bm.create_time,
+          CASE WHEN bm.`status` = 0 THEN '未读' ELSE '已读' END status
+        FROM blog_message bm
+        LEFT JOIN sys_user su ON su.id=bm.user_id
+        LEFT JOIN sys_user su2 ON su2.id=bm.to_user_id
+        LEFT JOIN blog_article ba ON article_id= ba.id
+        WHERE 1=1
+        <if test="event !=null">
+            AND event=#{event}
+        </if>
+        <if test="status !=null">
+            AND bm.`status`=#{status}
+        </if>
+        <if test="keywords !=null and keywords != ''">
+            AND message LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%')
+        </if>
+        AND (
+          to_user_id=#{userId}
+            OR (
+                to_user_id is null
+                AND
+                  (SELECT count(*) FROM blog_article WHERE id=article_id AND user_id=#{userId})>0
+            )
+        )
+        ORDER BY bm.`status` ASC,bm.create_time DESC
+    </select>
 
 </mapper>

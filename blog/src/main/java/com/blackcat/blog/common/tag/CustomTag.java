@@ -1,10 +1,14 @@
 package com.blackcat.blog.common.tag;
 
+import com.blackcat.blog.core.entity.SysUser;
 import com.blackcat.blog.core.service.BlogArticleService;
 import com.blackcat.blog.core.service.BlogCodeService;
+import com.blackcat.blog.core.service.BlogMessageService;
 import com.blackcat.blog.core.service.SysMenuService;
 import freemarker.core.Environment;
 import freemarker.template.*;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -29,6 +33,8 @@ public class CustomTag implements TemplateDirectiveModel {
     private BlogCodeService iBlogCodeService;
     @Resource
     private BlogArticleService iBlogArticleService;
+    @Resource
+    private BlogMessageService iBlogMessageService;
 
     @Override
     public void execute(Environment environment, Map map, TemplateModel[] templateModels, TemplateDirectiveBody templateDirectiveBody) throws TemplateException, IOException {
@@ -48,11 +54,12 @@ public class CustomTag implements TemplateDirectiveModel {
                     }
                     break;
                 case "articleTop":
+                    // 热门文章
                     environment.setVariable("articleTop", builder.build().wrap(iBlogArticleService.getTop()));
                     break;
                 case "menus":
                     // 用户菜单
-                    Integer userId = null;
+                    Integer userId ;
                     if (mapContainsKey(map,MethodAttribute.MENUS_USER_ID)) {
                         userId = Integer.parseInt(map.get(MethodAttribute.MENUS_USER_ID).toString());
                         Map<String, Object> params = new HashMap<>(2);
@@ -61,6 +68,15 @@ public class CustomTag implements TemplateDirectiveModel {
                         // 获取用户的资源列表
                         environment.setVariable("menus", builder.build().wrap(sysMenuService.listUserMenu(params)));
                     }
+                    break;
+                case "messages":
+                    // 获取消息通知
+                    Subject subject = SecurityUtils.getSubject();
+                    SysUser sysUser= (SysUser) subject.getPrincipal();
+                    Map<String, Object> params = new HashMap<>(2);
+                    params.put("userId", sysUser.getId());
+                    params.put("status", 0);
+                    environment.setVariable("messages", builder.build().wrap(iBlogMessageService.findAllByCondition(params)));
                     break;
                 default:
                     break;
