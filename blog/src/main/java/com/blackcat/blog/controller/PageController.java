@@ -1,12 +1,15 @@
 package com.blackcat.blog.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.blackcat.blog.common.constant.RedisKey;
 import com.blackcat.blog.core.entity.BlogArticle;
+import com.blackcat.blog.core.entity.BlogCodeList;
 import com.blackcat.blog.core.entity.SysUser;
 import com.blackcat.blog.core.service.BlogArticleService;
 import com.blackcat.blog.core.service.BlogCodeListService;
 import com.blackcat.blog.core.service.BlogMessageService;
 import com.blackcat.blog.core.vo.ArticleVo;
+import com.blackcat.blog.util.RedisUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.subject.Subject;
@@ -33,6 +36,8 @@ public class PageController {
     private BlogArticleService iBlogArticleService;
     @Resource
     private BlogMessageService blogMessageService;
+    @Resource
+    private RedisUtil redisUtil;
 
     @GetMapping("/comment/index")
     public String comment() {
@@ -68,7 +73,11 @@ public class PageController {
     @GetMapping("/article/detail/{id}")
     public String newArticle(@PathVariable Long id,ModelMap map) {
         if(id!=0){
-            map.put("articleVo", iBlogArticleService.getArticleById(id,false));
+            if (redisUtil.hasKey(RedisKey.ARTICLE_INFO + id + RedisKey.FALSE)) {
+                map.put("articleVo", redisUtil.get(RedisKey.ARTICLE_INFO + id + RedisKey.FALSE, ArticleVo.class));
+            } else {
+                map.put("articleVo", iBlogArticleService.getArticleById(id, false));
+            }
         }
         return "blog/article_detail";
     }
@@ -81,10 +90,16 @@ public class PageController {
     @GetMapping("/article/view/{id}")
     public String view(@PathVariable Long id,ModelMap map) {
         if(id!=0){
-            ArticleVo articleVo = iBlogArticleService.getArticleById(id, true);
+            ArticleVo articleVo;
+            if (redisUtil.hasKey(RedisKey.ARTICLE_INFO + id + RedisKey.TRUE)) {
+                articleVo = redisUtil.get(RedisKey.ARTICLE_INFO + id + RedisKey.TRUE, ArticleVo.class);
+            } else {
+                articleVo = iBlogArticleService.getArticleById(id, true);
+            }
             map.put("articleVo", articleVo);
             iBlogArticleService.updateArticleViewCount(id);
             blogMessageService.updateStatus(id);
+            redisUtil.set(RedisKey.ARTICLE+id,articleVo.getArticle());
         }
         return "blog/article_view";
     }
@@ -108,7 +123,12 @@ public class PageController {
      */
     @GetMapping("/code/index/{id}")
     public String code(@PathVariable Long id, ModelMap map) {
-        map.addAttribute("codeParent", iBlogListCodeService.getById(id));
+        if(redisUtil.hasKey(RedisKey.CODE_LIST+id)){
+            BlogCodeList codeList = redisUtil.get(RedisKey.CODE_LIST + id, BlogCodeList.class);
+            map.addAttribute("codeParent", codeList);
+        }else{
+            map.addAttribute("codeParent", iBlogListCodeService.getById(id));
+        }
         return "blog/code";
     }
     //******************************码表 start**************************************

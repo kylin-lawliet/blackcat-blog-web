@@ -3,11 +3,13 @@ package com.blackcat.blog.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.blackcat.blog.common.constant.RedisKey;
 import com.blackcat.blog.core.entity.SysRole;
 import com.blackcat.blog.core.enums.ResponseStatusEnum;
 import com.blackcat.blog.core.object.PageResult;
 import com.blackcat.blog.core.service.SysRoleService;
 import com.blackcat.blog.core.vo.BaseConditionVO;
+import com.blackcat.blog.util.RedisUtil;
 import com.blackcat.blog.util.ResultUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.Logical;
@@ -30,6 +32,8 @@ public class SysRoleController {
 
     @Resource
     private SysRoleService iSysRoleService;
+    @Resource
+    private RedisUtil redisUtil;
 
     /**
      * <p> 描述 : 用户分配角色查询
@@ -70,6 +74,7 @@ public class SysRoleController {
     @PostMapping(value = "/add")
     public ResultUtil add(SysRole entity) {
         iSysRoleService.save(entity);
+        redisUtil.set(RedisKey.SYS_ROLE+entity.getId(),entity);
         return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
     }
 
@@ -85,6 +90,7 @@ public class SysRoleController {
             return ResultUtil.error(String.valueOf(ResponseStatusEnum.REMOVE_ERROR));
         }
         iSysRoleService.deleteBatchIds(ids);
+        redisUtil.deleteSub(RedisKey.SYS_ROLE,ids);
         return ResultUtil.ok("成功删除 [" + ids.length + "] 个数据");
     }
 
@@ -95,7 +101,13 @@ public class SysRoleController {
      */
     @PostMapping("/get/{id}")
     public ResultUtil get(@PathVariable Long id) {
-        return ResultUtil.ok().put("data",iSysRoleService.getById(id));
+        SysRole role;
+        if(redisUtil.hasKey(RedisKey.SYS_ROLE+id)){
+            role = redisUtil.get(RedisKey.SYS_ROLE + id, SysRole.class);
+        }else{
+            role = iSysRoleService.getById(id);
+        }
+        return ResultUtil.ok().put("data",role);
     }
 
     /**
@@ -107,6 +119,7 @@ public class SysRoleController {
     public ResultUtil edit(SysRole entity) {
         try {
             iSysRoleService.updateById(entity);
+            redisUtil.set(RedisKey.SYS_ROLE+entity.getId(),entity);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));

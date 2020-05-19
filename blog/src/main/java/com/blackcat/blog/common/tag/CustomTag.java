@@ -1,10 +1,14 @@
 package com.blackcat.blog.common.tag;
 
+import com.blackcat.blog.common.constant.RedisKey;
+import com.blackcat.blog.core.entity.BlogArticle;
+import com.blackcat.blog.core.entity.BlogCode;
 import com.blackcat.blog.core.entity.SysUser;
 import com.blackcat.blog.core.service.BlogArticleService;
 import com.blackcat.blog.core.service.BlogCodeService;
 import com.blackcat.blog.core.service.BlogMessageService;
 import com.blackcat.blog.core.service.SysMenuService;
+import com.blackcat.blog.util.RedisUtil;
 import freemarker.core.Environment;
 import freemarker.template.*;
 import org.apache.shiro.SecurityUtils;
@@ -35,6 +39,8 @@ public class CustomTag implements TemplateDirectiveModel {
     private BlogArticleService iBlogArticleService;
     @Resource
     private BlogMessageService iBlogMessageService;
+    @Resource
+    private RedisUtil redisUtil;
 
     @Override
     public void execute(Environment environment, Map map, TemplateModel[] templateModels, TemplateDirectiveBody templateDirectiveBody) throws TemplateException, IOException {
@@ -50,12 +56,21 @@ public class CustomTag implements TemplateDirectiveModel {
                 case "codes":
                     // 获取所有可用的总码表分类
                     if(mapContainsKey(map,MethodAttribute.CODES_CODE_ID)){
-                        environment.setVariable("codes", builder.build().wrap(iBlogCodeService.getParents(map.get(MethodAttribute.CODES_CODE_ID).toString())));
+                        String id = map.get(MethodAttribute.CODES_CODE_ID).toString();
+                        if(redisUtil.hasKey(RedisKey.CODE_LIST_SUBLIST+id)){
+                            environment.setVariable("codes", builder.build().wrap(redisUtil.get(RedisKey.CODE_LIST_SUBLIST+id, BlogCode.class)));
+                        }else{
+                            environment.setVariable("codes", builder.build().wrap(iBlogCodeService.getParents(id)));
+                        }
                     }
                     break;
                 case "articleTop":
                     // 热门文章
-                    environment.setVariable("articleTop", builder.build().wrap(iBlogArticleService.getTop()));
+                    if(redisUtil.hasKey(RedisKey.ARTICLE_TOP)){
+                        environment.setVariable("articleTop",builder.build().wrap(redisUtil.get(RedisKey.ARTICLE_TOP, BlogArticle.class)));
+                    }else{
+                        environment.setVariable("articleTop", builder.build().wrap(iBlogArticleService.getTop()));
+                    }
                     break;
                 case "menus":
                     // 用户菜单

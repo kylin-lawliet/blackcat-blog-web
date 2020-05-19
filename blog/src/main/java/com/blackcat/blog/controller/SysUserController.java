@@ -3,6 +3,7 @@ package com.blackcat.blog.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.blackcat.blog.common.constant.RedisKey;
 import com.blackcat.blog.core.entity.SysUser;
 import com.blackcat.blog.core.enums.ResponseStatusEnum;
 import com.blackcat.blog.core.enums.UserTypeEnum;
@@ -10,6 +11,7 @@ import com.blackcat.blog.core.object.PageResult;
 import com.blackcat.blog.core.service.SysUserService;
 import com.blackcat.blog.core.vo.BaseConditionVO;
 import com.blackcat.blog.util.PasswordUtil;
+import com.blackcat.blog.util.RedisUtil;
 import com.blackcat.blog.util.ResultUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.Logical;
@@ -33,6 +35,8 @@ public class SysUserController {
 
     @Resource
     private SysUserService iSysUserService;
+    @Resource
+    private RedisUtil redisUtil;
 
     /**
      * <p> 描述 : 查询列表数据
@@ -72,6 +76,7 @@ public class SysUserController {
         entity.setPassword(PasswordUtil.encrypt(entity.getPassword(), entity.getUsername()));
         entity.setUserType(UserTypeEnum.USER);
         iSysUserService.save(entity);
+        redisUtil.set(RedisKey.SYS_USER+entity.getId(),entity);
         return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
     }
 
@@ -87,6 +92,7 @@ public class SysUserController {
          return ResultUtil.error(String.valueOf(ResponseStatusEnum.REMOVE_ERROR));
         }
         iSysUserService.deleteBatchIds(ids);
+        redisUtil.deleteSub(RedisKey.SYS_USER,ids);
         return ResultUtil.ok("成功删除 [" + ids.length + "] 个数据");
     }
 
@@ -97,7 +103,13 @@ public class SysUserController {
      */
     @PostMapping("/get/{id}")
     public ResultUtil get(@PathVariable Long id) {
-     return ResultUtil.ok().put("data",iSysUserService.getById(id));
+        SysUser sysUser;
+        if(redisUtil.hasKey(RedisKey.SYS_USER+id)){
+            sysUser = redisUtil.get(RedisKey.SYS_USER + id, SysUser.class);
+        }else{
+            sysUser = iSysUserService.getById(id);
+        }
+        return ResultUtil.ok().put("data",sysUser);
     }
 
     /**
@@ -110,6 +122,7 @@ public class SysUserController {
         try {
          entity.setUpdateTime(LocalDateTime.now());
          iSysUserService.updateById(entity);
+         redisUtil.set(RedisKey.SYS_USER+entity.getId(),entity);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));

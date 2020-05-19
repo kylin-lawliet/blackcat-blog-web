@@ -2,6 +2,7 @@ package com.blackcat.blog.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.blackcat.blog.common.constant.RedisKey;
 import com.blackcat.blog.core.entity.BlogComment;
 import com.blackcat.blog.core.entity.SysUser;
 import com.blackcat.blog.core.enums.ResponseStatusEnum;
@@ -11,12 +12,14 @@ import com.blackcat.blog.core.service.BlogCommentService;
 import com.blackcat.blog.core.service.BlogMessageService;
 import com.blackcat.blog.core.vo.CommentConditionVO;
 import com.blackcat.blog.core.vo.CommentVo;
+import com.blackcat.blog.util.RedisUtil;
 import com.blackcat.blog.util.ResultUtil;
 import com.github.pagehelper.PageInfo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -36,6 +39,8 @@ public class BlogCommentController {
     private BlogArticleService iBlogArticleService;
     @Resource
     private BlogMessageService iBlogMessageService;
+    @Resource
+    private RedisUtil redisUtil;
 
     /**
      * <p> 描述 : 获取文章评论
@@ -67,6 +72,7 @@ public class BlogCommentController {
     * @date  : 2020-03-08
     */
     @PostMapping(value = "/add")
+    @Transactional
     public ResultUtil add(BlogComment entity) {
         Subject subject = SecurityUtils.getSubject();
         SysUser sysUser= (SysUser) subject.getPrincipal();
@@ -79,6 +85,7 @@ public class BlogCommentController {
         }else {
             iBlogMessageService.add(sysUser.getId(),null,entity.getArticleId(),1);
         }
+        redisUtil.set(RedisKey.ARTICLE_COMMENT+entity.getId(),entity);
         return ResultUtil.ok().put("data",entity);
     }
 
@@ -89,12 +96,14 @@ public class BlogCommentController {
     */
     @RequiresPermissions(value = {"comment:batchDelete", "comment:delete"}, logical = Logical.OR)
     @PostMapping(value = "/remove")
+    @Transactional
     public ResultUtil remove(Long[] ids) {
         if (null == ids) {
            return ResultUtil.error(String.valueOf(ResponseStatusEnum.REMOVE_ERROR));
         }
         iBlogCommentService.remove(new UpdateWrapper<BlogComment>().in("id", ids));
         iBlogArticleService.updateArticleCommentCount(ids);
+        redisUtil.deleteSub(RedisKey.ARTICLE_COMMENT,ids);
         return ResultUtil.ok("成功删除 [" + ids.length + "] 个数据");
     }
 
@@ -105,7 +114,13 @@ public class BlogCommentController {
     */
     @PostMapping("/get/{id}")
     public ResultUtil get(@PathVariable Long id) {
-        return ResultUtil.ok().put("data",iBlogCommentService.getById(id));
+        BlogComment comment;
+        if(redisUtil.hasKey(RedisKey.ARTICLE_COMMENT+id)){
+            comment = redisUtil.get(RedisKey.ARTICLE_COMMENT + id, BlogComment.class);
+        }else{
+            comment = iBlogCommentService.getById(id);
+        }
+        return ResultUtil.ok().put("data",comment);
     }
 
     /**
@@ -117,6 +132,7 @@ public class BlogCommentController {
     public ResultUtil edit(BlogComment entity) {
         try {
             iBlogCommentService.updateById(entity);
+            redisUtil.set(RedisKey.ARTICLE_COMMENT+entity.getId(),entity);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));

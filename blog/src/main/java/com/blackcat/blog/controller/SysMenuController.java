@@ -1,12 +1,14 @@
 package com.blackcat.blog.controller;
 
 
+import com.blackcat.blog.common.constant.RedisKey;
 import com.blackcat.blog.core.entity.SysMenu;
 import com.blackcat.blog.core.enums.ResponseStatusEnum;
 import com.blackcat.blog.core.object.PageResult;
 import com.blackcat.blog.core.service.ShiroService;
 import com.blackcat.blog.core.service.SysMenuService;
 import com.blackcat.blog.core.vo.BaseConditionVO;
+import com.blackcat.blog.util.RedisUtil;
 import com.blackcat.blog.util.ResultUtil;
 import com.github.pagehelper.PageInfo;
 import org.apache.shiro.authz.annotation.Logical;
@@ -32,6 +34,8 @@ public class SysMenuController {
     private SysMenuService iSysMenuService;
     @Resource
     protected ShiroService shiroService;
+    @Resource
+    private RedisUtil redisUtil;
 
     /**
      * <p> 描述 : 角色分配资源查询
@@ -65,6 +69,7 @@ public class SysMenuController {
     @PostMapping(value = "/add")
     public ResultUtil add(SysMenu menu) {
         if (iSysMenuService.save(menu)) {
+            redisUtil.set(RedisKey.SYS_MENU+menu.getId(),menu);
             //更新权限
             shiroService.updatePermission();
             return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
@@ -86,6 +91,7 @@ public class SysMenuController {
            return ResultUtil.error(String.valueOf(ResponseStatusEnum.REMOVE_ERROR));
         }
         iSysMenuService.deleteBatchIds(ids);
+        redisUtil.deleteSub(RedisKey.SYS_MENU,ids);
         //更新权限
         shiroService.updatePermission();
         return ResultUtil.ok("成功删除 [" + ids.length + "] 个数据");
@@ -98,7 +104,13 @@ public class SysMenuController {
     */
     @PostMapping("/get/{id}")
     public ResultUtil get(@PathVariable Long id) {
-        return ResultUtil.ok().put("data",iSysMenuService.getById(id));
+        SysMenu menu;
+        if(redisUtil.hasKey(RedisKey.SYS_MENU+id)){
+            menu = redisUtil.get(RedisKey.SYS_MENU + id, SysMenu.class);
+        }else{
+            menu = iSysMenuService.getById(id);
+        }
+        return ResultUtil.ok().put("data",menu);
     }
 
     /**
@@ -111,6 +123,7 @@ public class SysMenuController {
         try {
             menu.setUpdateTime(LocalDateTime.now());
             iSysMenuService.updateById(menu);
+            redisUtil.set(RedisKey.SYS_MENU+menu.getId(),menu);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));

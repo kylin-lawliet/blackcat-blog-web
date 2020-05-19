@@ -3,11 +3,13 @@ package com.blackcat.blog.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.blackcat.blog.common.constant.RedisKey;
 import com.blackcat.blog.core.entity.BlogCode;
 import com.blackcat.blog.core.enums.ResponseStatusEnum;
 import com.blackcat.blog.core.object.PageResult;
 import com.blackcat.blog.core.service.BlogCodeService;
 import com.blackcat.blog.core.vo.BaseConditionVO;
+import com.blackcat.blog.util.RedisUtil;
 import com.blackcat.blog.util.ResultUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p> 博客分类码表 前端控制器
@@ -29,6 +32,8 @@ public class BlogCodeController {
 
     @Resource
     private BlogCodeService iBlogCodeService;
+    @Resource
+    private RedisUtil redisUtil;
 
     /**
      * <p> 描述 : 码表数据
@@ -40,7 +45,14 @@ public class BlogCodeController {
     */
     @RequestMapping("/getCodesByCodeListId/{id}")
     public ResultUtil getCodesByCodeListId(@PathVariable Long id) {
-        return ResultUtil.ok().put("data",iBlogCodeService.getCodesByCodeListId(id.toString()));
+        List<BlogCode> list ;
+        if(redisUtil.hasKey(RedisKey.CODE_ALL+id)){
+            list = redisUtil.get(RedisKey.CODE_ALL + id,BlogCode.class);
+        }else{
+            list = iBlogCodeService.getCodesByCodeListId(id.toString());
+            redisUtil.set(RedisKey.CODE_ALL + id,list,30, TimeUnit.MINUTES);
+        }
+        return ResultUtil.ok().put("data",list);
     }
 
     /**
@@ -50,9 +62,15 @@ public class BlogCodeController {
     */
     @RequestMapping("/allJson/{id}")
     public ResultUtil allJson(@PathVariable Long id) {
-        QueryWrapper<BlogCode> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().eq(BlogCode::getCodeId, id);
-        List<BlogCode> list =iBlogCodeService.list(queryWrapper);
+        List<BlogCode> list;
+        if(redisUtil.hasKey(RedisKey.CODE_ALL_JSON)){
+            list = redisUtil.get(RedisKey.CODE_ALL_JSON + id, BlogCode.class);
+        }else{
+            QueryWrapper<BlogCode> queryWrapper = new QueryWrapper<>();
+            queryWrapper.lambda().eq(BlogCode::getCodeId, id);
+            list =iBlogCodeService.list(queryWrapper);
+            redisUtil.set(RedisKey.CODE_ALL_JSON + id, list,30, TimeUnit.MINUTES);
+        }
         return ResultUtil.ok().put("data",list);
     }
 
@@ -85,6 +103,7 @@ public class BlogCodeController {
     public ResultUtil add(@PathVariable Long id,BlogCode entity) {
         entity.setCodeId(id);
         iBlogCodeService.save(entity);
+        redisUtil.set(RedisKey.CODE+id,entity);
         return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
     }
 
@@ -99,6 +118,7 @@ public class BlogCodeController {
            return ResultUtil.error(String.valueOf(ResponseStatusEnum.REMOVE_ERROR));
         }
         iBlogCodeService.deleteBatchIds(ids);
+        redisUtil.deleteSub(RedisKey.CODE,ids);
         return ResultUtil.ok("成功删除 [" + ids.length + "] 个数据");
     }
 
@@ -109,7 +129,14 @@ public class BlogCodeController {
     */
     @PostMapping("/get/{id}")
     public ResultUtil get(@PathVariable Long id) {
-        return ResultUtil.ok().put("data",iBlogCodeService.getById(id));
+        BlogCode code;
+        if(redisUtil.hasKey(RedisKey.CODE+id)){
+            code = redisUtil.get(RedisKey.CODE + id,BlogCode.class);
+        }else{
+            code = iBlogCodeService.getById(id);
+            redisUtil.set(RedisKey.CODE+id,code);
+        }
+        return ResultUtil.ok().put("data",code);
     }
 
     /**
@@ -121,6 +148,7 @@ public class BlogCodeController {
     public ResultUtil edit(BlogCode entity) {
         try {
             iBlogCodeService.updateById(entity);
+            redisUtil.set(RedisKey.CODE+entity.getId(),entity);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));

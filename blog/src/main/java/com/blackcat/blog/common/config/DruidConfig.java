@@ -14,14 +14,10 @@ import org.springframework.util.StringUtils;
 import java.util.List;
 
 /**
- * Druid Monitor 配置
- *
- * @author zjjlive)
- * @version 1.0
- * @website https://www.foreknow.me
- * @date 2018/4/16 16:26
- * @since 1.0
- */
+ * <p> 描述 : Druid Monitor 配置
+ * @author : blackcat
+ * @date  : 2020/4/12 17:09
+*/
 @Configuration
 public class DruidConfig {
 

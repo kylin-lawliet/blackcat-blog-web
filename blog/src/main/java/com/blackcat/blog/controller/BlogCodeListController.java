@@ -4,6 +4,7 @@ package com.blackcat.blog.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.blackcat.blog.common.constant.RedisKey;
 import com.blackcat.blog.core.entity.BlogCode;
 import com.blackcat.blog.core.entity.BlogCodeList;
 import com.blackcat.blog.core.enums.ResponseStatusEnum;
@@ -11,6 +12,7 @@ import com.blackcat.blog.core.object.PageResult;
 import com.blackcat.blog.core.service.BlogCodeListService;
 import com.blackcat.blog.core.service.BlogCodeService;
 import com.blackcat.blog.core.vo.BaseConditionVO;
+import com.blackcat.blog.util.RedisUtil;
 import com.blackcat.blog.util.ResultUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +36,8 @@ public class BlogCodeListController {
     private BlogCodeListService iBlogCodeListService;
     @Resource
     private BlogCodeService iBlogCodeService;
+    @Resource
+    private RedisUtil redisUtil;
 
     /**
     * <p> 描述 : 获取列表数据
@@ -62,6 +66,7 @@ public class BlogCodeListController {
     @PostMapping(value = "/add")
     public ResultUtil add(BlogCodeList entity) {
         iBlogCodeListService.save(entity);
+        redisUtil.set(RedisKey.CODE_LIST+entity.getId(),entity);
         return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
     }
 
@@ -77,6 +82,7 @@ public class BlogCodeListController {
         }
         iBlogCodeService.remove(new UpdateWrapper<BlogCode>().in("code_id", ids));
         iBlogCodeListService.deleteBatchIds(ids);
+        redisUtil.deleteSub(RedisKey.CODE_LIST,ids);
         return ResultUtil.ok("成功删除 [" + ids.length + "] 个数据");
     }
 
@@ -87,7 +93,14 @@ public class BlogCodeListController {
     */
     @PostMapping("/get/{id}")
     public ResultUtil get(@PathVariable Long id) {
-        return ResultUtil.ok().put("data",iBlogCodeListService.getById(id));
+        BlogCodeList codeList;
+        if(redisUtil.hasKey(RedisKey.CODE_LIST+id)){
+            codeList = redisUtil.get(RedisKey.CODE_LIST + id, BlogCodeList.class);
+        }else{
+            codeList = iBlogCodeListService.getById(id);
+            redisUtil.set(RedisKey.CODE_LIST+id,codeList);
+        }
+        return ResultUtil.ok().put("data",codeList);
     }
 
     /**
@@ -100,6 +113,7 @@ public class BlogCodeListController {
         try {
             entity.setUpdateTime(LocalDateTime.now());
             iBlogCodeListService.updateById(entity);
+            redisUtil.set(RedisKey.CODE_LIST+entity.getId(),entity);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));

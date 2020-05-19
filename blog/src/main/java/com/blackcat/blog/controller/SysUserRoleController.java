@@ -13,6 +13,7 @@ import com.blackcat.blog.core.service.SysUserRoleService;
 import com.blackcat.blog.core.service.SysUserService;
 import com.blackcat.blog.util.ResultUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +44,7 @@ public class SysUserRoleController {
      * @param roleIds  用户角色 此处获取的参数的角色id是以 “,” 分隔的字符串
      */
     @PostMapping("/saveUserRoles")
+    @Transactional
     public ResultUtil saveUserRoles(Long userId, String roleIds) {
         UpdateWrapper<SysUserRole> updateWrapper  = new UpdateWrapper<>();
         updateWrapper.eq("user_id", userId);

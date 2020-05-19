@@ -4,6 +4,7 @@ package com.blackcat.blog.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.blackcat.blog.common.constant.RedisKey;
 import com.blackcat.blog.core.entity.BlogArticle;
 import com.blackcat.blog.core.entity.BlogArticleTag;
 import com.blackcat.blog.core.entity.SysUser;
@@ -12,10 +13,13 @@ import com.blackcat.blog.core.object.PageResult;
 import com.blackcat.blog.core.service.BlogArticleService;
 import com.blackcat.blog.core.service.BlogArticleTagService;
 import com.blackcat.blog.core.vo.BaseConditionVO;
+import com.blackcat.blog.core.vo.CategoryVo;
+import com.blackcat.blog.util.RedisUtil;
 import com.blackcat.blog.util.ResultUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,10 +42,19 @@ public class BlogArticleController {
     private BlogArticleService iBlogArticleService;
     @Resource
     private BlogArticleTagService iBlogArticleTagService;
+    @Resource
+    private RedisUtil redisUtil;
 
 @   RequestMapping("/getCategory")
     public ResultUtil getCategory() {
-        return ResultUtil.ok().put("data",iBlogArticleService.getCategory());
+        List<CategoryVo> list;
+        if(redisUtil.hasKey(RedisKey.MAIN_CATEGORY)){
+            list = redisUtil.get(RedisKey.MAIN_CATEGORY,CategoryVo.class);
+        }else{
+            list = iBlogArticleService.getCategory();
+            redisUtil.set(RedisKey.MAIN_CATEGORY,list);
+        }
+        return ResultUtil.ok().put("data",list);
     }
 
     /**
@@ -70,6 +83,7 @@ public class BlogArticleController {
     * @date  : 2020-02-28
     */
     @PostMapping(value = "/add")
+    @Transactional
     public ResultUtil add(BlogArticle entity) {
         Subject subject = SecurityUtils.getSubject();
         SysUser sysUser= (SysUser) subject.getPrincipal();
@@ -79,10 +93,10 @@ public class BlogArticleController {
         } else {
             iBlogArticleService.save(entity);
         }
-
         if (StringUtils.isNotBlank(entity.getTags())) {
             editTags(entity.getTags(),entity.getId());
         }
+        redisUtil.set(RedisKey.ARTICLE+entity.getId(),entity);
         return ResultUtil.ok(ResponseStatusEnum.SUCCESS);
     }
 
@@ -92,11 +106,12 @@ public class BlogArticleController {
      * @date  : 2020/3/3 13:14
     */
     private void editTags(String tagIds,Long articleId){
-        String[] tagArr = tagIds.split(",");
+        String[] tagArr = StringUtils.split(tagIds, ',');
         UpdateWrapper<BlogArticleTag> updateWrapper = new UpdateWrapper();
         updateWrapper.lambda().in(BlogArticleTag::getTagId,tagArr)
         .eq(BlogArticleTag::getArticleId,articleId);
         iBlogArticleTagService.remove(updateWrapper);
+        redisUtil.delete(RedisKey.ARTICLE_TAG,tagArr);
 
         if (tagArr.length > 0) {
             BlogArticleTag tag;
@@ -107,9 +122,11 @@ public class BlogArticleController {
                     tag.setTagId(Long.valueOf(str));
                     tag.setArticleId(articleId);
                     tags.add(tag);
+
                 }
             }
             iBlogArticleTagService.saveBatch(tags);
+            tags.forEach(i-> redisUtil.set(RedisKey.ARTICLE_TAG+i.getId(),i));
         }
     }
 
@@ -124,6 +141,7 @@ public class BlogArticleController {
            return ResultUtil.error(String.valueOf(ResponseStatusEnum.REMOVE_ERROR));
         }
         iBlogArticleService.remove(new UpdateWrapper<BlogArticle>().in("id", ids));
+        redisUtil.deleteSub(RedisKey.ARTICLE,ids);
         return ResultUtil.ok("成功删除 [" + ids.length + "] 个数据");
     }
 
@@ -140,6 +158,7 @@ public class BlogArticleController {
             if (StringUtils.isNotBlank(entity.getTags())) {
                 editTags(entity.getTags(),entity.getId());
             }
+            redisUtil.set(RedisKey.ARTICLE+entity.getId(),entity);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultUtil.error(String.valueOf(ResponseStatusEnum.SAVE_ERROR));

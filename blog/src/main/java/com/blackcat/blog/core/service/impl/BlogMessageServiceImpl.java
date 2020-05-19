@@ -2,12 +2,14 @@ package com.blackcat.blog.core.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.blackcat.blog.common.constant.RedisKey;
 import com.blackcat.blog.core.entity.BlogMessage;
 import com.blackcat.blog.core.entity.SysUser;
 import com.blackcat.blog.core.mapper.BlogMessageMapper;
 import com.blackcat.blog.core.service.BlogMessageService;
 import com.blackcat.blog.core.vo.BaseConditionVO;
 import com.blackcat.blog.core.vo.MessageVo;
+import com.blackcat.blog.util.RedisUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.shiro.SecurityUtils;
@@ -31,6 +33,8 @@ public class BlogMessageServiceImpl extends ServiceImpl<BlogMessageMapper, BlogM
 
     @Resource
     BlogMessageMapper messageMapper;
+    @Resource
+    private RedisUtil redisUtil;
 
     private static String COMMENT="评论了你的文章";
     private static String REPLY="回复了你的评论";
@@ -63,6 +67,7 @@ public class BlogMessageServiceImpl extends ServiceImpl<BlogMessageMapper, BlogM
                 break;
         }
         messageMapper.insert(message);
+        redisUtil.set(RedisKey.MESSAGE+message.getId(),message);
     }
 
     @Override

@@ -1,9 +1,16 @@
 package com.blackcat.blog.common.config;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.blackcat.blog.common.constant.CodeKey;
+import com.blackcat.blog.common.constant.RedisKey;
 import com.blackcat.blog.common.property.SiteOptions;
+import com.blackcat.blog.core.entity.BlogCode;
+import com.blackcat.blog.core.entity.BlogCodeList;
 import com.blackcat.blog.core.entity.SysOptions;
+import com.blackcat.blog.core.service.BlogCodeListService;
+import com.blackcat.blog.core.service.BlogCodeService;
 import com.blackcat.blog.core.service.SysOptionsService;
-import com.blackcat.blog.core.vo.CodeKey;
+import com.blackcat.blog.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.ApplicationArguments;
@@ -18,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <p> 描述 ：加载配置信息到系统
+ * <p> 描述 ：启动加载
  * @author : blackcat
  * @date : 2020/2/28 17:45
  */
@@ -31,6 +38,12 @@ public class ContextStartup implements ApplicationRunner, ServletContextAware {
     private SiteOptions siteOptions;
     @Resource
     private SysOptionsService sysOptionsService;
+    @Resource
+    private BlogCodeListService iBlogCodeListService;
+    @Resource
+    private BlogCodeService iBlogCodeService;
+    @Resource
+    private RedisUtil redisUtil;
 
     private ServletContext servletContext;
 
@@ -38,6 +51,8 @@ public class ContextStartup implements ApplicationRunner, ServletContextAware {
     public void run(ApplicationArguments args) throws Exception {
         log.info("加载系统参数 ...");
         reloadOptions(true);
+        log.info("加载数据库数据 ...");
+        reloadDataBase();
         log.info("加载完毕！");
     }
 
@@ -70,5 +85,29 @@ public class ContextStartup implements ApplicationRunner, ServletContextAware {
         servletContext.setAttribute("site", siteOptions);
 
         System.setProperty("site.location", siteOptions.getLocation());
+    }
+
+    /**
+     * <p> 描述 : 加载数据库数据
+     * @author : blackcat
+     * @date  : 2020/5/13 13:18
+    */
+    private void reloadDataBase(){
+        List<BlogCodeList> codeLists=iBlogCodeListService.list();
+        log.info("查询数据库码表数据 ({})...", codeLists.size());
+        if(codeLists.size()>0){
+//
+            // 子码表数据
+            codeLists.forEach(i->{
+                redisUtil.set(RedisKey.CODE_LIST+i.getId(),i);
+
+                QueryWrapper<BlogCode> queryWrapper = new QueryWrapper<>();
+                queryWrapper.lambda().eq(BlogCode::getCodeId, i.getId());
+                List<BlogCode> list =iBlogCodeService.list(queryWrapper);
+                redisUtil.set(RedisKey.CODE_LIST_SUBLIST+i.getId(),list);
+
+                list.forEach(j->redisUtil.set(RedisKey.CODE+j.getId(),j));
+            });
+        }
     }
 }

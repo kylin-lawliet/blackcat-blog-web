@@ -1,4 +1,4 @@
-package com.blackcat.blog.core.vo;
+package com.blackcat.blog.common.constant;
 
 /**
  * <p> 描述 ：码表值
