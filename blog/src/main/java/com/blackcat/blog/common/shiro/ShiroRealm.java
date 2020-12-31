@@ -65,7 +65,6 @@ public class ShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         String username = (String) authenticationToken.getPrincipal();
-//        String userPwd = new String((char[]) authenticationToken.getCredentials());
         // 可以根据实际情况做缓存,如果不做,Shiro自己也是有时间间隔机制,2分钟内不会重复执行该方法
         SysUser user = sysUserService.getOne(new QueryWrapper<SysUser>().eq("username", username));
         if (user == null) {
